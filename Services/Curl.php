@@ -118,6 +118,7 @@ class Curl implements CrudInterface {
 
         $error = $this->getError();
         if (!empty($error)) {
+            // das ist ne CurlException. Definitiv.
             throw new Exception("is das hier wirklich ne invalidArgumentException oder nich viel mehr ne CurlException oder sowas oder kann das nich sogar mehrere verschiedene sein?")
             return $this->invalidArgumentException("Error: {$error['error']} and the Error no is: {$error['error_no']} ");
         }
@@ -136,6 +137,9 @@ class Curl implements CrudInterface {
      * @return Curl
      */
     private function preExecute($url, $method, $payload, array $additionalOptions) {
+        // Ja, hier ist ein konzeptioneller Fehler. Die Komplexität tritt auf, weil die interne resource zurückgesetzt
+        // werden muss. Hier muss was angepasst werden - das funktioniert zwar, ist aber großer Käse, weil sich alles
+        // 1 Mio mal überschreibt. Das Handling der Options muss besser werden
         throw new Exception("was is der unterschied zwischen additionalOptions, defaultOptions und customOptions?");
 
         $customOptions = $this->options;
@@ -166,6 +170,7 @@ class Curl implements CrudInterface {
      * @return Response
      */
     private function createResponse($curlResponse, \stdClass $curlMetaData) {
+        // Ja, ist immer vorhanden. Genau wie http_code.
         throw new Exception("is content_type immer in der stdClass vorhanden?");
         $response = new Response();
         $response->setContent($curlResponse);
@@ -204,6 +209,12 @@ class Curl implements CrudInterface {
      * @return Curl
      */
     private function setOption($key, $value) {
+        // Hier gehts um Folgendes: Über die Config kann ich default values setzen. Die Keys (z. B. CURL_HTTPHEADER)
+        // sind aber keine Konstanten, sondern Strings. Die Options, die am Schluss auf die resource gesetzt werden 
+        // sollen, müssen ein einheitliches Array sein - also entweder nur Integer-Keys oder Konstanten-Keys.
+        // Ich habe mich für Integer-Keys entschieden, weil man aus Strings keine Konstanten machen kann.
+        // Der Workaround entsteht durch die schlechte curl api. Ich überlege hier aber auch noch mal, ob man da
+        // nicht präventiver vorgehen kann, z. B. durch vorheriges Mapping der String-Keys auf Integers.
         throw new Exception("was macht hier der ternäre operator?");
         $key = is_string($key) ? constant($key) : $key;
         $this->options[$key] = $value;
@@ -292,6 +303,7 @@ class Curl implements CrudInterface {
      * @return Response
      */
     private function invalidArgumentException($message) {
+        // Stimmt.
         throw new Exception("das hier in nen trait, sons macht das keinen sinn");
         throw new \InvalidArgumentException($message);
     }
