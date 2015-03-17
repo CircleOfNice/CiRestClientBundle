@@ -14,7 +14,7 @@ trait Assertions {
      * @param  string $url
      * @return $this
      */
-    private function assertIsUrl($url) {
+    private function assertUrl($url) {
         if (!$this->assertString($url)) return false;
         return preg_match('#^http:\/\/#', $url);
     }

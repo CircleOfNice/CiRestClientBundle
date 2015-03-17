@@ -81,18 +81,6 @@ class CurlOptionsHandler {
      */
     private function setupOptions() {
         $this->setOptions($this->defaultOptions);
-        $this->defaultOptions['CURLOPT_FOLLOWLOCATION'] = isset($this->defaultOptions['CURLOPT_FOLLOWLOCATION']) ?
-            $this->defaultOptions['CURLOPT_FOLLOWLOCATION'] :
-            $this->isFollowLocation();
         return $this;
-    }
-
-    /**
-     * Validates/Checks the HTTP or HTTPS from given URL
-     *
-     * @return boolean
-     */
-    private function isFollowLocation() {
-        return (ini_get('safe_mode') || ini_get('open_basedir')) ? false : true;
     }
 }

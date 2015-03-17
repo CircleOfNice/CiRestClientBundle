@@ -96,7 +96,7 @@ class Curl implements CrudInterface {
      * @return Response
      */
     private function handleCurl($url, $method, array $options, $payload = '') {
-        if (!$this->assertIsUrl($url))           return $this->invalidArgumentException('Invalid url given: ' . $url);
+        if (!$this->assertUrl($url))             return $this->invalidArgumentException('Invalid url given: ' . $url);
         if (!$this->assertString($payload))      return $this->invalidArgumentException('Invalid payload given: ' . $payload);
         if (!$this->assertHttpMethod($method))   return $this->invalidArgumentException('Invalid http method given: ' . $method);
 

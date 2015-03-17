@@ -95,9 +95,23 @@ class CurlTest extends \PHPUnit_Framework_TestCase {
      * @covers ::get
      * @covers ::<private>
      *
-     * @expectedException \InvalidArgumentException
+     * @expectedException \Ci\CurlBundle\Exceptions\CurlException
      */
     public function nonExistingUrl() {
+        $response = $this->curl->get('http://missinghostthatwillneverbecomearealhost.it');
+        $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
+        $this->assertNotEquals(200, $response->getStatusCode());
+    }
+
+    /**
+     * @test
+     * @group  small
+     * @covers ::get
+     * @covers ::<private>
+     *
+     * @expectedException \InvalidArgumentException
+     */
+    public function wrongUrl() {
         $response = $this->curl->get('noUrl');
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertNotEquals(200, $response->getStatusCode());
@@ -194,4 +208,6 @@ class CurlTest extends \PHPUnit_Framework_TestCase {
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertNotEquals(200, $response->getStatusCode());
     }
+
+
 }
