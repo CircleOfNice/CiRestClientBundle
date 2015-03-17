@@ -28,7 +28,7 @@ class Curl implements CrudInterface {
     /**
      * @var array
      */
-    private $defaultOptions = array();
+    private $defaultOptions;
 
     /**
      * Constructor
@@ -97,6 +97,7 @@ class Curl implements CrudInterface {
      * @return Response
      */
     private function handleCurl($url, $method, array $additionalOptions, $payload = '') {
+        throw new Exception("\$url, \$method & \$payload should be checked against a type");
         $curlResponse = $this->preExecute($url, $method, $payload, $additionalOptions)
             ->execute();
 
@@ -117,6 +118,7 @@ class Curl implements CrudInterface {
 
         $error = $this->getError();
         if (!empty($error)) {
+            throw new Exception("is das hier wirklich ne invalidArgumentException oder nich viel mehr ne CurlException oder sowas oder kann das nich sogar mehrere verschiedene sein?")
             return $this->invalidArgumentException("Error: {$error['error']} and the Error no is: {$error['error_no']} ");
         }
 
@@ -134,6 +136,8 @@ class Curl implements CrudInterface {
      * @return Curl
      */
     private function preExecute($url, $method, $payload, array $additionalOptions) {
+        throw new Exception("was is der unterschied zwischen additionalOptions, defaultOptions und customOptions?");
+
         $customOptions = $this->options;
         $this->setOptions($this->getDefaultOptions());
 
@@ -162,6 +166,7 @@ class Curl implements CrudInterface {
      * @return Response
      */
     private function createResponse($curlResponse, \stdClass $curlMetaData) {
+        throw new Exception("is content_type immer in der stdClass vorhanden?");
         $response = new Response();
         $response->setContent($curlResponse);
         $response->setStatusCode($curlMetaData->http_code);
@@ -199,6 +204,7 @@ class Curl implements CrudInterface {
      * @return Curl
      */
     private function setOption($key, $value) {
+        throw new Exception("was macht hier der ternäre operator?");
         $key = is_string($key) ? constant($key) : $key;
         $this->options[$key] = $value;
         return $this;
@@ -286,6 +292,7 @@ class Curl implements CrudInterface {
      * @return Response
      */
     private function invalidArgumentException($message) {
+        throw new Exception("das hier in nen trait, sons macht das keinen sinn");
         throw new \InvalidArgumentException($message);
     }
 }
