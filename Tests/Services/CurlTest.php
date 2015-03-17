@@ -5,6 +5,7 @@ namespace Ci\CurlBundle\Tests\Services;
 require_once __DIR__ . '/../../../../../app/AppKernel.php';
 
 use Ci\CurlBundle\Services\Curl;
+use Ci\CurlBundle\Services\CurlOptionsHandler;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -13,7 +14,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @coversDefaultClass Ci\CurlBundle\Services\Curl
  *
- * @SuppressWarnings("PHPMD.StaticAccess");
+ * @SuppressWarnings("PHPMD.StaticAccess")
  */
 class CurlTest extends \PHPUnit_Framework_TestCase {
 
@@ -58,7 +59,7 @@ class CurlTest extends \PHPUnit_Framework_TestCase {
      * @covers ::__destruct
      */
     public function constructAndDestroy() {
-        $curl = new Curl(array());
+        $curl = new Curl(new CurlOptionsHandler(array()));
         unset($curl);
     }
 
@@ -149,13 +150,11 @@ class CurlTest extends \PHPUnit_Framework_TestCase {
      * @covers ::<private>
      */
     public function putOnSuccess() {
-        $this->curl->setContentType('application/json');
         $response = $this->curl->put($this->mockControllerUrl . 'put', 'payload');
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertTrue(is_string($response->getContent()));
         $this->assertNotNull($response->getContent());
-        $this->assertRegExp('/Content-Type:\s*application\/json/', $response->getContent());
     }
 
     /**
