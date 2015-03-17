@@ -1,0 +1,11 @@
+ci:
+  curl:
+    defaults:
+      CURLOPT_RETURNTRANSFER: true
+      CURLOPT_HTTPHEADER:     [ 'Content-Type: text/plain' ]
+      CURLOPT_MAXREDIRS:      25
+      CURLOPT_TIMEOUT:        25
+      CURLOPT_CONNECTTIMEOUT: 25
+      CURLOPT_CRLF:           true
+      CURLOPT_SSLVERSION:     3
+    testing_url:              http://localhost/CurlBundle/web/app_dev.php

@@ -1,0 +1,4 @@
+services:
+    ci.curl:
+        class: Ci\CurlBundle\Services\Curl
+        arguments: [ %ci.curl.defaults% ]

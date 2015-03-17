@@ -1,0 +1,30 @@
+{
+  "name" : "ci/curlbundle",
+  "description" : "Mapper bundle for php internal curl library",
+  "type" : "symfony-bundle",
+  "authors" : [{
+    "name" : "Circle.ai",
+    "email" : "info@circle.ai"
+  }],
+  "keywords" : [
+    "curl post get put delete content-type payload library plugin"
+  ],
+  "license" : [
+    "GPL"
+  ],
+  "require" : {
+    "php": ">=5.3.2",
+    "symfony/framework-bundle": "~2.1"
+  },
+  "autoload" : {
+    "psr-0" : {
+      "Ci\\CurlBundle" : ""
+    }
+  },
+  "target-dir" : "Ci/CurlBundle",
+  "extra" : {
+    "branch-alias" : {
+      "dev-master" : "1.0-dev"
+    }
+  }
+}

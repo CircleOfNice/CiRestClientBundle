@@ -1,0 +1,19 @@
+ci_curl_stub_get:
+    path:     /curlstub/get
+    defaults: { _controller: CiCurlBundle:Mock:get }
+    methods: [ GET ]
+
+ci_curl_stub_post:
+    path:     /curlstub/post
+    defaults: { _controller: CiCurlBundle:Mock:post }
+    methods: [ POST ]
+
+ci_curl_stub_put:
+    path:     /curlstub/put
+    defaults: { _controller: CiCurlBundle:Mock:put }
+    methods: [ PUT ]
+
+ci_curl_stub_delete:
+    path:     /curlstub/delete
+    defaults: { _controller: CiCurlBundle:Mock:delete }
+    methods: [ DELETE ]
