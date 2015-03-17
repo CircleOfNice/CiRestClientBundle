@@ -17,6 +17,8 @@ class CiCurlExtension extends Extension
 {
     /**
      * {@inheritdoc}
+     *
+     * @SuppressWarnings("PHPMD.StaticAccess")
      */
     public function load(array $configs, ContainerBuilder $container)
     {

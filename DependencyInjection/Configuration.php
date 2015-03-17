@@ -14,6 +14,8 @@ class Configuration implements ConfigurationInterface
 {
     /**
      * {@inheritdoc}
+     *
+     * @SuppressWarnings("PHPMD.StaticAccess")
      */
     public function getConfigTreeBuilder()
     {

@@ -141,10 +141,10 @@ class Curl implements CrudInterface {
             $this->setOption($option, $value);
         }
 
-        $this->setUrl($url)
-            ->setMethod($method)
-            ->setPayload($payload)
-            ->setOptions($additionalOptions);
+        $this->setUrl($url);
+        $this->setMethod($method);
+        $this->setPayload($payload);
+        $this->setOptions($additionalOptions);
 
         curl_setopt_array($this->curl, $this->options);
 

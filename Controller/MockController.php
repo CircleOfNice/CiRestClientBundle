@@ -48,6 +48,8 @@ class MockController extends Controller {
     /**
      * returns a new empty response
      *
+     * @SuppressWarnings("PHPMD.StaticAccess")
+     *
      * @param  string $content
      * @param  int    $httpCode
      * @return Response
