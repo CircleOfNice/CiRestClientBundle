@@ -96,3 +96,4 @@ $restClient->connect('http://www.someUrl.com', array(CURLOPT_CONNECTTIMEOUT => 3
 #Improvements in future
 - EventHandling (onCurlRequest, preCurlRequest, postCurlRequest)
 - Improved Exceptions (Instead of curl internal exceptions) extending CurlException
+- Strict rules for rest methods such as server MUST NOT return a message-body in the response for HEAD requests
