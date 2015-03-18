@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 /**
  * Provides methods for routes with http methods POST, GET, PUT, DELETE
  *
- * @author    CiGurus <gurus@groups.teeage-beatz.de>
+ * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  */
 class MockController extends Controller {

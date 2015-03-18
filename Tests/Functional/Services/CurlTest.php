@@ -9,7 +9,7 @@ use Ci\CurlBundle\Services\CurlOptionsHandler;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * @author    CiGurus <gurus@groups.teeage-beatz.de>
+ * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  *
  * @coversDefaultClass Ci\CurlBundle\Services\Curl

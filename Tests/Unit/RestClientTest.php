@@ -5,11 +5,10 @@ namespace Ci\CurlBundle\Tests\Unit\Services;
 require_once __DIR__ . '/../../../../../app/AppKernel.php';
 
 use Ci\CurlBundle\Services\RestClient;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @author    CiGurus <gurus@groups.teeage-beatz.de>
+ * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  *
  * @coversDefaultClass Ci\CurlBundle\Services\RestClient
@@ -106,5 +105,20 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
             ->will($this->returnValue($response));
 
         $this->assertSame($response, $this->restClient->put($this->mockControllerUrl, $payload));
+    }
+
+    /**
+     * @test
+     * @group  small
+     * @covers ::setContentType
+     * @covers ::<private>
+     */
+    public function setContentType() {
+        $contentType = 'application/json';
+        $this->curl->expects($this->once())
+            ->method('setContentType')
+            ->with($this->equalTo($contentType));
+
+        $this->assertInstanceOf(get_class($this->restClient), $this->restClient->setContentType($contentType));
     }
 }

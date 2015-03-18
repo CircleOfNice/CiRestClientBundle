@@ -11,7 +11,8 @@ use Symfony\Component\Yaml\Yaml;
 /**
  * This is the class that loads and manages your bundle configuration
  *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
+ * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
+ * @copyright 2015 TeeAge-Beatz UG
  */
 class CiCurlExtension extends Extension
 {

@@ -7,10 +7,10 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Contract for CRUD methods
  *
- * @author    CiGurus <gurus@groups.teeage-beatz.de>
+ * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  */
-interface CrudInterface {
+interface RestInterface {
     /**
      * sends a get request to the given url
      *

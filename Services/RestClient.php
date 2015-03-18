@@ -2,21 +2,17 @@
 
 namespace Ci\CurlBundle\Services;
 
-use Symfony\Component\HttpFoundation\Response;
-use Ci\CurlBundle\Traits\Exceptions;
-use Ci\CurlBundle\Traits\Assertions;
-
 /**
  * Sends curl requests
  *
- * @author    CiGurus <gurus@groups.teeage-beatz.de>
+ * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  */
-class RestClient implements CrudInterface {
+class RestClient implements RestInterface {
     /**
      * This variable stores the curl instance created through curl initiation
      *
-     * @var resource
+     * @var Curl
      */
     private $curl;
 

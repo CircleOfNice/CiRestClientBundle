@@ -3,7 +3,7 @@
 namespace Ci\CurlBundle\Traits;
 
 /**
- * @author    CiGurus <gurus@groups.teeage-beatz.de>
+ * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  */
 trait Assertions {
