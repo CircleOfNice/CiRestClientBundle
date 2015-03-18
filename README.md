@@ -5,14 +5,14 @@ This bundle provides a rest client and sends (curl)requests to a given url and m
 
 #Installation
 
-###Step 1: Download CiUtilityBundle using composer
-Add CiUtilityBundle by running the command:
+##Step 1: Download the bundle using composer
+Add the bundle by running the command:
 ```
 php composer.phar require ci/utilitybundle
 ```
 Composer will install the bundle to your project's ```vendor/ci``` directory.
 
-###Step 2: Enable the bundle
+##Step 2: Enable the bundle
 Enable the bundle in the symfony kernel
 
 ```php
@@ -23,7 +23,63 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
-        new Ci\UtilityBundle\CiUtilityBundle(),
+        new Ci\CurlBundle\CiCurlBundle(),
     );
 }
 ```
+
+#Configuration
+
+The bundle allows you to configure all default options that the underlying PHP internal curl library provides - with their real names.
+You can change the configuration by adding the following lines to your app/config.yml:
+
+```
+ci:
+  curl:
+    defaults:
+      $optionName: $value
+      $optionName: $value
+      ...
+```
+
+##Example:
+
+```
+ci:
+  curl:
+    defaults:
+      CURLOPT_RETURNTRANSFER: true
+      CURLOPT_HTTPHEADER:     [ 'Content-Type: text/plain' ]
+      CURLOPT_MAXREDIRS:      25
+      CURLOPT_TIMEOUT:        25
+      CURLOPT_CONNECTTIMEOUT: 25
+      CURLOPT_CRLF:           true
+      CURLOPT_SSLVERSION:     3
+      CURLOPT_FOLLOWLOCATION: true
+```
+
+#Usage
+
+```
+$restClient = $this->container->get('ci.restclient');
+$restClient->get('http://www.someUrl.com');
+$restClient->post('http://www.someUrl.com', 'somePayload');
+$restClient->put('http://www.someUrl.com', 'somePayload');
+$restClient->delete('http://www.someUrl.com');
+```
+
+#AdvancedUsage
+
+You can add additional options to customize a specific request by adding an option array as key value store.
+
+```
+$restClient = $this->container->get('ci.restclient');
+$restClient->get('http://www.someUrl.com', array(CURLOPT_FOLLOWLOCATION => false));
+$restClient->post('http://www.someUrl.com', 'somePayload', array(CURLOPT_HTTPHEADER => 'Content-Type: application/json'));
+$restClient->put('http://www.someUrl.com', 'somePayload', array(CURLOPT_HTTPHEADER => 'Content-Type: application/json'));
+$restClient->delete('http://www.someUrl.com', array(CURLOPT_CONNECTTIMEOUT => 30));
+```
+
+#Improvements in future
+- EventHandling (onCurlRequest, preCurlRequest, postCurlRequest)
+- Improved Exceptions (Instead of curl internal exceptions) extending CurlException
