@@ -158,7 +158,7 @@ class Curl {
      */
     private function setURL($url) {
         $this->curlOptionsHandler->setOption(CURLOPT_URL, $url);
-        $this->curlOptionsHandler->setOption(CURLOPT_SSL_VERIFYPEER, $this->assertIsUrlHttps($url));
+        $this->curlOptionsHandler->setOption(CURLOPT_SSL_VERIFYPEER, $this->assertUrlHttps($url));
         return $this;
     }
 

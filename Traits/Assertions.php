@@ -51,7 +51,7 @@ trait Assertions {
      * @param  string $url
      * @return $this
      */
-    private function assertIsUrlHttps($url) {
+    private function assertUrlHttps($url) {
         return preg_match('#^https:\/\/#', $url);
     }
 }
