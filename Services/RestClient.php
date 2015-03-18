@@ -55,6 +55,41 @@ class RestClient implements RestInterface {
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function head($url, array $options = array()) {
+        return $this->curl->sendRequest($url, 'HEAD', $options);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function options($url, $payload, array $options = array()) {
+        return $this->curl->sendRequest($url, 'OPTIONS', $options, $payload);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function trace($url, array $options = array()) {
+        return $this->curl->sendRequest($url, 'TRACE', $options);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function connect($url, array $options = array()) {
+        return $this->curl->sendRequest($url, 'CONNECT', $options);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function patch($url, $payload, array $options = array()) {
+        return $this->curl->sendRequest($url, 'PATCH', $options, $payload);
+    }
+
+    /**
      * sets the content type
      *
      * @param  $contentType

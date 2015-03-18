@@ -71,7 +71,7 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertTrue(is_string($response->getContent()));
-        $this->assertNotNull($response->getContent());
+        $this->assertNotEmpty($response->getContent());
     }
 
     /**
@@ -125,7 +125,7 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertTrue(is_string($response->getContent()));
-        $this->assertNotNull($response->getContent());
+        $this->assertNotEmpty($response->getContent());
     }
 
     /**
@@ -165,7 +165,7 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertTrue(is_string($response->getContent()));
-        $this->assertNotNull($response->getContent());
+        $this->assertNotEmpty($response->getContent());
     }
 
     /**
@@ -191,7 +191,7 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertTrue(is_string($response->getContent()));
-        $this->assertNotNull($response->getContent());
+        $this->assertNotEmpty($response->getContent());
     }
 
     /**
@@ -206,5 +206,68 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
         $this->assertNotEquals(200, $response->getStatusCode());
     }
 
+    /**
+     * @test
+     * @group  small
+     * @covers ::head
+     * @covers ::<private>
+     */
+    public function head() {
+        $response = $this->restClient->head($this->mockControllerUrl . 'head?httpCode=200');
+        $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertEmpty($response->getContent());
+    }
 
+    /**
+     * @test
+     * @group  small
+     * @covers ::options
+     * @covers ::<private>
+     */
+    public function options() {
+        $response = $this->restClient->options($this->mockControllerUrl . 'options?httpCode=200', 'test');
+        $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertNotEmpty($response->getContent());
+    }
+
+    /**
+     * @test
+     * @group  small
+     * @covers ::trace
+     * @covers ::<private>
+     */
+    public function trace() {
+        $response = $this->restClient->trace($this->mockControllerUrl . 'trace?httpCode=405');
+        $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
+        $this->assertEquals(405, $response->getStatusCode());
+        $this->assertNotEmpty($response->getContent());
+    }
+
+    /**
+     * @test
+     * @group  small
+     * @covers ::connect
+     * @covers ::<private>
+     */
+    public function connect() {
+        $response = $this->restClient->connect($this->mockControllerUrl . 'connect?httpCode=400');
+        $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
+        $this->assertEquals(400, $response->getStatusCode());
+        $this->assertNotEmpty($response->getContent());
+    }
+
+    /**
+     * @test
+     * @group  small
+     * @covers ::patch
+     * @covers ::<private>
+     */
+    public function patch() {
+        $response = $this->restClient->patch($this->mockControllerUrl . 'patch?httpCode=200', 'test');
+        $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertNotEmpty($response->getContent());
+    }
 }

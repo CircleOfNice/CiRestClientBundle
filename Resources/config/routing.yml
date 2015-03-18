@@ -17,3 +17,28 @@ ci_curl_stub_delete:
     path:     /curlstub/delete
     defaults: { _controller: CiCurlBundle:Mock:delete }
     methods: [ DELETE ]
+
+ci_curl_stub_head:
+    path:     /curlstub/head
+    defaults: { _controller: CiCurlBundle:Mock:head }
+    methods: [ HEAD ]
+
+ci_curl_stub_options:
+    path:     /curlstub/options
+    defaults: { _controller: CiCurlBundle:Mock:options }
+    methods: [ OPTIONS ]
+
+ci_curl_stub_trace:
+    path:     /curlstub/trace
+    defaults: { _controller: CiCurlBundle:Mock:trace }
+    methods: [ TRACE ]
+
+ci_curl_stub_patch:
+    path:     /curlstub/patch
+    defaults: { _controller: CiCurlBundle:Mock:patch }
+    methods: [ PATCH ]
+
+ci_curl_stub_connect:
+    path:     /curlstub/connect
+    defaults: { _controller: CiCurlBundle:Mock:connect }
+    methods: [ CONNECT ]
