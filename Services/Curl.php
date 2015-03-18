@@ -36,7 +36,7 @@ class Curl {
      * @throws \InvalidArgumentException Curl not installed.
      */
     public function __construct(CurlOptionsHandler $curlOptionsHandler) {
-        function_exists('curl_version') ? $this->initializeCurl() : $this->curlException("Curl not installed", 2);
+        function_exists('curl_version') ? $this->initializeCurl() : $this->curlException("The PHP curl library is not installed (http://php.net/manual/de/curl.installation.php)", 2);
         $this->curlOptionsHandler = $curlOptionsHandler;
     }
 

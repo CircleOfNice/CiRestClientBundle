@@ -20,7 +20,7 @@ class RestClient implements RestInterface {
      * Constructor
      *
      * @param  Curl $curl
-     * @throws \InvalidArgumentException Curl not installed.
+     * @throws \Ci\CurlBundle\Exceptions\CurlException (Curl not installed.)
      */
     public function __construct(Curl $curl) {
         $this->curl = $curl;

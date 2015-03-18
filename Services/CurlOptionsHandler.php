@@ -51,7 +51,7 @@ class CurlOptionsHandler {
      * @return CurlOptionsHandler
      */
     public function setOption($key, $value) {
-        if (!is_int($key)) return $this->invalidArgumentException('key must be integer');
+        $this->validateOptions(array($key => $value));
         $this->options[$key] = $value;
         return $this;
     }
@@ -84,7 +84,7 @@ class CurlOptionsHandler {
      */
     private function validateOptions(array $options) {
         foreach ($options as $key => $value) {
-            if (!is_int($key)) $this->invalidArgumentException('Invalid Option given. ' . $key . ' with value ' . $value . ' is not a valid option.');
+            if (!is_int($key)) return $this->invalidArgumentException('Error while setting a curl option (http://php.net/manual/de/function.curl-setopt.php). Tried to set ' . $key . ' on curl resource.');
         }
         return $this;
     }
