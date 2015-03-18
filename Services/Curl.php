@@ -3,14 +3,20 @@
 namespace Ci\CurlBundle\Services;
 
 use Symfony\Component\HttpFoundation\Response;
+use Ci\CurlBundle\Traits\Exceptions;
+use Ci\CurlBundle\Traits\Assertions;
 
 /**
  * Sends curl requests
  *
- * @author    CiGurus <gurus@groups.teeage-beatz.de>
+ * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  */
-class Curl implements CrudInterface {
+class Curl {
+
+    use Exceptions;
+    use Assertions;
+
     /**
      * This variable stores the curl instance created through curl initiation
      *
@@ -19,26 +25,19 @@ class Curl implements CrudInterface {
     private $curl;
 
     /**
-     * This variable stores a array of curl options
-     *
-     * @var array
+     * @var CurlOptionsHandler
      */
-    private $options;
-
-    /**
-     * @var array
-     */
-    private $defaultOptions = array();
+    private $curlOptionsHandler;
 
     /**
      * Constructor
      *
-     * @param  array $defaultOptions
+     * @param  CurlOptionsHandler $curlOptionsHandler
      * @throws \InvalidArgumentException Curl not installed.
      */
-    public function __construct(array $defaultOptions) {
-        function_exists('curl_version') ? $this->initializeCurl() : $this->invalidArgumentException("Curl not installed");
-        $this->defaultOptions = $defaultOptions;
+    public function __construct(CurlOptionsHandler $curlOptionsHandler) {
+        function_exists('curl_version') ? $this->initializeCurl() : $this->curlException("The PHP curl library is not installed (http://php.net/manual/de/curl.installation.php)", 2);
+        $this->curlOptionsHandler = $curlOptionsHandler;
     }
 
     /**
@@ -50,41 +49,13 @@ class Curl implements CrudInterface {
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function get($url, array $additionalOptions = array()) {
-        return $this->handleCurl($url, 'GET', $additionalOptions);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function post($url, $payload, array $additionalOptions = array()) {
-        return $this->handleCurl($url, 'POST', $additionalOptions, $payload);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function put($url, $payload, array $additionalOptions = array()) {
-        return $this->handleCurl($url, 'PUT', $additionalOptions, $payload);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function delete($url, array $additionalOptions = array()) {
-        return $this->handleCurl($url, 'DELETE', $additionalOptions);
-    }
-
-    /**
      * sets the content type
      *
      * @param  $contentType
      * @return $this
      */
     public function setContentType($contentType) {
-        return $this->setOption(CURLOPT_HTTPHEADER, array('Content-Type: ' . $contentType));
+        return $this->curlOptionsHandler->setOption(CURLOPT_HTTPHEADER, array('Content-Type: ' . $contentType));
     }
 
     /**
@@ -92,16 +63,23 @@ class Curl implements CrudInterface {
      *
      * @param  string $url
      * @param  string $method
+     * @param  array $options
      * @param  string $payload
-     * @param  array $additionalOptions
      * @return Response
      */
-    private function handleCurl($url, $method, array $additionalOptions, $payload = '') {
-        $curlResponse = $this->preExecute($url, $method, $payload, $additionalOptions)
-            ->execute();
+    public function sendRequest($url, $method, array $options = array(), $payload = '') {
+        if (!$this->assertUrl($url))             return $this->invalidArgumentException('Invalid url given: ' . $url);
+        if (!$this->assertString($payload))      return $this->invalidArgumentException('Invalid payload given: ' . $payload);
+        if (!$this->assertHttpMethod($method))   return $this->invalidArgumentException('Invalid http method given: ' . $method);
+
+        $this->curlOptionsHandler->setOptions($options);
+
+        $curlResponse = $this->preExecute($url, $method, $payload)->execute();
 
         $curlMetaData = (object) curl_getinfo($this->curl);
+
         curl_reset($this->curl);
+        $this->curlOptionsHandler->reset();
 
         return $this->createResponse($curlResponse, $curlMetaData);
     }
@@ -117,7 +95,7 @@ class Curl implements CrudInterface {
 
         $error = $this->getError();
         if (!empty($error)) {
-            return $this->invalidArgumentException("Error: {$error['error']} and the Error no is: {$error['error_no']} ");
+            return $this->curlException($error['error'], $error['error_no']);
         }
 
         return $curlResponse;
@@ -126,27 +104,18 @@ class Curl implements CrudInterface {
     /**
      * builds the environment for curl execution
      *
-     * @param string $url
-     * @param string $method
-     * @param string $payload
-     * @param array $additionalOptions
+     * @param  string $url
+     * @param  string $method
+     * @param  string $payload
+     * @param  array $options
      *
      * @return Curl
      */
-    private function preExecute($url, $method, $payload, array $additionalOptions) {
-        $customOptions = $this->options;
-        $this->setOptions($this->getDefaultOptions());
-
-        foreach ($customOptions as $option => $value) {
-            $this->setOption($option, $value);
-        }
-
+    private function preExecute($url, $method, $payload) {
         $this->setUrl($url);
         $this->setMethod($method);
         $this->setPayload($payload);
-        $this->setOptions($additionalOptions);
-
-        curl_setopt_array($this->curl, $this->options);
+        curl_setopt_array($this->curl, $this->curlOptionsHandler->getOptions());
 
         return $this;
     }
@@ -177,7 +146,7 @@ class Curl implements CrudInterface {
      * @return Curl
      */
     private function setPayload($payload) {
-        $this->setOption(CURLOPT_POSTFIELDS, $payload);
+        $this->curlOptionsHandler->setOption(CURLOPT_POSTFIELDS, $payload);
         return $this;
     }
 
@@ -188,30 +157,8 @@ class Curl implements CrudInterface {
      * @return Curl
      */
     private function setURL($url) {
-        $this->setOption(CURLOPT_URL, $url);
-        $this->setOption(CURLOPT_SSL_VERIFYPEER, $this->isUrlHttps($url));
-        return $this;
-    }
-
-    /**
-     * @param  string $key
-     * @param  mixed  $value
-     * @return Curl
-     */
-    private function setOption($key, $value) {
-        $key = is_string($key) ? constant($key) : $key;
-        $this->options[$key] = $value;
-        return $this;
-    }
-
-    /**
-     * sets all options for curl execution
-     *
-     * @param  array $options
-     * @return Curl
-     */
-    private function setOptions(array $options) {
-        foreach ($options as $key => $value) $this->setOption($key, $value);
+        $this->curlOptionsHandler->setOption(CURLOPT_URL, $url);
+        $this->curlOptionsHandler->setOption(CURLOPT_SSL_VERIFYPEER, $this->assertUrlHttps($url));
         return $this;
     }
 
@@ -222,7 +169,7 @@ class Curl implements CrudInterface {
      * @return Curl
      */
     private function setMethod($method) {
-        $this->setOption(CURLOPT_CUSTOMREQUEST, strtoupper($method));
+        $this->curlOptionsHandler->setOption(CURLOPT_CUSTOMREQUEST, strtoupper($method));
         return $this;
     }
 
@@ -232,8 +179,7 @@ class Curl implements CrudInterface {
      * @return Curl
      */
     private function initializeCurl() {
-        $this->curl     = curl_init();
-        $this->options  = $this->getDefaultOptions();
+        $this->curl = curl_init();
         return $this;
     }
 
@@ -245,47 +191,5 @@ class Curl implements CrudInterface {
     private function getError() {
         if (!curl_errno($this->curl)) return array();
         return array('error_no' => curl_errno($this->curl), 'error' => curl_error($this->curl));
-    }
-
-    /**
-     * returns the default options
-     *
-     * @return array
-     */
-    private function getDefaultOptions() {
-        $this->defaultOptions[CURLOPT_FOLLOWLOCATION] = isset($this->defaultOptions[CURLOPT_FOLLOWLOCATION]) ? $this->defaultOptions[CURLOPT_FOLLOWLOCATION] : $this->isFollowLocation();
-        return $this->defaultOptions;
-    }
-
-    /**
-     * Validates/Checks the HTTP or HTTPS from given URL
-     *
-     * @param  string $url
-     * @return boolean
-     */
-    private function isUrlHttps($url) {
-        return preg_match('#^https:\/\/#', $url);
-    }
-
-    /**
-     * Validates/Checks the HTTP or HTTPS from given URL
-     *
-     * @return boolean
-     */
-    private function isFollowLocation() {
-        return (ini_get('safe_mode') || ini_get('open_basedir')) ? false : true;
-    }
-
-    /**
-     * throws an invalid argument exception
-     *
-     * @SuppressWarnings("PHPMD.StaticAccess");
-     *
-     * @throws \InvalidArgumentException
-     * @param  string $message
-     * @return Response
-     */
-    private function invalidArgumentException($message) {
-        throw new \InvalidArgumentException($message);
     }
 }

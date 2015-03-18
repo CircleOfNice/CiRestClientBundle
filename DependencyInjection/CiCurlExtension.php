@@ -11,7 +11,8 @@ use Symfony\Component\Yaml\Yaml;
 /**
  * This is the class that loads and manages your bundle configuration
  *
- * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
+ * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
+ * @copyright 2015 TeeAge-Beatz UG
  */
 class CiCurlExtension extends Extension
 {
@@ -28,7 +29,15 @@ class CiCurlExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $container->setParameter('ci.curl.defaults', $config['curl']['defaults']);
+        if (!isset($config['curl'])) throw new \RuntimeException('configuration ci.curl is missing.');
+        if (!isset($config['curl']['defaults'])) throw new \RuntimeException('configuration ci.curl.defaults is missing.');
+
+        $options = array();
+        foreach ($config['curl']['defaults'] as $key => $value) {
+            $options[constant($key)] = $value;
+        };
+
+        $container->setParameter('ci.curl.defaults', $options);
         $container->setParameter('ci.curl.testing_url', $config['curl']['testing_url']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
