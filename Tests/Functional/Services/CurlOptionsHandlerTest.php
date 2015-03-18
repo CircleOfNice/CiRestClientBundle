@@ -1,8 +1,8 @@
 <?php
 
-namespace Ci\CurlBundle\Tests\Services;
+namespace Ci\CurlBundle\Tests\Functional\Services;
 
-require_once __DIR__ . '/../../../../../app/AppKernel.php';
+require_once __DIR__ . '/../../../../../../app/AppKernel.php';
 
 use Ci\CurlBundle\Services\CurlOptionsHandler;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -30,7 +30,7 @@ class CurlOptionsHandlerTest extends \PHPUnit_Framework_TestCase {
     /**
      * @var array
      */
-    private $defaultOptions = array('CURLOPT_RETURNTRANSFER' => true);
+    private $defaultOptions = array(CURLOPT_RETURNTRANSFER => true);
 
     /**
      * {@inheritDoc}
@@ -85,7 +85,7 @@ class CurlOptionsHandlerTest extends \PHPUnit_Framework_TestCase {
 
         $this->assertInstanceOf(get_class($this->curlOptionsHandler), $this->curlOptionsHandler->reset());
 
-        $this->assertSame($this->castToConstantArray(), $property->getValue($this->curlOptionsHandler));
+        $this->assertSame($this->defaultOptions, $property->getValue($this->curlOptionsHandler));
     }
 
     /**
@@ -97,7 +97,7 @@ class CurlOptionsHandlerTest extends \PHPUnit_Framework_TestCase {
      */
     public function setGetOptions() {
         $this->assertInstanceOf(get_class($this->curlOptionsHandler), $this->curlOptionsHandler->setOptions($this->defaultOptions));
-        $this->assertSame($this->castToConstantArray(), $this->curlOptionsHandler->getOptions());
+        $this->assertSame($this->defaultOptions, $this->curlOptionsHandler->getOptions());
     }
 
     /**
@@ -107,7 +107,7 @@ class CurlOptionsHandlerTest extends \PHPUnit_Framework_TestCase {
      * @covers ::<private>
      */
     public function setOption() {
-        $this->assertInstanceOf(get_class($this->curlOptionsHandler), $this->curlOptionsHandler->setOption('CURLOPT_RETURNTRANSFER', false));
+        $this->assertInstanceOf(get_class($this->curlOptionsHandler), $this->curlOptionsHandler->setOption(CURLOPT_RETURNTRANSFER, false));
 
         $reflectionClass = new \ReflectionClass($this->curlOptionsHandler);
         $property = $reflectionClass->getProperty('options');
@@ -124,21 +124,7 @@ class CurlOptionsHandlerTest extends \PHPUnit_Framework_TestCase {
      * @expectedException \InvalidArgumentException
      */
     public function setOptionOnError() {
-        $this->assertInstanceOf(get_class($this->curlOptionsHandler), $this->curlOptionsHandler->setOption(CURLOPT_RETURNTRANSFER, false));
-    }
-
-    /**
-     * casts an option array to a constant array
-     *
-     * @return array
-     */
-    private function castToConstantArray() {
-        $defaultOptions = array();
-        foreach ($this->defaultOptions as $optionName => $value) {
-            $defaultOptions[constant($optionName)] = $value;
-        }
-
-        return $defaultOptions;
+        $this->assertInstanceOf(get_class($this->curlOptionsHandler), $this->curlOptionsHandler->setOption('CURLOPT_RETURNTRANSFER', false));
     }
 
 }

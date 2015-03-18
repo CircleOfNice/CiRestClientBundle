@@ -12,7 +12,7 @@ use Ci\CurlBundle\Traits\Assertions;
  * @author    CiGurus <gurus@groups.teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  */
-class Curl implements CrudInterface {
+class Curl {
 
     use Exceptions;
     use Assertions;
@@ -49,41 +49,13 @@ class Curl implements CrudInterface {
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function get($url, array $options = array()) {
-        return $this->handleCurl($url, 'GET', $options);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function post($url, $payload, array $options = array()) {
-        return $this->handleCurl($url, 'POST', $options, $payload);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function put($url, $payload, array $options = array()) {
-        return $this->handleCurl($url, 'PUT', $options, $payload);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function delete($url, array $options = array()) {
-        return $this->handleCurl($url, 'DELETE', $options);
-    }
-
-    /**
      * sets the content type
      *
      * @param  $contentType
      * @return $this
      */
     public function setContentType($contentType) {
-        return $this->curlOptionsHandler->setOption('CURLOPT_HTTPHEADER', array('Content-Type: ' . $contentType));
+        return $this->curlOptionsHandler->setOption(CURLOPT_HTTPHEADER, array('Content-Type: ' . $contentType));
     }
 
     /**
@@ -95,15 +67,14 @@ class Curl implements CrudInterface {
      * @param  string $payload
      * @return Response
      */
-    private function handleCurl($url, $method, array $options, $payload = '') {
+    public function sendRequest($url, $method, array $options = array(), $payload = '') {
         if (!$this->assertUrl($url))             return $this->invalidArgumentException('Invalid url given: ' . $url);
         if (!$this->assertString($payload))      return $this->invalidArgumentException('Invalid payload given: ' . $payload);
         if (!$this->assertHttpMethod($method))   return $this->invalidArgumentException('Invalid http method given: ' . $method);
 
         $this->curlOptionsHandler->setOptions($options);
 
-        $curlResponse = $this->preExecute($url, $method, $payload)
-            ->execute();
+        $curlResponse = $this->preExecute($url, $method, $payload)->execute();
 
         $curlMetaData = (object) curl_getinfo($this->curl);
 
@@ -175,7 +146,7 @@ class Curl implements CrudInterface {
      * @return Curl
      */
     private function setPayload($payload) {
-        $this->curlOptionsHandler->setOption('CURLOPT_POSTFIELDS', $payload);
+        $this->curlOptionsHandler->setOption(CURLOPT_POSTFIELDS, $payload);
         return $this;
     }
 
@@ -186,8 +157,8 @@ class Curl implements CrudInterface {
      * @return Curl
      */
     private function setURL($url) {
-        $this->curlOptionsHandler->setOption('CURLOPT_URL', $url);
-        $this->curlOptionsHandler->setOption('CURLOPT_SSL_VERIFYPEER', $this->assertIsUrlHttps($url));
+        $this->curlOptionsHandler->setOption(CURLOPT_URL, $url);
+        $this->curlOptionsHandler->setOption(CURLOPT_SSL_VERIFYPEER, $this->assertIsUrlHttps($url));
         return $this;
     }
 
@@ -198,7 +169,7 @@ class Curl implements CrudInterface {
      * @return Curl
      */
     private function setMethod($method) {
-        $this->curlOptionsHandler->setOption('CURLOPT_CUSTOMREQUEST', strtoupper($method));
+        $this->curlOptionsHandler->setOption(CURLOPT_CUSTOMREQUEST, strtoupper($method));
         return $this;
     }
 

@@ -30,8 +30,9 @@ class CurlOptionsHandler {
      * @param array $defaultOptions
      */
     public function __construct(array $defaultOptions) {
-        $this->defaultOptions = $defaultOptions;
-        $this->setupOptions();
+        $this->validateOptions($defaultOptions);
+        $this->defaultOptions   = $defaultOptions;
+        $this->options          = $defaultOptions;
     }
 
     /**
@@ -40,7 +41,8 @@ class CurlOptionsHandler {
      * @return CurlOptionsHandler
      */
     public function reset() {
-        return $this->setupOptions();
+        $this->options = $this->defaultOptions;
+        return $this;
     }
 
     /**
@@ -49,8 +51,8 @@ class CurlOptionsHandler {
      * @return CurlOptionsHandler
      */
     public function setOption($key, $value) {
-        if (!is_string($key)) return $this->invalidArgumentException('key must be string');
-        $this->options[constant($key)] = $value;
+        if (!is_int($key)) return $this->invalidArgumentException('key must be integer');
+        $this->options[$key] = $value;
         return $this;
     }
 
@@ -75,12 +77,15 @@ class CurlOptionsHandler {
     }
 
     /**
-     * sets the options array to default values
+     * validates the given options
      *
-     * @return CurlOptionsHandler
+     * @param  array $options
+     * @return $this
      */
-    private function setupOptions() {
-        $this->setOptions($this->defaultOptions);
+    private function validateOptions(array $options) {
+        foreach ($options as $key => $value) {
+            if (!is_int($key)) $this->invalidArgumentException('Invalid Option given. ' . $key . ' must be integer');
+        }
         return $this;
     }
 }

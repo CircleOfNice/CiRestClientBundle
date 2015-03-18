@@ -1,4 +1,7 @@
 services:
+    ci.restclient:
+        class: Ci\CurlBundle\Services\RestClient
+        arguments: [ @ci.curl ]
     ci.curl:
         class: Ci\CurlBundle\Services\Curl
         arguments: [ @ci.curl.options.handler ]

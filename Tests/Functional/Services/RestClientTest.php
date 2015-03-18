@@ -1,22 +1,21 @@
 <?php
 
-namespace Ci\CurlBundle\Tests\Services;
+namespace Ci\CurlBundle\Tests\Functional\Services;
 
-require_once __DIR__ . '/../../../../../app/AppKernel.php';
+require_once __DIR__ . '/../../../../../../app/AppKernel.php';
 
-use Ci\CurlBundle\Services\Curl;
-use Ci\CurlBundle\Services\CurlOptionsHandler;
+use Ci\CurlBundle\Services\RestClient;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * @author    CiGurus <gurus@groups.teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  *
- * @coversDefaultClass Ci\CurlBundle\Services\Curl
+ * @coversDefaultClass Ci\CurlBundle\Services\RestClient
  *
  * @SuppressWarnings("PHPMD.StaticAccess")
  */
-class CurlTest extends \PHPUnit_Framework_TestCase {
+class RestClientTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @var string
@@ -24,9 +23,9 @@ class CurlTest extends \PHPUnit_Framework_TestCase {
     private $mockControllerUrl;
 
     /**
-     * @var Curl
+     * @var RestClient
      */
-    private $curl;
+    private $restClient;
 
     /**
      * @var ContainerInterface
@@ -47,8 +46,8 @@ class CurlTest extends \PHPUnit_Framework_TestCase {
      * {@inheritDoc}
      */
     public function setUp() {
-        $this->curl                 = static::$container->get('ci.curl');
-        $this->mockControllerUrl    = static::$container->getParameter('ci.curl.testing_url') . '/curlstub/';
+        $this->restClient        = static::$container->get('ci.restclient');
+        $this->mockControllerUrl = static::$container->getParameter('ci.curl.testing_url') . '/curlstub/';
     }
 
     /**
@@ -56,11 +55,9 @@ class CurlTest extends \PHPUnit_Framework_TestCase {
      * @group  small
      * @covers ::__construct
      * @covers ::<private>
-     * @covers ::__destruct
      */
-    public function constructAndDestroy() {
-        $curl = new Curl(new CurlOptionsHandler(array()));
-        unset($curl);
+    public function construct() {
+        $this->assertInstanceOf('Ci\CurlBundle\Services\RestClient', $this->restClient);
     }
 
     /**
@@ -70,7 +67,7 @@ class CurlTest extends \PHPUnit_Framework_TestCase {
      * @covers ::<private>
      */
     public function getOnSuccess() {
-        $response = $this->curl->get($this->mockControllerUrl . 'get');
+        $response = $this->restClient->get($this->mockControllerUrl . 'get');
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertTrue(is_string($response->getContent()));
@@ -84,7 +81,7 @@ class CurlTest extends \PHPUnit_Framework_TestCase {
      * @covers ::<private>
      */
     public function getOnError() {
-        $response = $this->curl->get($this->mockControllerUrl . 'get?httpCode=400');
+        $response = $this->restClient->get($this->mockControllerUrl . 'get?httpCode=400');
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertNotEquals(200, $response->getStatusCode());
     }
@@ -98,7 +95,7 @@ class CurlTest extends \PHPUnit_Framework_TestCase {
      * @expectedException \Ci\CurlBundle\Exceptions\CurlException
      */
     public function nonExistingUrl() {
-        $response = $this->curl->get('http://missinghostthatwillneverbecomearealhost.it');
+        $response = $this->restClient->get('http://missinghostthatwillneverbecomearealhost.it');
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertNotEquals(200, $response->getStatusCode());
     }
@@ -112,7 +109,7 @@ class CurlTest extends \PHPUnit_Framework_TestCase {
      * @expectedException \InvalidArgumentException
      */
     public function wrongUrl() {
-        $response = $this->curl->get('noUrl');
+        $response = $this->restClient->get('noUrl');
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertNotEquals(200, $response->getStatusCode());
     }
@@ -124,7 +121,7 @@ class CurlTest extends \PHPUnit_Framework_TestCase {
      * @covers ::<private>
      */
     public function postOnSuccess() {
-        $response = $this->curl->post($this->mockControllerUrl . 'post', 'payload');
+        $response = $this->restClient->post($this->mockControllerUrl . 'post', 'payload');
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertTrue(is_string($response->getContent()));
@@ -134,13 +131,13 @@ class CurlTest extends \PHPUnit_Framework_TestCase {
     /**
      * @test
      * @group  small
-     * @uses   Ci\CurlBundle\Services\Curl::post
+     * @uses   Ci\CurlBundle\Services\RestClient::post
      * @covers ::setContentType
      * @covers ::<private>
      */
     public function setContentType() {
-        $this->curl->setContentType('application/json');
-        $response = $this->curl->post($this->mockControllerUrl . 'post', 'payload');
+        $this->restClient->setContentType('application/json');
+        $response = $this->restClient->post($this->mockControllerUrl . 'post', 'payload');
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertRegExp('/Content-Type:\s*application\/json/', $response->getContent());
     }
@@ -152,7 +149,7 @@ class CurlTest extends \PHPUnit_Framework_TestCase {
      * @covers ::<private>
      */
     public function postOnError() {
-        $response = $this->curl->post($this->mockControllerUrl . 'post?httpCode=400', 'payload');
+        $response = $this->restClient->post($this->mockControllerUrl . 'post?httpCode=400', 'payload');
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertNotEquals(200, $response->getStatusCode());
     }
@@ -164,7 +161,7 @@ class CurlTest extends \PHPUnit_Framework_TestCase {
      * @covers ::<private>
      */
     public function putOnSuccess() {
-        $response = $this->curl->put($this->mockControllerUrl . 'put', 'payload');
+        $response = $this->restClient->put($this->mockControllerUrl . 'put', 'payload');
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertTrue(is_string($response->getContent()));
@@ -178,7 +175,7 @@ class CurlTest extends \PHPUnit_Framework_TestCase {
      * @covers ::<private>
      */
     public function putOnError() {
-        $response = $this->curl->put($this->mockControllerUrl . 'put?httpCode=400', 'payload');
+        $response = $this->restClient->put($this->mockControllerUrl . 'put?httpCode=400', 'payload');
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertNotEquals(200, $response->getStatusCode());
     }
@@ -190,7 +187,7 @@ class CurlTest extends \PHPUnit_Framework_TestCase {
      * @covers ::<private>
      */
     public function deleteOnSuccess() {
-        $response = $this->curl->delete($this->mockControllerUrl . 'delete');
+        $response = $this->restClient->delete($this->mockControllerUrl . 'delete');
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertTrue(is_string($response->getContent()));
@@ -204,7 +201,7 @@ class CurlTest extends \PHPUnit_Framework_TestCase {
      * @covers ::<private>
      */
     public function deleteOnError() {
-        $response = $this->curl->delete($this->mockControllerUrl . 'delete?httpCode=400');
+        $response = $this->restClient->delete($this->mockControllerUrl . 'delete?httpCode=400');
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertNotEquals(200, $response->getStatusCode());
     }
