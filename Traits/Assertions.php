@@ -16,7 +16,7 @@ trait Assertions {
      */
     private function assertUrl($url) {
         if (!$this->assertString($url)) return false;
-        return preg_match('#^http:\/\/#', $url);
+        return preg_match('/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i', $url);
     }
 
     /**
@@ -52,6 +52,6 @@ trait Assertions {
      * @return $this
      */
     private function assertUrlHttps($url) {
-        return preg_match('#^https:\/\/#', $url);
+        return preg_match('#^https:\/\/#', $url) && $this->assertUrl($url);
     }
 }
