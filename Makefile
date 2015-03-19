@@ -12,7 +12,7 @@ setup:
 build:
 	composer install --no-dev -o -vv -n --ansi
 test:
-	phpunit -c phpunit.xml --coverage-html logs/coverage
+	phpunit -c phpunit.xml --coverage-html $(LOGDIR)/coverage
 docs:
 
 install:
