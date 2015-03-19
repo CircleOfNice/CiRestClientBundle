@@ -2,8 +2,6 @@
 
 namespace Ci\CurlBundle\Tests\Unit\Services;
 
-require_once __DIR__ . '/../../../../../app/AppKernel.php';
-
 use Ci\CurlBundle\Services\RestClient;
 use Symfony\Component\HttpFoundation\Response;
 
