@@ -1,6 +1,6 @@
 <?php
 
-namespace Ci\CurlBundle\Tests\Functional\Traits;
+namespace Ci\RestClientBundle\Tests\Functional\Traits;
 
 /**
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>

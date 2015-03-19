@@ -1,17 +1,17 @@
 <?php
 
-namespace Ci\CurlBundle\Tests\Functional\Services;
+namespace Ci\RestClientBundle\Tests\Functional\Services;
 
-use Ci\CurlBundle\Services\RestClient;
-use Ci\CurlBundle\Services\Curl;
-use Ci\CurlBundle\Services\CurlOptionsHandler;
-use Ci\CurlBundle\Tests\Functional\Traits\TestingParameters;
+use Ci\RestClientBundle\Services\RestClient;
+use Ci\RestClientBundle\Services\Curl;
+use Ci\RestClientBundle\Services\CurlOptionsHandler;
+use Ci\RestClientBundle\Tests\Functional\Traits\TestingParameters;
 
 /**
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  *
- * @coversDefaultClass Ci\CurlBundle\Services\RestClient
+ * @coversDefaultClass Ci\RestClientBundle\Services\RestClient
  *
  * @SuppressWarnings("PHPMD.StaticAccess")
  */
@@ -44,7 +44,7 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
      * @covers ::<private>
      */
     public function construct() {
-        $this->assertInstanceOf('Ci\CurlBundle\Services\RestClient', $this->restClient);
+        $this->assertInstanceOf('Ci\RestClientBundle\Services\RestClient', $this->restClient);
     }
 
     /**
@@ -79,7 +79,7 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
      * @covers ::get
      * @covers ::<private>
      *
-     * @expectedException \Ci\CurlBundle\Exceptions\CurlException
+     * @expectedException \Ci\RestClientBundle\Exceptions\CurlException
      */
     public function nonExistingUrl() {
         $response = $this->restClient->get('http://missinghostthatwillneverbecomearealhost.it');
@@ -118,7 +118,7 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
     /**
      * @test
      * @group  small
-     * @uses   Ci\CurlBundle\Services\RestClient::post
+     * @uses   Ci\RestClientBundle\Services\RestClient::post
      * @covers ::setContentType
      * @covers ::<private>
      */
@@ -199,7 +199,7 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
      * @covers ::head
      * @covers ::<private>
      *
-     * @expectedException \Ci\CurlBundle\Exceptions\CurlException
+     * @expectedException \Ci\RestClientBundle\Exceptions\CurlException
      */
     public function head() {
         $this->restClient->head($this->mockControllerUrl, array(CURLOPT_TIMEOUT => 1, CURLOPT_MAXREDIRS => 1, CURLOPT_CONNECTTIMEOUT => 1));
@@ -237,7 +237,7 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
      * @covers ::connect
      * @covers ::<private>
      *
-     * @expectedException \Ci\CurlBundle\Exceptions\CurlException
+     * @expectedException \Ci\RestClientBundle\Exceptions\CurlException
      */
     public function connect() {
         $this->restClient->connect($this->mockControllerUrl);

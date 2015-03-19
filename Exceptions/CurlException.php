@@ -1,6 +1,6 @@
 <?php
 
-namespace Ci\CurlBundle\Exceptions;
+namespace Ci\RestClientBundle\Exceptions;
 
 /**
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>

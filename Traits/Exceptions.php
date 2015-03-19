@@ -1,8 +1,8 @@
 <?php
 
-namespace Ci\CurlBundle\Traits;
+namespace Ci\RestClientBundle\Traits;
 
-use Ci\CurlBundle\Exceptions\CurlException;
+use Ci\RestClientBundle\Exceptions\CurlException;
 
 /**
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>

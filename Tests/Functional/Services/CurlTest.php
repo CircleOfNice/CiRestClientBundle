@@ -1,16 +1,16 @@
 <?php
 
-namespace Ci\CurlBundle\Tests\Functional\Services;
+namespace Ci\RestClientBundle\Tests\Functional\Services;
 
-use Ci\CurlBundle\Services\Curl;
-use Ci\CurlBundle\Services\CurlOptionsHandler;
-use Ci\CurlBundle\Tests\Functional\Traits\TestingParameters;
+use Ci\RestClientBundle\Services\Curl;
+use Ci\RestClientBundle\Services\CurlOptionsHandler;
+use Ci\RestClientBundle\Tests\Functional\Traits\TestingParameters;
 
 /**
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  *
- * @coversDefaultClass Ci\CurlBundle\Services\Curl
+ * @coversDefaultClass Ci\RestClientBundle\Services\Curl
  *
  * @SuppressWarnings("PHPMD.StaticAccess")
  */
@@ -32,7 +32,7 @@ class CurlTest extends \PHPUnit_Framework_TestCase {
      * {@inheritDoc}
      */
     public function setUp() {
-        $this->curl = new Curl(new CurlOptionsHandler(array(CURLOPT_RETURNTRANSFER => true)));
+        $this->curl = new Curl(new CurlOptionsHandler(array()));
         $this->mockControllerUrl = $this->getMockControllerUrl();
     }
 
@@ -65,7 +65,7 @@ class CurlTest extends \PHPUnit_Framework_TestCase {
      * @covers ::sendRequest
      * @covers ::<private>
      *
-     * @expectedException \Ci\CurlBundle\Exceptions\CurlException
+     * @expectedException \Ci\RestClientBundle\Exceptions\CurlException
      */
     public function sendRequestOnError() {
         $this->curl->sendRequest('http://missinghostthatwillneverbecomearealhost.it', 'GET');
@@ -74,7 +74,7 @@ class CurlTest extends \PHPUnit_Framework_TestCase {
     /**
      * @test
      * @group  small
-     * @uses   Ci\CurlBundle\Services\RestClient::post
+     * @uses   Ci\RestClientBundle\Services\RestClient::post
      * @covers ::setContentType
      * @covers ::<private>
      */

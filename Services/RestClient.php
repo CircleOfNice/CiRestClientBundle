@@ -1,6 +1,6 @@
 <?php
 
-namespace Ci\CurlBundle\Services;
+namespace Ci\RestClientBundle\Services;
 
 /**
  * Sends curl requests
@@ -20,7 +20,7 @@ class RestClient implements RestInterface {
      * Constructor
      *
      * @param  Curl $curl
-     * @throws \Ci\CurlBundle\Exceptions\CurlException (Curl not installed.)
+     * @throws \Ci\RestClientBundle\Exceptions\CurlException (Curl not installed.)
      */
     public function __construct(Curl $curl) {
         $this->curl = $curl;

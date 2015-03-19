@@ -1,14 +1,14 @@
 <?php
 
-namespace Ci\CurlBundle\Tests\Functional\Services;
+namespace Ci\RestClientBundle\Tests\Functional\Services;
 
-use Ci\CurlBundle\Services\CurlOptionsHandler;
+use Ci\RestClientBundle\Services\CurlOptionsHandler;
 
 /**
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  *
- * @coversDefaultClass Ci\CurlBundle\Services\CurlOptionsHandler
+ * @coversDefaultClass Ci\RestClientBundle\Services\CurlOptionsHandler
  *
  * @SuppressWarnings("PHPMD.StaticAccess")
  */
