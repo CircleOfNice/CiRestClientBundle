@@ -1,10 +1,10 @@
 <?php
 
-namespace Ci\CurlBundle\Services;
+namespace Ci\RestClientBundle\Services;
 
 use Symfony\Component\HttpFoundation\Response;
-use Ci\CurlBundle\Traits\Exceptions;
-use Ci\CurlBundle\Traits\Assertions;
+use Ci\RestClientBundle\Traits\Exceptions;
+use Ci\RestClientBundle\Traits\Assertions;
 
 /**
  * Sends curl requests

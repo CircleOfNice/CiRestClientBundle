@@ -1,6 +1,6 @@
 <?php
 
-namespace Ci\CurlBundle\DependencyInjection;
+namespace Ci\RestClientBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -14,7 +14,7 @@ use Symfony\Component\Yaml\Yaml;
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  */
-class CiCurlExtension extends Extension
+class CiRestClientExtension extends Extension
 {
     /**
      * {@inheritdoc}

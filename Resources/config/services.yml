@@ -1,10 +1,10 @@
 services:
     ci.restclient:
-        class: Ci\CurlBundle\Services\RestClient
+        class: Ci\RestClientBundle\Services\RestClient
         arguments: [ @ci.curl ]
     ci.curl:
-        class: Ci\CurlBundle\Services\Curl
+        class: Ci\RestClientBundle\Services\Curl
         arguments: [ @ci.curl.options.handler ]
     ci.curl.options.handler:
-        class: Ci\CurlBundle\Services\CurlOptionsHandler
+        class: Ci\RestClientBundle\Services\CurlOptionsHandler
         arguments: [ %ci.restclient.curl.defaults% ]

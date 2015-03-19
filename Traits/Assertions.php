@@ -1,6 +1,6 @@
 <?php
 
-namespace Ci\CurlBundle\Traits;
+namespace Ci\RestClientBundle\Traits;
 
 /**
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>

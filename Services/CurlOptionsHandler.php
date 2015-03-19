@@ -1,8 +1,8 @@
 <?php
 
-namespace Ci\CurlBundle\Services;
+namespace Ci\RestClientBundle\Services;
 
-use Ci\CurlBundle\Traits\Exceptions;
+use Ci\RestClientBundle\Traits\Exceptions;
 
 /**
  * Sends curl requests

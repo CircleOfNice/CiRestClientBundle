@@ -1,13 +1,13 @@
 {
-  "name" : "ci/curlbundle",
-  "description" : "Mapper bundle for php internal curl library",
+  "name" : "ci/restclientbundle",
+  "description" : "Provides REST request methods. Mapper bundle for php internal curl library",
   "type" : "symfony-bundle",
   "authors" : [{
     "name" : "Circle.ai",
     "email" : "info@circle.ai"
   }],
   "keywords" : [
-    "curl post get put delete content-type payload library plugin"
+    "REST client curl POST GET PUT DELETE OPTIONS CONNECT PATCH TRACE HEAD content-type payload library plugin"
   ],
   "license" : [
     "GPL"
@@ -18,10 +18,10 @@
   },
   "autoload" : {
     "psr-0" : {
-      "Ci\\CurlBundle" : ""
+      "Ci\\RestClientBundle" : ""
     }
   },
-  "target-dir" : "Ci/CurlBundle",
+  "target-dir" : "Ci/RestClientBundle",
   "extra" : {
     "branch-alias" : {
       "dev-master" : "1.0-dev"

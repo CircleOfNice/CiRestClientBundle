@@ -1,6 +1,6 @@
 <?php
 
-namespace Ci\CurlBundle\Services;
+namespace Ci\RestClientBundle\Services;
 
 /**
  * Contract for curl options handler

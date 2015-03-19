@@ -1,15 +1,15 @@
 <?php
 
-namespace Ci\CurlBundle\Tests\Unit\Services;
+namespace Ci\RestClientBundle\Tests\Unit\Services;
 
-use Ci\CurlBundle\Services\RestClient;
+use Ci\RestClientBundle\Services\RestClient;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  *
- * @coversDefaultClass Ci\CurlBundle\Services\RestClient
+ * @coversDefaultClass Ci\RestClientBundle\Services\RestClient
  *
  * @SuppressWarnings("PHPMD.StaticAccess")
  */
@@ -26,7 +26,7 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
     private $restClient;
 
     /**
-     * @var Mockup<Ci\CurlBundle\Services\Curl>
+     * @var Mockup<Ci\RestClientBundle\Services\Curl>
      */
     private $curl;
 
@@ -34,7 +34,7 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
      * {@inheritDoc}
      */
     public function setUp() {
-        $this->curl                 = $this->getMockBuilder('Ci\CurlBundle\Services\Curl')->disableOriginalConstructor()->getMock();
+        $this->curl                 = $this->getMockBuilder('Ci\RestClientBundle\Services\Curl')->disableOriginalConstructor()->getMock();
         $this->restClient           = new RestClient($this->curl);
         $this->mockControllerUrl    = 'http://someUrl.com';
     }

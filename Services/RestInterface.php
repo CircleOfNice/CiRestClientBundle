@@ -1,6 +1,6 @@
 <?php
 
-namespace Ci\CurlBundle\Services;
+namespace Ci\RestClientBundle\Services;
 
 use Symfony\Component\HttpFoundation\Response;
 

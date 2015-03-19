@@ -1,6 +1,6 @@
 <?php
 
-namespace Ci\CurlBundle\Services;
+namespace Ci\RestClientBundle\Services;
 
 /**
  * Provides methods for curl handling
