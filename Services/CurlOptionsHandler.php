@@ -10,7 +10,7 @@ use Ci\CurlBundle\Traits\Exceptions;
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  */
-class CurlOptionsHandler {
+class CurlOptionsHandler implements CurlOptionsHandlerInterface {
 
     use Exceptions;
 
@@ -36,9 +36,7 @@ class CurlOptionsHandler {
     }
 
     /**
-     * resets the options to default options
-     *
-     * @return CurlOptionsHandler
+     * {@inheritdoc}
      */
     public function reset() {
         $this->options = $this->defaultOptions;
@@ -46,9 +44,7 @@ class CurlOptionsHandler {
     }
 
     /**
-     * @param  string $key
-     * @param  mixed  $value
-     * @return CurlOptionsHandler
+     * @{@inheritdoc}
      */
     public function setOption($key, $value) {
         $this->validateOptions(array($key => $value));
@@ -57,10 +53,7 @@ class CurlOptionsHandler {
     }
 
     /**
-     * sets all options for curl execution
-     *
-     * @param  array $options
-     * @return Curl
+     * {@inheritdoc}
      */
     public function setOptions(array $options) {
         foreach ($options as $key => $value) $this->setOption($key, $value);
@@ -68,9 +61,7 @@ class CurlOptionsHandler {
     }
 
     /**
-     * returns all options
-     *
-     * @return array
+     * {@inheritdoc}
      */
     public function getOptions() {
         return $this->options;

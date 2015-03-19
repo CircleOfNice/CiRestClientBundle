@@ -97,3 +97,26 @@ $restClient->connect('http://www.someUrl.com', array(CURLOPT_CONNECTTIMEOUT => 3
 - EventHandling (onCurlRequest, preCurlRequest, postCurlRequest)
 - Improved Exceptions (Instead of curl internal exceptions) extending CurlException
 - Strict rules for rest methods such as server MUST NOT return a message-body in the response for HEAD requests
+
+#Testing the bundle
+
+The bundle can be tested via phpunit.
+
+##Preconditions
+- NodeJs must be installed
+- Vendors must be installed via composer
+- (Of course) Phpunit must be installed
+- Port 8888 must not be blocked on the local machine
+- XDebug should be enabled
+
+##Executing tests
+The Tests are executed against a local node server. That means first of all you have to start the node server.
+```
+node nodeServer.js
+```
+
+Then the tests can be executed via:
+
+```
+phpunit -c phpunit.xml
+```

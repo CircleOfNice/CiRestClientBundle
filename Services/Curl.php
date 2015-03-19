@@ -12,7 +12,7 @@ use Ci\CurlBundle\Traits\Assertions;
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  */
-class Curl {
+class Curl implements CurlInterface {
 
     use Exceptions;
     use Assertions;
@@ -59,13 +59,7 @@ class Curl {
     }
 
     /**
-     * Maps the curl response to a Symfony response
-     *
-     * @param  string $url
-     * @param  string $method
-     * @param  array $options
-     * @param  string $payload
-     * @return Response
+     * {@inheritdoc}
      */
     public function sendRequest($url, $method, array $options = array(), $payload = '') {
         if (!$this->assertUrl($url))             return $this->invalidArgumentException('Invalid url given: ' . $url);
@@ -74,8 +68,12 @@ class Curl {
 
         $this->curlOptionsHandler->setOptions($options);
 
-        $curlResponse = $this->preExecute($url, $method, $payload)->execute();
+        $this->setUrl($url);
+        $this->setMethod($method);
+        $this->setPayload($payload);
+        curl_setopt_array($this->curl, $this->curlOptionsHandler->getOptions());
 
+        $curlResponse = $this->execute();
         $curlMetaData = (object) curl_getinfo($this->curl);
 
         curl_reset($this->curl);
@@ -99,25 +97,6 @@ class Curl {
         }
 
         return $curlResponse;
-    }
-
-    /**
-     * builds the environment for curl execution
-     *
-     * @param  string $url
-     * @param  string $method
-     * @param  string $payload
-     * @param  array $options
-     *
-     * @return Curl
-     */
-    private function preExecute($url, $method, $payload) {
-        $this->setUrl($url);
-        $this->setMethod($method);
-        $this->setPayload($payload);
-        curl_setopt_array($this->curl, $this->curlOptionsHandler->getOptions());
-
-        return $this;
     }
 
     /**
