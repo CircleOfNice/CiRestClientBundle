@@ -40,7 +40,7 @@
     </filter>
 
     <logging>
-        <log type="coverage-html" target="logs/coverage" lowUpperBound="35" highLowerBound="70"/>
+        <log type="coverage-html" target="./logs/coverage" lowUpperBound="35" highLowerBound="70"/>
         <log type="coverage-text" target="php://stdout" showOnlySummary="true"/>
         <log type="testdox-text" target="php://stdout"/>
     </logging>
