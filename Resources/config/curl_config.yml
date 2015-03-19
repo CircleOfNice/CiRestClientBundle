@@ -9,4 +9,3 @@ ci:
       CURLOPT_CRLF:           true
       CURLOPT_SSLVERSION:     3
       CURLOPT_FOLLOWLOCATION: true
-    testing_url:              http://localhost/CurlBundle/web/app_dev.php

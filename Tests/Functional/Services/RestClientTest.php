@@ -5,6 +5,7 @@ namespace Ci\CurlBundle\Tests\Functional\Services;
 use Ci\CurlBundle\Services\RestClient;
 use Ci\CurlBundle\Services\Curl;
 use Ci\CurlBundle\Services\CurlOptionsHandler;
+use Ci\CurlBundle\Tests\Functional\Traits\TestingParameters;
 
 /**
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
@@ -15,6 +16,8 @@ use Ci\CurlBundle\Services\CurlOptionsHandler;
  * @SuppressWarnings("PHPMD.StaticAccess")
  */
 class RestClientTest extends \PHPUnit_Framework_TestCase {
+
+    use TestingParameters;
 
     /**
      * @var string
@@ -31,7 +34,7 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
      */
     public function setUp() {
         $this->restClient        = new RestClient(new Curl(new CurlOptionsHandler(array(CURLOPT_RETURNTRANSFER => true))));
-        $this->mockControllerUrl = 'http://localhost/CurlBundle/web/app_dev.php/curlstub/';
+        $this->mockControllerUrl = $this->getMockControllerUrl();
     }
 
     /**
@@ -51,7 +54,7 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
      * @covers ::<private>
      */
     public function getOnSuccess() {
-        $response = $this->restClient->get($this->mockControllerUrl . 'get');
+        $response = $this->restClient->get($this->mockControllerUrl);
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertTrue(is_string($response->getContent()));
@@ -65,7 +68,7 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
      * @covers ::<private>
      */
     public function getOnError() {
-        $response = $this->restClient->get($this->mockControllerUrl . 'get?httpCode=400');
+        $response = $this->restClient->get($this->mockControllerUrl . '/nonExistingRoute');
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertNotEquals(200, $response->getStatusCode());
     }
@@ -105,7 +108,7 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
      * @covers ::<private>
      */
     public function postOnSuccess() {
-        $response = $this->restClient->post($this->mockControllerUrl . 'post', 'payload');
+        $response = $this->restClient->post($this->mockControllerUrl, 'payload');
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertTrue(is_string($response->getContent()));
@@ -121,9 +124,9 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
      */
     public function setContentType() {
         $this->restClient->setContentType('application/json');
-        $response = $this->restClient->post($this->mockControllerUrl . 'post', 'payload');
+        $response = $this->restClient->post($this->mockControllerUrl, 'payload');
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
-        $this->assertRegExp('/Content-Type:\s*application\/json/', $response->getContent());
+        $this->assertSame('application/json', $response->headers->get('Content-Type'));
     }
 
     /**
@@ -133,7 +136,7 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
      * @covers ::<private>
      */
     public function postOnError() {
-        $response = $this->restClient->post($this->mockControllerUrl . 'post?httpCode=400', 'payload');
+        $response = $this->restClient->post($this->mockControllerUrl . '/nonExistingRoute', 'payload');
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertNotEquals(200, $response->getStatusCode());
     }
@@ -145,7 +148,7 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
      * @covers ::<private>
      */
     public function putOnSuccess() {
-        $response = $this->restClient->put($this->mockControllerUrl . 'put', 'payload');
+        $response = $this->restClient->put($this->mockControllerUrl, 'payload');
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertTrue(is_string($response->getContent()));
@@ -159,7 +162,7 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
      * @covers ::<private>
      */
     public function putOnError() {
-        $response = $this->restClient->put($this->mockControllerUrl . 'put?httpCode=400', 'payload');
+        $response = $this->restClient->put($this->mockControllerUrl . '/nonExistingRoute', 'payload');
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertNotEquals(200, $response->getStatusCode());
     }
@@ -171,7 +174,7 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
      * @covers ::<private>
      */
     public function deleteOnSuccess() {
-        $response = $this->restClient->delete($this->mockControllerUrl . 'delete');
+        $response = $this->restClient->delete($this->mockControllerUrl);
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertTrue(is_string($response->getContent()));
@@ -185,7 +188,7 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
      * @covers ::<private>
      */
     public function deleteOnError() {
-        $response = $this->restClient->delete($this->mockControllerUrl . 'delete?httpCode=400');
+        $response = $this->restClient->delete($this->mockControllerUrl . '/nonExistingRoute');
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertNotEquals(200, $response->getStatusCode());
     }
@@ -195,12 +198,11 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
      * @group  small
      * @covers ::head
      * @covers ::<private>
+     *
+     * @expectedException \Ci\CurlBundle\Exceptions\CurlException
      */
     public function head() {
-        $response = $this->restClient->head($this->mockControllerUrl . 'head?httpCode=200');
-        $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEmpty($response->getContent());
+        $this->restClient->head($this->mockControllerUrl, array(CURLOPT_TIMEOUT => 1, CURLOPT_MAXREDIRS => 1, CURLOPT_CONNECTTIMEOUT => 1));
     }
 
     /**
@@ -210,7 +212,7 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
      * @covers ::<private>
      */
     public function options() {
-        $response = $this->restClient->options($this->mockControllerUrl . 'options?httpCode=200', 'test');
+        $response = $this->restClient->options($this->mockControllerUrl, 'test');
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertNotEmpty($response->getContent());
@@ -223,9 +225,9 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
      * @covers ::<private>
      */
     public function trace() {
-        $response = $this->restClient->trace($this->mockControllerUrl . 'trace?httpCode=405');
+        $response = $this->restClient->trace($this->mockControllerUrl);
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
-        $this->assertEquals(405, $response->getStatusCode());
+        $this->assertEquals(200, $response->getStatusCode());
         $this->assertNotEmpty($response->getContent());
     }
 
@@ -234,12 +236,11 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
      * @group  small
      * @covers ::connect
      * @covers ::<private>
+     *
+     * @expectedException \Ci\CurlBundle\Exceptions\CurlException
      */
     public function connect() {
-        $response = $this->restClient->connect($this->mockControllerUrl . 'connect?httpCode=400');
-        $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
-        $this->assertEquals(400, $response->getStatusCode());
-        $this->assertNotEmpty($response->getContent());
+        $this->restClient->connect($this->mockControllerUrl);
     }
 
     /**
@@ -249,7 +250,7 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
      * @covers ::<private>
      */
     public function patch() {
-        $response = $this->restClient->patch($this->mockControllerUrl . 'patch?httpCode=200', 'test');
+        $response = $this->restClient->patch($this->mockControllerUrl, 'test');
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertNotEmpty($response->getContent());
