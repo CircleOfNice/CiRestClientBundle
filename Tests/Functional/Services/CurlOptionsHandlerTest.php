@@ -2,10 +2,7 @@
 
 namespace Ci\CurlBundle\Tests\Functional\Services;
 
-require_once __DIR__ . '/../../../../../../app/AppKernel.php';
-
 use Ci\CurlBundle\Services\CurlOptionsHandler;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
@@ -23,11 +20,6 @@ class CurlOptionsHandlerTest extends \PHPUnit_Framework_TestCase {
     private $curlOptionsHandler;
 
     /**
-     * @var ContainerInterface
-     */
-    private static $container;
-
-    /**
      * @var array
      */
     private $defaultOptions = array(CURLOPT_RETURNTRANSFER => true);
@@ -35,29 +27,8 @@ class CurlOptionsHandlerTest extends \PHPUnit_Framework_TestCase {
     /**
      * {@inheritDoc}
      */
-    public static function setUpBeforeClass() {
-        $kernel = new \AppKernel('dev', true);
-        $kernel->boot();
-
-        static::$container = $kernel->getContainer();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function setUp() {
         $this->curlOptionsHandler = new CurlOptionsHandler($this->defaultOptions);
-    }
-
-    /**
-     * @test
-     * @group  small
-     * @covers ::__construct
-     * @covers ::<private>
-     */
-    public function serviceDefinition() {
-        $curlOptionsHandler = static::$container->get('ci.curl.options.handler');
-        unset($curlOptionsHandler);
     }
 
     /**

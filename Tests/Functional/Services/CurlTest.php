@@ -2,11 +2,8 @@
 
 namespace Ci\CurlBundle\Tests\Functional\Services;
 
-require_once __DIR__ . '/../../../../../../app/AppKernel.php';
-
 use Ci\CurlBundle\Services\Curl;
 use Ci\CurlBundle\Services\CurlOptionsHandler;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
@@ -29,26 +26,11 @@ class CurlTest extends \PHPUnit_Framework_TestCase {
     private $curl;
 
     /**
-     * @var ContainerInterface
-     */
-    private static $container;
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function setUpBeforeClass() {
-        $kernel = new \AppKernel('dev', true);
-        $kernel->boot();
-
-        static::$container = $kernel->getContainer();
-    }
-
-    /**
      * {@inheritDoc}
      */
     public function setUp() {
-        $this->curl                 = static::$container->get('ci.curl');
-        $this->mockControllerUrl    = static::$container->getParameter('ci.curl.testing_url') . '/curlstub/';
+        $this->curl                 = new Curl(new CurlOptionsHandler(array(CURLOPT_RETURNTRANSFER => true)));
+        $this->mockControllerUrl    = 'http://localhost/CurlBundle/web/app_dev.php/curlstub/';
     }
 
     /**

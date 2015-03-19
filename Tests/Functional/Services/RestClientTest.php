@@ -2,10 +2,9 @@
 
 namespace Ci\CurlBundle\Tests\Functional\Services;
 
-require_once __DIR__ . '/../../../../../../app/AppKernel.php';
-
 use Ci\CurlBundle\Services\RestClient;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Ci\CurlBundle\Services\Curl;
+use Ci\CurlBundle\Services\CurlOptionsHandler;
 
 /**
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
@@ -28,26 +27,11 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
     private $restClient;
 
     /**
-     * @var ContainerInterface
-     */
-    private static $container;
-
-    /**
-     * {@inheritDoc}
-     */
-    public static function setUpBeforeClass() {
-        $kernel = new \AppKernel('dev', true);
-        $kernel->boot();
-
-        static::$container = $kernel->getContainer();
-    }
-
-    /**
      * {@inheritDoc}
      */
     public function setUp() {
-        $this->restClient        = static::$container->get('ci.restclient');
-        $this->mockControllerUrl = static::$container->getParameter('ci.curl.testing_url') . '/curlstub/';
+        $this->restClient        = new RestClient(new Curl(new CurlOptionsHandler(array(CURLOPT_RETURNTRANSFER => true))));
+        $this->mockControllerUrl = 'http://localhost/CurlBundle/web/app_dev.php/curlstub/';
     }
 
     /**
