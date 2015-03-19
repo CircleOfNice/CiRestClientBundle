@@ -67,6 +67,7 @@ class Curl implements CurlInterface {
         if (!$this->assertHttpMethod($method))   return $this->invalidArgumentException('Invalid http method given: ' . $method);
 
         $this->curlOptionsHandler->setOptions($options);
+        $this->curlOptionsHandler->setOption(CURLOPT_RETURNTRANSFER, true);
 
         $this->setUrl($url);
         $this->setMethod($method);

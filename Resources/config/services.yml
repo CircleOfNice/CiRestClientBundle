@@ -7,4 +7,4 @@ services:
         arguments: [ @ci.curl.options.handler ]
     ci.curl.options.handler:
         class: Ci\CurlBundle\Services\CurlOptionsHandler
-        arguments: [ %ci.curl.defaults% ]
+        arguments: [ %ci.restclient.curl.defaults% ]

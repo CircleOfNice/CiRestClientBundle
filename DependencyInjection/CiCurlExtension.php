@@ -29,16 +29,17 @@ class CiCurlExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        if (!isset($config['curl'])) throw new \RuntimeException('configuration ci.curl is missing.');
-        if (!isset($config['curl']['defaults'])) throw new \RuntimeException('configuration ci.curl.defaults is missing.');
+        if (!isset($config['resclient'])) throw new \RuntimeException('configuration ci.restclient is missing.');
+        if (!isset($config['restclient']['curl'])) throw new \RuntimeException('configuration ci.restclient.curl is missing.');
+        if (!isset($config['restclient']['curl']['defaults'])) throw new \RuntimeException('configuration ci.restclient.curl.defaults is missing.');
 
         $options = array();
-        foreach ($config['curl']['defaults'] as $key => $value) {
+        foreach ($config['restclient']['curl']['defaults'] as $key => $value) {
             $options[constant($key)] = $value;
         };
 
-        $container->setParameter('ci.curl.defaults', $options);
-        $container->setParameter('ci.curl.testing_url', $config['curl']['testing_url']);
+        $container->setParameter('ci.restclient.curl.defaults', $options);
+        $container->setParameter('ci.restclient.curl.testing_url', $config['restclient']['curl']['testing_url']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');

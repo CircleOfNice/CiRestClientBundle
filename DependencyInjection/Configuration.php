@@ -25,10 +25,14 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->arrayNode('curl')
+                ->arrayNode('restclient')
                     ->children()
-                        ->variableNode('defaults')->end()
-                        ->scalarNode('testing_url')->end()
+                        ->arrayNode('curl')
+                            ->children()
+                                ->variableNode('defaults')->end()
+                                ->scalarNode('testing_url')->end()
+                            ->end()
+                        ->end()
                     ->end()
                 ->end()
             ->end()
