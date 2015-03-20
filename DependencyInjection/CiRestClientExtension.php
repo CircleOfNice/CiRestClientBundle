@@ -45,7 +45,7 @@ class CiRestClientExtension extends Extension
         $configuration  = new Configuration();
         $config         = $this->processConfiguration($configuration, $configs);
 
-        if (!isset($config['resclient'])) throw new \RuntimeException('configuration ci.restclient is missing.');
+        if (!isset($config['restclient'])) throw new \RuntimeException('configuration ci.restclient is missing.');
         if (!isset($config['restclient']['curl'])) throw new \RuntimeException('configuration ci.restclient.curl is missing.');
         if (!isset($config['restclient']['curl']['defaults'])) throw new \RuntimeException('configuration ci.restclient.curl.defaults is missing.');
 
@@ -55,7 +55,6 @@ class CiRestClientExtension extends Extension
         };
 
         $container->setParameter('ci.restclient.curl.defaults', $options);
-        $container->setParameter('ci.restclient.curl.testing_url', $config['restclient']['curl']['testing_url']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
