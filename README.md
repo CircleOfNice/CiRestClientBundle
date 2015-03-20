@@ -3,7 +3,7 @@ CiRestClientBundle
 
 #Motivation
 
-There are some Symfony bundles providing functions for REST request, but none of them is actually feeling like: "That's what I was looking for!". In the past we used some of these bundles and we always had to improve or remap their API for our needs. Some days ago the srame **it happened again and we started about thinking to hack the bundle again. Call it the CircleOfFrustration. But this time we didn't want to enter the CircleOfFrustration (because we are the CircleOfNice ;)). So we made a decision: Let's think about how a REST client API should look like and afterwards let's implement it by ourselfs.
+There are some Symfony bundles providing functions for REST request, but none of them is actually feeling like: "That's what I was looking for!". In the past we used some of these bundles and we always had to improve or remap their API for our needs. Some days ago the same **it happened again and we started about thinking to hack the bundle again. Call it the CircleOfFrustration. But this time we didn't want to enter the CircleOfFrustration (because we are the CircleOfNice ;)). So we made a decision: Let's think about how a REST client API should look like and afterwards let's implement it by ourselfs.
 
 
 So how should a REST client API look like? Shouldn't it look like:
