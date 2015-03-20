@@ -1,6 +1,8 @@
 CiRestClientBundle
 ========
 
+A Smart REST client with an intuitive API, providing all REST methods and returning a Symfony Response Object.
+
 #Motivation
 
 There are some Symfony2 bundles providing abstractions for REST requests, but none of them is actually feeling like: "That's what I was looking for!". Having used some of these in the past, we always had to improve or remap their API's for our own needs.
@@ -23,9 +25,6 @@ But how should outputs be wrapped?
 So the Symfony Object is our choice to go: We don't need to roll out our own implementation and can stay within the boundaries of our framework of choice - win/win :-).
 
 So all in all let's call it a day and start goin' gorillas with this one.
-
-#Description
-A smart REST client with a comfortable API providing all REST methods and returning a Symfony Response Object.
 
 #Installation
 
