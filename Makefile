@@ -1,5 +1,7 @@
 SHELL:=/bin/bash
-if [ -z ${LOGDIR+x} ]; then LOGDIR=. ; else LOGDIR=$(LOGDIR); fi
+ifndef LOGDIR
+LOGDIR:=.
+endif
 
 all:
 	@make -s setup
