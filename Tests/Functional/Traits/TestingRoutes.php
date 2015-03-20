@@ -22,14 +22,37 @@ namespace Ci\RestClientBundle\Tests\Functional\Traits;
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  */
-trait TestingParameters {
+trait TestingRoutes {
 
     /**
      * returns a mock url for testing
      *
+     * @param  boolean isHttps
      * @return string
      */
-    private function getMockControllerUrl() {
-        return 'http://localhost:8888';
+    private function getMockControllerUrl($isHttps = false) {
+        $host = 'localhost:8000';
+        return $isHttps ? ('https://' . $host) : ('http://' . $host);
+    }
+
+    /**
+     * creates a route that will return a http status code 200
+     *
+     * @param  string  $route
+     * @param  boolean $isHttps
+     * @return string
+     */
+    private function getHTTP200Route($route = '', $isHttps = false) {
+        return $this->getMockControllerUrl($isHttps) . '/' . (empty($route) ? debug_backtrace()[1]['function'] : $route);
+    }
+
+    /**
+     * creates a route that will return a http status code 404
+     *
+     * @param  boolean $isHttps
+     * @return string
+     */
+    private function getHTTP404Route($isHttps = false) {
+        return $this->getMockControllerUrl($isHttps) . '/404';
     }
 }

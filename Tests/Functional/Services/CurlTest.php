@@ -20,7 +20,7 @@ namespace Ci\RestClientBundle\Tests\Functional\Services;
 
 use Ci\RestClientBundle\Services\Curl;
 use Ci\RestClientBundle\Services\CurlOptionsHandler;
-use Ci\RestClientBundle\Tests\Functional\Traits\TestingParameters;
+use Ci\RestClientBundle\Tests\Functional\Traits\TestingRoutes;
 
 /**
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
@@ -32,7 +32,7 @@ use Ci\RestClientBundle\Tests\Functional\Traits\TestingParameters;
  */
 class CurlTest extends \PHPUnit_Framework_TestCase {
 
-    use TestingParameters;
+    use TestingRoutes;
 
     /**
      * @var string
@@ -71,7 +71,7 @@ class CurlTest extends \PHPUnit_Framework_TestCase {
      * @covers ::<private>
      */
     public function sendRequest() {
-        $response = $this->curl->sendRequest($this->mockControllerUrl, 'GET');
+        $response = $this->curl->sendRequest($this->getHTTP200Route('get'), 'GET');
         $this->assertSame(200, $response->getStatusCode());
     }
 
@@ -96,7 +96,7 @@ class CurlTest extends \PHPUnit_Framework_TestCase {
      */
     public function setContentType() {
         $this->curl->setContentType('application/json');
-        $response = $this->curl->sendRequest($this->mockControllerUrl, 'POST');
+        $response = $this->curl->sendRequest($this->getHTTP200Route('post'), 'POST');
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertSame('application/json', $response->headers->get('Content-Type'));
     }
