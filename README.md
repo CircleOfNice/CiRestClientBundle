@@ -20,7 +20,7 @@ But how should outputs be wrapped?
 * So by visiting this page you are probably a Symphony developer
 * Thus we can infer that you know about the Symfony Response Object
 
-So the Symfony Object is our choice to go: We don't need to roll out our own implementation and can stay within the boundaries of our framework of choice - win/win :).
+So the Symfony Object is our choice to go: We don't need to roll out our own implementation and can stay within the boundaries of our framework of choice - win/win :-).
 
 So all in all let's call it a day and start goin' gorillas with this one.
 
