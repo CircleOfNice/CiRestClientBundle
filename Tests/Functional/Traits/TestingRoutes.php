@@ -19,6 +19,8 @@
 namespace Ci\RestClientBundle\Tests\Functional\Traits;
 
 /**
+ * Provides functions to get Routes and URLs for testing issues
+ *
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  */

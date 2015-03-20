@@ -21,6 +21,8 @@ namespace Ci\RestClientBundle\Traits;
 use Ci\RestClientBundle\Exceptions\CurlException;
 
 /**
+ * Provides exception functions
+ *
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  *

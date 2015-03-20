@@ -19,6 +19,8 @@
 namespace Ci\RestClientBundle\Exceptions;
 
 /**
+ * This exception is the basic exception for curl requests
+ *
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  */

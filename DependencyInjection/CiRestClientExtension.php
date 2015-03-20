@@ -40,10 +40,10 @@ class CiRestClientExtension extends Extension
     public function load(array $configs, ContainerBuilder $container)
     {
         $curlConfigFile   = __DIR__ . '/../Resources/config/curl_config.yml';
-        $configs            = array_merge($configs, Yaml::parse(file_get_contents($curlConfigFile)));
+        $configs          = array_merge($configs, Yaml::parse(file_get_contents($curlConfigFile)));
 
-        $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $configs);
+        $configuration  = new Configuration();
+        $config         = $this->processConfiguration($configuration, $configs);
 
         if (!isset($config['resclient'])) throw new \RuntimeException('configuration ci.restclient is missing.');
         if (!isset($config['restclient']['curl'])) throw new \RuntimeException('configuration ci.restclient.curl is missing.');

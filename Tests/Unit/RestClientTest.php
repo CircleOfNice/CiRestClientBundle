@@ -22,6 +22,8 @@ use Ci\RestClientBundle\Services\RestClient;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
+ * Tests the rest client
+ *
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  *
@@ -94,8 +96,8 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
      * @covers ::<private>
      */
     public function post() {
-        $payload = 'payload';
-        $response = new Response('content');
+        $payload    = 'payload';
+        $response   = new Response('content');
         $this->curl->expects($this->once())
             ->method('sendRequest')
             ->with($this->equalTo($this->mockControllerUrl), $this->equalTo('POST'), $this->equalTo(array()), $this->equalTo($payload))
@@ -111,8 +113,8 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
      * @covers ::<private>
      */
     public function put() {
-        $payload = 'payload';
-        $response = new Response('content');
+        $payload    = 'payload';
+        $response   = new Response('content');
         $this->curl->expects($this->once())
             ->method('sendRequest')
             ->with($this->equalTo($this->mockControllerUrl), $this->equalTo('PUT'), $this->equalTo(array()), $this->equalTo($payload))

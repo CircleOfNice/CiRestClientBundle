@@ -24,6 +24,8 @@ use Ci\RestClientBundle\Services\CurlOptionsHandler;
 use Ci\RestClientBundle\Tests\Functional\Traits\TestingRoutes;
 
 /**
+ * Tests the rest client
+ *
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  *

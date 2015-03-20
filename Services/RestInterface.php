@@ -21,7 +21,7 @@ namespace Ci\RestClientBundle\Services;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Contract for CRUD methods
+ * Contract for REST methods
  *
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG

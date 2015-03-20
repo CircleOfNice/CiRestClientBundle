@@ -19,6 +19,8 @@
 namespace Ci\RestClientBundle\Traits;
 
 /**
+ * Provides assertion functions
+ *
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  */

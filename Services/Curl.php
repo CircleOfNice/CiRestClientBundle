@@ -68,10 +68,11 @@ class Curl implements CurlInterface {
      * sets the content type
      *
      * @param  $contentType
-     * @return $this
+     * @return Curl
      */
     public function setContentType($contentType) {
-        return $this->curlOptionsHandler->setOption(CURLOPT_HTTPHEADER, array('Content-Type: ' . $contentType));
+        $this->curlOptionsHandler->setOption(CURLOPT_HTTPHEADER, array('Content-Type: ' . $contentType));
+        return $this;
     }
 
     /**

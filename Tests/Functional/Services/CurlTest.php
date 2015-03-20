@@ -23,6 +23,8 @@ use Ci\RestClientBundle\Services\CurlOptionsHandler;
 use Ci\RestClientBundle\Tests\Functional\Traits\TestingRoutes;
 
 /**
+ * Tests the curl class
+ *
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  *
@@ -48,8 +50,8 @@ class CurlTest extends \PHPUnit_Framework_TestCase {
      * {@inheritDoc}
      */
     public function setUp() {
-        $this->curl = new Curl(new CurlOptionsHandler(array()));
-        $this->mockControllerUrl = $this->getMockControllerUrl();
+        $this->curl                 = new Curl(new CurlOptionsHandler(array()));
+        $this->mockControllerUrl    = $this->getMockControllerUrl();
     }
 
     /**

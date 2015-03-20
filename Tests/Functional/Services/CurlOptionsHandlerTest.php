@@ -21,6 +21,8 @@ namespace Ci\RestClientBundle\Tests\Functional\Services;
 use Ci\RestClientBundle\Services\CurlOptionsHandler;
 
 /**
+ * Tests the curl options handler
+ *
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  *
@@ -65,8 +67,8 @@ class CurlOptionsHandlerTest extends \PHPUnit_Framework_TestCase {
      * @covers ::<private>
      */
     public function reset() {
-        $reflectionClass = new \ReflectionClass($this->curlOptionsHandler);
-        $property = $reflectionClass->getProperty('options');
+        $reflectionClass    = new \ReflectionClass($this->curlOptionsHandler);
+        $property           = $reflectionClass->getProperty('options');
         $property->setAccessible(true);
         $property->setValue($this->curlOptionsHandler, array());
 

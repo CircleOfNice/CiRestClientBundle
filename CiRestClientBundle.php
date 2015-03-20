@@ -20,6 +20,12 @@ namespace Ci\RestClientBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
+/**
+ * Bundle extension for CiRestClientBundle
+ *
+ * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
+ * @copyright 2015 TeeAge-Beatz UG
+ */
 class CiRestClientBundle extends Bundle
 {
 }

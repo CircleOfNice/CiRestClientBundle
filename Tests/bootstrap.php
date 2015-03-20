@@ -17,6 +17,8 @@
  */
 
 /**
+ * This file provides the bootstrapping for testing
+ *
  * @author    tobias.hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  */
