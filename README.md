@@ -5,7 +5,9 @@ CiRestClientBundle
 
 There are some Symfony bundles providing functions for REST request, but none of them is actually feeling like: "That's what I was looking for!". In the past we used some of these bundles and we always had to improve or remap their API for our needs. Some days ago the same **it happened again and we started about thinking to hack the bundle again. Call it the CircleOfFrustration. But this time we didn't want to enter the CircleOfFrustration (because we are the CircleOfNice ;)). So we made a decision: Let's think about how a REST client API should look like and afterwards let's implement it by ourselfs.
 
+
 So how should a REST client API look like? Shouldn't it look like:
+
 ```
 restclient.post(url, payload);
 restclient.get(url);
@@ -14,13 +16,14 @@ restclient.delete(url);
 ```
 
 And what do you expect as a return? Most of the bundles return PHP curl resources. What the hell? You map the PHP internal curl API to another API to make it more comfortable and in the end you get an object with exactly the same API you wanted to get rid off? Why? And what is the improvement? In the end it's easier not to use these bundles and to work with the (extremly uncomfortable) PHP internal curl API.
-So what should all the methods return? Let's ask some questions:
-You are developing a Symfony bundle, aren't you?
-You are aware of the fundamentals of Symfony, aren't you?
-You know about the Symfony Response Object, chapter 1, page 1, sentence 1?
-SO WHY DON't YOU USE IT AT ALL??
 
-Summary of our motivation:
+So what should all the methods return? Let's ask some questions:
+- You are developing a Symfony bundle, aren't you?
+- You are aware of the fundamentals of Symfony, aren't you?
+- You know about the Symfony Response Object, chapter 1, page 1, sentence 1?
+- SO WHY DON't YOU USE IT AT ALL??
+
+##Summary of our motivation:
 There's so much crap in the internet and we wanted to get rid off it. That's what Circle is supposed to do.
 
 #Summary
