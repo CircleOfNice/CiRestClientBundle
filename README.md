@@ -10,7 +10,7 @@ restclient.get(url);
 
 Or imagine you want to send a POST request. What do you really want to do?
 ```
-restclient.post(url);
+restclient.post(url, payload);
 ```
 
 And what do you expect as a return? Shouldn't it be a simple Symfony Response Object?
