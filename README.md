@@ -17,7 +17,7 @@ restclient.delete(url);
 
 And what do you expect as a return? Most of the bundles return PHP curl resources. What the hell? You map the PHP internal curl API to another API to make it more comfortable and in the end you get an object with exactly the same API you wanted to get rid of? Why? And what is the improvement? In the end it's easier not to use these bundles and to work with the (extremly uncomfortable) PHP internal curl API.
 
-So what should all the methods return? Let's ask some questions:
+Ok. We didn't answer the question yet: What should be the outcome? Let's ask some questions:
 - You are developing a Symfony bundle, aren't you?
 - You are aware of the fundamentals of Symfony, aren't you?
 - You know about the Symfony Response Object, chapter 1, page 1, sentence 1?
