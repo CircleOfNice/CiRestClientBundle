@@ -1,6 +1,6 @@
 SHELL:=/bin/bash
 ifndef LOGDIR
-LOGDIR:=.
+LOGDIR:=./logs
 endif
 
 all:

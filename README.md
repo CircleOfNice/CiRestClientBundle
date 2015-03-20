@@ -19,10 +19,10 @@ $restclient->delete($url);
 Another concern was the leaky abstraction many of the other bundles present to us in respect to the output: They map the PHP-native curl-addon's API to an object-oriented interface only to let us work with the non-object-oriented original output of curl's API calls. At this point it is more convenient to stay with the (extremely inconvenient) PHP internal curl API only. 
 
 But how should outputs be wrapped? 
-* So by visiting this page you are probably a Symphony developer
+* So by visiting this page you are probably a Symfony developer
 * Thus we can infer that you know about the Symfony Response Object
 
-So the Symfony Object is our choice to go: We don't need to roll out our own implementation and can stay within the boundaries of our framework of choice - win/win :-).
+So the Symfony Response Object is our choice to go: We don't need to roll out our own implementation and can stay within the boundaries of our framework of choice - win/win :-).
 
 So all in all let's call it a day and start goin' gorillas with this one.
 
