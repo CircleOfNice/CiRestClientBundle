@@ -117,16 +117,15 @@ $restClient->connect('http://www.someUrl.com', array(CURLOPT_CONNECTTIMEOUT => 3
 The bundle can be tested via phpunit.
 
 ##Preconditions
-- NodeJs must be installed
 - Vendors must be installed via composer
 - (Of course) Phpunit must be installed
-- Port 8888 must not be blocked on the local machine
+- Port 8000 must not be blocked on the local machine
 - XDebug should be enabled
 
 ##Executing tests
-The Tests are executed against a local node server. That means first of all you have to start the node server.
+The Tests are executed against a local php server. That means first of all you have to start the php server.
 ```
-node nodeServer.js
+php -S localhost:8000 -t Tests/Functional/TestServer
 ```
 
 Then the tests can be executed via:
