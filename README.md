@@ -16,7 +16,7 @@ restclient.post(url, payload);
 And what do you expect as a return? Shouldn't it be a simple Symfony Response Object?
 
 This bundle provides an intuitive API for sending REST requests and returns a Symfony Object.
-It works as you'd expect. If it's not: Let us know!
+It works as you'd expect. If it does not: Let us know!
 
 #Installation
 
