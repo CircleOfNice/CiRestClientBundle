@@ -123,15 +123,9 @@ The bundle can be tested via phpunit.
 - XDebug should be enabled
 
 ##Executing tests
-The Tests are executed against a local php server. That means first of all you have to start the php server.
+The Tests are executed against a local php server located in the Tests/TestServer folder. Execute the tests via
 ```
-php -S localhost:8000 -t Tests/Functional/TestServer
-```
-
-Then the tests can be executed via:
-
-```
-phpunit -c phpunit.xml
+make test
 ```
 
 #Improvements in future
