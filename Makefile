@@ -1,7 +1,4 @@
 SHELL:=/bin/bash
-ifndef LOGDIR
-LOGDIR:=.
-endif
 
 all:
 	@make -s setup
