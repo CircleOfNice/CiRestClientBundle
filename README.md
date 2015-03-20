@@ -5,7 +5,7 @@ CiRestClientBundle
 
 There are some Symfony2 bundles providing abstractions for REST requests, but none of them is actually feeling like: "That's what I was looking for!". Having used some of these in the past, we always had to improve or remap their API's for our own needs.
 
-Some Days ago we faced the same frustrating challenge again and started to meditate about the idea, that our specific API needs really aren't that particular. So we questioned ourselves how a simple REST-Client-API should look like:
+Some days ago we faced the same frustrating challenge again and started to meditate about the idea that our specific API needs really aren't that particular. So we questioned ourselves how a simple REST-Client-API should look like:
 
 ```
 $restclient->post($url, $payload);
