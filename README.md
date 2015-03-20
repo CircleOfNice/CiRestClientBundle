@@ -23,10 +23,11 @@ So what should all the methods return? Let's ask some questions:
 - You know about the Symfony Response Object, chapter 1, page 1, sentence 1?
 - SO WHY DON't YOU USE IT AT ALL??
 
-##Summary of our motivation:
+The short story:
+
 There's so much crap in the internet and we wanted to get rid of it. That's what Circle is supposed to do.
 
-#Summary
+#Description
 A smart REST client with a comfortable API providing all REST methods and returning a Symfony Response Object.
 
 #Installation
