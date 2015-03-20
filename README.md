@@ -3,29 +3,22 @@ CiRestClientBundle
 
 #Motivation
 
-There are some Symfony bundles providing functions for REST request, but none of them is actually feeling like: "That's what I was looking for!". In the past we used some of these bundles and we always had to improve or remap their API for our needs. Some days ago the same **it happened again and we started about thinking to hack the bundle again. Call it the CircleOfFrustration. But this time we didn't want to enter the CircleOfFrustration (because we are the CircleOfNice ;)). So we made a decision: Let's think about how a REST client API should look like and afterwards let's implement it by ourselfs.
+There are some Symfony2 bundles providing abstractions for REST requests, but none of them is actually feeling like: "That's what I was looking for!". Having used some of these in the past, we always had to improve or remap their API's for our own needs.
 
-
-So how should a REST client API look like? Shouldn't it look like:
+Some Days ago we faced the same frustrating challenge again and started to meditate about the idea, that our specific API needs really aren't that particular. So we questioned ourselves how a simple REST-Client-API should look like:
 
 ```
-restclient.post(url, payload);
-restclient.get(url);
-restclient.put(url, payload);
-restclient.delete(url);
+$restclient->post($url, $payload);
+$restclient->get($url);
+$restclient->put($url, $payload);
+$restclient->delete($url);
 ```
 
-And what do you expect as a return? Most of the bundles return PHP curl resources. What the hell? You map the PHP internal curl API to another API to make it more comfortable and in the end you get an object with exactly the same API you wanted to get rid of? Why? And what is the improvement? In the end it's easier not to use these bundles and to work with the (extremly uncomfortable) PHP internal curl API.
+Another concern was the leaky abstraction many of the other bundles present to us in respect to the output: They map the PHP-native curl-addon's API to an object-oriented interface only to let us work with the non-object-oriented original output of curl's API calls. At this point it is more convenient to stay with the (extremely inconvenient) PHP internal curl API only. 
+But how should outputs be wrapped? So by visiting this page you are probably a Symphony developer?
+We can infer that you know about the Symfony Response Object, right?
 
-Ok. We didn't answer the question yet: What should be the outcome? Let's ask some questions:
-- You are developing a Symfony bundle, aren't you?
-- You are aware of the fundamentals of Symfony, aren't you?
-- You know about the Symfony Response Object of the --> HTTP FOUNDATION?
-- SO WHY DON'T YOU USE IT AT ALL??
-
-The short story:
-
-There's so much crap in the internet and we want to get rid of it. That's what Circle is supposed to do.
+So this was an easy one. Let's call it a day, take our simple API spec and the symfony Response for wrapping outputs, thereby comfortably remaining within the boundaries of our framework of choice, and start goin' gorillas with this one.
 
 #Description
 A smart REST client with a comfortable API providing all REST methods and returning a Symfony Response Object.
