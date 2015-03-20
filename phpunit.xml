@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- http://phpunit.de/manual/4.1/en/appendixes.configuration.html -->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.1/phpunit.xsd"
+         backupGlobals="false"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false"
+         bootstrap="./Tests/bootstrap.php"
+         reportUselessTests="true"
+         strict-coverage="true"
+         disallow-test-output="true"
+         enforce-time-limit="true"
+         verbose="true"
+         forceCoversAnnotation="true"
+         mapTestClassNameToCoveredClassName="true"
+>
+    <testsuites>
+        <testsuite name="Project Test Suite">
+            <directory>Tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory>.</directory>
+            <exclude>
+                <directory>Resources</directory>
+                <directory>DependencyInjection</directory>
+                <directory>Tests</directory>
+                <directory>vendor</directory>
+                <file>Controller/MockController.php</file>
+                <file>CiRestClientBundle.php</file>
+            </exclude>
+        </whitelist>
+    </filter>
+
+    <logging>
+        <log type="coverage-html" target="./logs/coverage" lowUpperBound="35" highLowerBound="70"/>
+        <log type="coverage-text" target="php://stdout" showOnlySummary="true"/>
+        <log type="testdox-text" target="php://stdout"/>
+    </logging>
+</phpunit>
