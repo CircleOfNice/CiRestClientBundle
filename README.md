@@ -136,7 +136,7 @@ The Tests are executed against a local php server located in the Tests/TestServe
 make test
 ```
 
-#Improvements in future
+#Roadmap
 - Strict rules for rest methods such as server MUST NOT return a message-body in the response for HEAD requests
 - Improved Exceptions (Instead of curl internal exceptions) extending CurlException
 - EventHandling (onRequest, preRequest, postRequest)
