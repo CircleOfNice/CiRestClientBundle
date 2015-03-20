@@ -25,7 +25,7 @@ Ok. We didn't answer the question yet: What should be the outcome? Let's ask som
 
 The short story:
 
-There's so much crap in the internet and we wanted to get rid of it. That's what Circle is supposed to do.
+There's so much crap in the internet and we want to get rid of it. That's what Circle is supposed to do.
 
 #Description
 A smart REST client with a comfortable API providing all REST methods and returning a Symfony Response Object.
