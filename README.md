@@ -20,7 +20,7 @@ And what do you expect as a return? Most of the bundles return PHP curl resource
 Ok. We didn't answer the question yet: What should be the outcome? Let's ask some questions:
 - You are developing a Symfony bundle, aren't you?
 - You are aware of the fundamentals of Symfony, aren't you?
-- You know about the Symfony Response Object, chapter 1, page 1, sentence 1?
+- You know about the Symfony Response Object of the --> HTTP FOUNDATION?
 - SO WHY DON't YOU USE IT AT ALL??
 
 The short story:
