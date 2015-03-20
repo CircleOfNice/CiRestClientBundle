@@ -21,7 +21,7 @@ Ok. We didn't answer the question yet: What should be the outcome? Let's ask som
 - You are developing a Symfony bundle, aren't you?
 - You are aware of the fundamentals of Symfony, aren't you?
 - You know about the Symfony Response Object of the --> HTTP FOUNDATION?
-- SO WHY DON't YOU USE IT AT ALL??
+- SO WHY DON'T YOU USE IT AT ALL??
 
 The short story:
 
@@ -57,7 +57,7 @@ public function registerBundles()
 
 #Configuration
 
-The bundle allows you to configure all default options that the underlying PHP internal curl library provides - with their real names.
+The bundle allows you to configure all default options that the underlying PHP internal curl library provides - with their real names. No re-re-re-mapping-mapping-re-... :D
 
 The names and their possible values can be found here: http://php.net/manual/de/function.curl-setopt.php
 
