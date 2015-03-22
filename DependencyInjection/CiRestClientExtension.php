@@ -40,17 +40,17 @@ class CiRestClientExtension extends Extension
     public function load(array $configs, ContainerBuilder $container)
     {
         $curlConfigFile   = __DIR__ . '/../Resources/config/curl_config.yml';
-        $configs          = array_merge($configs, Yaml::parse(file_get_contents($curlConfigFile)));
+        $configs          = array_merge(Yaml::parse(file_get_contents($curlConfigFile)), $configs);
+        if (!isset($configs['ci_rest_client'])) throw new \RuntimeException('configuration ci_rest_client is missing.');
 
         $configuration  = new Configuration();
         $config         = $this->processConfiguration($configuration, $configs);
 
-        if (!isset($config['restclient'])) throw new \RuntimeException('configuration ci.restclient is missing.');
-        if (!isset($config['restclient']['curl'])) throw new \RuntimeException('configuration ci.restclient.curl is missing.');
-        if (!isset($config['restclient']['curl']['defaults'])) throw new \RuntimeException('configuration ci.restclient.curl.defaults is missing.');
+        if (!isset($config['curl'])) throw new \RuntimeException('configuration ci_rest_client.curl is missing.');
+        if (!isset($config['curl']['defaults'])) throw new \RuntimeException('configuration ci_rest_client.curl.defaults is missing.');
 
         $options = array();
-        foreach ($config['restclient']['curl']['defaults'] as $key => $value) {
+        foreach ($config['curl']['defaults'] as $key => $value) {
             $options[constant($key)] = $value;
         };
 
