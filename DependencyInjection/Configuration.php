@@ -37,22 +37,16 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('ci');
+        $rootNode = $treeBuilder->root('ci_rest_client');
 
         $rootNode
             ->children()
-                ->arrayNode('restclient')
+                ->arrayNode('curl')
                     ->children()
-                        ->arrayNode('curl')
-                            ->children()
-                                ->variableNode('defaults')->end()
-                                ->scalarNode('testing_url')->end()
-                            ->end()
-                        ->end()
+                        ->variableNode('defaults')->end()
                     ->end()
                 ->end()
-            ->end()
-        ->end();
+            ->end();
 
         return $treeBuilder;
     }
