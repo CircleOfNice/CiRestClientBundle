@@ -60,8 +60,7 @@ The names and their possible values can be found here: http://php.net/manual/de/
 You can change the configuration by adding the following lines to your app/config.yml:
 
 ```
-ci:
-  restclient:
+ci_rest_client:
     curl:
       defaults:
         $optionName: $value
@@ -72,8 +71,7 @@ ci:
 ##Example:
 
 ```
-ci:
-  restclient:
+ci_rest_client:
     curl:
       defaults:
         CURLOPT_HTTPHEADER:     [ 'Content-Type: application/json' ]
