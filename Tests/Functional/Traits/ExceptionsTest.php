@@ -53,6 +53,35 @@ class ExceptionsTest extends \PHPUnit_Framework_TestCase {
      * @covers Ci\RestClientBundle\Exceptions\FtpAcceptTimeoutException
      * @covers Ci\RestClientBundle\Exceptions\FtpWeirdPasvReplyException
      * @covers Ci\RestClientBundle\Exceptions\FtpWeird227FormatException
+     * @covers Ci\RestClientBundle\Exceptions\FtpCantGetHostException
+     * @covers Ci\RestClientBundle\Exceptions\Http2Exception
+     * @covers Ci\RestClientBundle\Exceptions\FtpCouldntSetTypeException
+     * @covers Ci\RestClientBundle\Exceptions\PartialFileException
+     * @covers Ci\RestClientBundle\Exceptions\FtpCouldntRetrFileException
+     * @covers Ci\RestClientBundle\Exceptions\QuoteErrorException
+     * @covers Ci\RestClientBundle\Exceptions\HttpReturnedErrorException
+     * @covers Ci\RestClientBundle\Exceptions\WriteErrorException
+     * @covers Ci\RestClientBundle\Exceptions\ReadErrorException
+     * @covers Ci\RestClientBundle\Exceptions\UploadFailedException
+     * @covers Ci\RestClientBundle\Exceptions\OutOfMemoryException
+     * @covers Ci\RestClientBundle\Exceptions\OperationTimedOutException
+     * @covers Ci\RestClientBundle\Exceptions\FtpPortFailedException
+     * @covers Ci\RestClientBundle\Exceptions\FtpCouldntUseRestException
+     * @covers Ci\RestClientBundle\Exceptions\RangeErrorException
+     * @covers Ci\RestClientBundle\Exceptions\HttpPostErrorException
+     * @covers Ci\RestClientBundle\Exceptions\SslConnectErrorException
+     * @covers Ci\RestClientBundle\Exceptions\BadDownloadResumeException
+     * @covers Ci\RestClientBundle\Exceptions\FileCouldntReadFileException
+     * @covers Ci\RestClientBundle\Exceptions\LdapCannotBindException
+     * @covers Ci\RestClientBundle\Exceptions\LdapSearchFailedException
+     * @covers Ci\RestClientBundle\Exceptions\FunctionNotFoundException
+     * @covers Ci\RestClientBundle\Exceptions\AbortedByCallbackException
+     * @covers Ci\RestClientBundle\Exceptions\BadFunctionArgumentException
+     * @covers Ci\RestClientBundle\Exceptions\InterfaceFailedException
+     * @covers Ci\RestClientBundle\Exceptions\TooManyRedirectsException
+     * @covers Ci\RestClientBundle\Exceptions\UnknownOptionException
+     * @covers Ci\RestClientBundle\Exceptions\TelnetOptionSyntaxException
+     * @covers Ci\RestClientBundle\Exceptions\PeerFailedverificationException
      */
     public function curlExceptionTest() {
         $this->assertExpectedCurlException(999, 'Ci\RestClientBundle\Exceptions\CurlException');
