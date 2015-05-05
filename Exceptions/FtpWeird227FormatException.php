@@ -17,6 +17,7 @@
  */
 
 namespace Ci\RestClientBundle\Exceptions;
+
 use Ci\RestClientBundle\Exceptions\Interfaces\DetailedExceptionInterface;
 
 /**
@@ -27,7 +28,7 @@ use Ci\RestClientBundle\Exceptions\Interfaces\DetailedExceptionInterface;
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  */
-class CouldntResolveProxyException extends CurlException implements DetailedExceptionInterface {
+class FtpWeird227FormatException extends CurlException implements DetailedExceptionInterface {
 
     /**
      * Sets all necessary dependencies
@@ -36,8 +37,8 @@ class CouldntResolveProxyException extends CurlException implements DetailedExce
      * @param int    $code
      */
     public function __construct(
-        $message = 'Couldn\'t resolve proxy',
-        $code    = 5
+        $message = 'FTP servers return a 227-line as a response to a PASV command',
+        $code    = 14
     ) {
         parent::__construct($message, $code);
     }
@@ -47,6 +48,7 @@ class CouldntResolveProxyException extends CurlException implements DetailedExce
      * @codeCoverageIgnore
      */
     public function getDetailedMessage() {
-        return 'Couldn\'t resolve proxy. The given proxy host could not be resolved.';
+        return 'FTP servers return a 227-line as a response to a PASV command. If libcurl fails to ' .
+        'parse that line, this return code is passed back.';
     }
 }

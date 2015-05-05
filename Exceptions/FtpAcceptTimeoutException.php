@@ -17,6 +17,7 @@
  */
 
 namespace Ci\RestClientBundle\Exceptions;
+
 use Ci\RestClientBundle\Exceptions\Interfaces\DetailedExceptionInterface;
 
 /**
@@ -27,7 +28,7 @@ use Ci\RestClientBundle\Exceptions\Interfaces\DetailedExceptionInterface;
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  */
-class CouldntResolveProxyException extends CurlException implements DetailedExceptionInterface {
+class FtpAcceptTimeoutException extends CurlException implements DetailedExceptionInterface {
 
     /**
      * Sets all necessary dependencies
@@ -36,8 +37,8 @@ class CouldntResolveProxyException extends CurlException implements DetailedExce
      * @param int    $code
      */
     public function __construct(
-        $message = 'Couldn\'t resolve proxy',
-        $code    = 5
+        $message = 'During an active FTP session while waiting for the server to connect, the CURLOPT_ACCEPTTIMOUT_MS(3) (or the internal default) timeout expired',
+        $code    = 12
     ) {
         parent::__construct($message, $code);
     }
@@ -47,6 +48,6 @@ class CouldntResolveProxyException extends CurlException implements DetailedExce
      * @codeCoverageIgnore
      */
     public function getDetailedMessage() {
-        return 'Couldn\'t resolve proxy. The given proxy host could not be resolved.';
+        return 'During an active FTP session while waiting for the server to connect, the CURLOPT_ACCEPTTIMOUT_MS(3) (or the internal default) timeout expired.';
     }
 }

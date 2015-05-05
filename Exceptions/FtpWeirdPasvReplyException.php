@@ -17,6 +17,7 @@
  */
 
 namespace Ci\RestClientBundle\Exceptions;
+
 use Ci\RestClientBundle\Exceptions\Interfaces\DetailedExceptionInterface;
 
 /**
@@ -27,7 +28,7 @@ use Ci\RestClientBundle\Exceptions\Interfaces\DetailedExceptionInterface;
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  */
-class CouldntResolveProxyException extends CurlException implements DetailedExceptionInterface {
+class FtpWeirdPasvReplyException extends CurlException implements DetailedExceptionInterface {
 
     /**
      * Sets all necessary dependencies
@@ -36,8 +37,8 @@ class CouldntResolveProxyException extends CurlException implements DetailedExce
      * @param int    $code
      */
     public function __construct(
-        $message = 'Couldn\'t resolve proxy',
-        $code    = 5
+        $message = 'libcurl failed to get a sensible result back from the server as a response to either a PASV or a EPSV command.',
+        $code    = 13
     ) {
         parent::__construct($message, $code);
     }
@@ -47,6 +48,7 @@ class CouldntResolveProxyException extends CurlException implements DetailedExce
      * @codeCoverageIgnore
      */
     public function getDetailedMessage() {
-        return 'Couldn\'t resolve proxy. The given proxy host could not be resolved.';
+        return 'libcurl failed to get a sensible result back from the server as a response to either a PASV or a EPSV command. ' .
+        'The server is flawed.';
     }
 }

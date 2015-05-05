@@ -45,12 +45,25 @@ class ExceptionsTest extends \PHPUnit_Framework_TestCase {
      * @covers Ci\RestClientBundle\Exceptions\NotBuiltInException
      * @covers Ci\RestClientBundle\Exceptions\UnsupportedProtocolException
      * @covers Ci\RestClientBundle\Exceptions\UrlMalformatException
+     * @covers Ci\RestClientBundle\Exceptions\CouldntConnectException
+     * @covers Ci\RestClientBundle\Exceptions\FtpWeirdServerReplyException
+     * @covers Ci\RestClientBundle\Exceptions\RemoteAccessDeniedException
+     * @covers Ci\RestClientBundle\Exceptions\FtpAcceptFailedException
+     * @covers Ci\RestClientBundle\Exceptions\FtpWeirdPassReplyException
+     * @covers Ci\RestClientBundle\Exceptions\FtpAcceptTimeoutException
+     * @covers Ci\RestClientBundle\Exceptions\FtpWeirdPasvReplyException
+     * @covers Ci\RestClientBundle\Exceptions\FtpWeird227FormatException
      */
     public function curlExceptionTest() {
         $this->assertExpectedCurlException(999, 'Ci\RestClientBundle\Exceptions\CurlException');
 
         foreach ($this->getExceptionCodeMappings() as $errorCode => $exceptionNamespace) {
-            $this->assertExpectedCurlException($errorCode, 'Ci\RestClientBundle\Exceptions\\' . $exceptionNamespace);
+            $exceptionNamespace = 'Ci\RestClientBundle\Exceptions\\' . $exceptionNamespace;
+            $this->assertExpectedCurlException($errorCode, $exceptionNamespace);
+
+            $exception = new $exceptionNamespace();
+            $this->assertSame($errorCode, $exception->getCode());
+            $this->assertInstanceOf('Ci\RestClientBundle\Exceptions\Interfaces\DetailedExceptionInterface', $exception);
         }
     }
 
@@ -77,7 +90,7 @@ class ExceptionsTest extends \PHPUnit_Framework_TestCase {
         try {
             $this->curlException('Some Message', $errorCode);
         } catch(\Exception $e) {
-            $this->assertSame(get_class($e), $exception);
+            $this->assertSame($exception, get_class($e));
         }
     }
 }

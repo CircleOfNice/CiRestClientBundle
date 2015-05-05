@@ -18,6 +18,8 @@
 
 namespace Ci\RestClientBundle\Exceptions;
 
+use Ci\RestClientBundle\Exceptions\Interfaces\DetailedExceptionInterface;
+
 /**
  * Specific exception for curl requests
  *
@@ -26,7 +28,7 @@ namespace Ci\RestClientBundle\Exceptions;
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  */
-class FailedInitException extends CurlException {
+class FailedInitException extends CurlException implements DetailedExceptionInterface {
 
     /**
      * Sets all necessary dependencies

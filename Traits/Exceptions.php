@@ -39,12 +39,20 @@ trait Exceptions {
      */
     private function getExceptionCodeMappings() {
         return array(
-            1 => 'UnsupportedProtocolException',
-            2 => 'FailedInitException',
-            3 => 'UrlMalformatException',
-            4 => 'NotBuiltInException',
-            5 => 'CouldntResolveProxyException',
-            6 => 'CouldntResolveHostException'
+            1   => 'UnsupportedProtocolException',
+            2   => 'FailedInitException',
+            3   => 'UrlMalformatException',
+            4   => 'NotBuiltInException',
+            5   => 'CouldntResolveProxyException',
+            6   => 'CouldntResolveHostException',
+            7   => 'CouldntConnectException',
+            8   => 'FtpWeirdServerReplyException',
+            9   => 'RemoteAccessDeniedException',
+            10  => 'FtpAcceptFailedException',
+            11  => 'FtpWeirdPassReplyException',
+            12  => 'FtpAcceptTimeoutException',
+            13  => 'FtpWeirdPasvReplyException',
+            14  => 'FtpWeird227FormatException'
         );
     }
 
