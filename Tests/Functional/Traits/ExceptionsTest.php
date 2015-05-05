@@ -82,6 +82,24 @@ class ExceptionsTest extends \PHPUnit_Framework_TestCase {
      * @covers Ci\RestClientBundle\Exceptions\UnknownOptionException
      * @covers Ci\RestClientBundle\Exceptions\TelnetOptionSyntaxException
      * @covers Ci\RestClientBundle\Exceptions\PeerFailedverificationException
+     * @covers Ci\RestClientBundle\Exceptions\GotNothingException
+     * @covers Ci\RestClientBundle\Exceptions\SslEngineNotFoundException
+     * @covers Ci\RestClientBundle\Exceptions\SslEngineSetFailedException
+     * @covers Ci\RestClientBundle\Exceptions\SendErrorException
+     * @covers Ci\RestClientBundle\Exceptions\RecvErrorException
+     * @covers Ci\RestClientBundle\Exceptions\SslCertProblemException
+     * @covers Ci\RestClientBundle\Exceptions\SslCipherException
+     * @covers Ci\RestClientBundle\Exceptions\SslCacertException
+     * @covers Ci\RestClientBundle\Exceptions\BadContentEncodingException
+     * @covers Ci\RestClientBundle\Exceptions\LdapInvalidUrlException
+     * @covers Ci\RestClientBundle\Exceptions\FilesizeExceededException
+     * @covers Ci\RestClientBundle\Exceptions\UseSslFailedException
+     * @covers Ci\RestClientBundle\Exceptions\SendFailRewindException
+     * @covers Ci\RestClientBundle\Exceptions\SslEngineInitFailedException
+     * @covers Ci\RestClientBundle\Exceptions\LoginDeniedException
+     * @covers Ci\RestClientBundle\Exceptions\TftpNotFoundException
+     * @covers Ci\RestClientBundle\Exceptions\TftpPermException
+     * @covers Ci\RestClientBundle\Exceptions\RemoteDiskFullException
      */
     public function curlExceptionTest() {
         $this->assertExpectedCurlException(999, 'Ci\RestClientBundle\Exceptions\CurlException');

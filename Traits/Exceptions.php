@@ -81,7 +81,25 @@ trait Exceptions {
             47  => 'TooManyRedirectsException',
             48  => 'UnknownOptionException',
             49  => 'TelnetOptionSyntaxException',
-            51  => 'PeerFailedVerificationException'
+            51  => 'PeerFailedVerificationException',
+            52  => 'GotNothingException',
+            53  => 'SslEngineNotFoundException',
+            54  => 'SslEngineSetFailedException',
+            55  => 'SendErrorException',
+            56  => 'RecvErrorException',
+            58  => 'SslCertProblemException',
+            59  => 'SslCipherException',
+            60  => 'SslCacertException',
+            61  => 'BadContentEncodingException',
+            62  => 'LdapInvalidUrlException',
+            63  => 'FilesizeExceededException',
+            64  => 'UseSslFailedException',
+            65  => 'SendFailRewindException',
+            66  => 'SslEngineInitFailedException',
+            67  => 'LoginDeniedException',
+            68  => 'TftpNotFoundException',
+            69  => 'TftpPermException',
+            70  => 'RemoteDiskFullException'
         );
     }
 
