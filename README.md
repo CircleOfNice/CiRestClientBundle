@@ -107,7 +107,7 @@ The exception class representing a libcurl error has the following naming conven
 - Remove the CURLE_ prefix first: CURLE_OPERATION_TIMEDOUT --> OPERATION_TIMEDOUT
 - Afterward change the spelling into camel case: OPERATION_TIMEDOUT --> OperationTimedOut
 - Add the postfix "Exception": OperationTimedOut --> OperationTimedOutException
-- The OperationTimedOutException is the exception matching the libcurl error CURLE_OPERATION_TIMEDOUT
+- The OperationTimedOutException is the exception corresponding to the libcurl error CURLE_OPERATION_TIMEDOUT
 
 Knowing that all these exceptions exist improves exception handling a lot:
 ```
@@ -164,5 +164,4 @@ make test
 
 #Roadmap
 - Strict rules for rest methods such as server MUST NOT return a message-body in the response for HEAD requests
-- Improved Exceptions (Instead of curl internal exceptions) extending CurlException
 - EventHandling (onRequest, preRequest, postRequest)
