@@ -99,8 +99,36 @@ $restClient->options('http://www.someUrl.com', 'somePayload');
 $restClient->trace('http://www.someUrl.com');
 $restClient->connect('http://www.someUrl.com');
 ```
+##Exception handling
+As the rest client is using libcurl we have created an exception class for each libcurl error.
+Have a look at the full list of errors here: http://curl.haxx.se/libcurl/c/libcurl-errors.html
+The exception class representing a libcurl error has the following naming conventions:
+- Imagine there's the error named CURLE_OPERATION_TIMEDOUT
+- Remove the CURLE_ prefix first: CURLE_OPERATION_TIMEDOUT --> OPERATION_TIMEDOUT
+- Afterward change the spelling into camel case: OPERATION_TIMEDOUT --> OperationTimedOut
+- Add the postfix "Exception": OperationTimedOut --> OperationTimedOutException
+- The OperationTimedOutException is the exception matching the libcurl error CURLE_OPERATION_TIMEDOUT
 
-##AdvancedUsage
+Knowing that all these exceptions exist improves exception handling a lot:
+```
+try {
+  $restClient->get('http://www.someUrl.com');
+} catch (Ci\RestClientBundle\Exceptions\OperationTimedOutException $exception) {
+  // do something
+}
+
+```
+
+If you still want to catch all rest exceptions catch the basic libcurl exception:
+```
+try {
+  $restClient->get('http://www.someUrl.com');
+} catch (Ci\RestClientBundle\Exceptions\CurlException $exception) {
+  // do something
+}
+```
+
+##Advanced usage
 
 You can add additional options to customize a specific request by adding an option array as key value store.
 
