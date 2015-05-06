@@ -32,14 +32,10 @@ class PeerFailedVerificationException extends CurlException implements DetailedE
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'The remote server\'s SSL certificate or SSH md5 fingerprint was deemed not OK',
-        $code    = 51
-    ) {
+    public function __construct() {
+        $message = 'The remote server\'s SSL certificate or SSH md5 fingerprint was deemed not OK';
+        $code    = 51;
         parent::__construct($message, $code);
     }
 

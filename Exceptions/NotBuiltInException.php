@@ -32,14 +32,10 @@ class NotBuiltInException extends CurlException implements DetailedExceptionInte
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'A requested feature, protocol or option was not found built-in in this libcurl due to a build-time decision',
-        $code    = 4
-    ) {
+    public function __construct() {
+        $message = 'A requested feature, protocol or option was not found built-in in this libcurl due to a build-time decision';
+        $code    = 4;
         parent::__construct($message, $code);
     }
 

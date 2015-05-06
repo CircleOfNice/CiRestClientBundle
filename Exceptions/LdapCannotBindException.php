@@ -32,14 +32,10 @@ class LdapCannotBindException extends CurlException implements DetailedException
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'LDAP cannot bind. LDAP bind operation failed.',
-        $code    = 38
-    ) {
+    public function __construct() {
+        $message = 'LDAP cannot bind. LDAP bind operation failed.';
+        $code    = 38;
         parent::__construct($message, $code);
     }
 

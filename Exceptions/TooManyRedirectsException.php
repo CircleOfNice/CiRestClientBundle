@@ -32,14 +32,10 @@ class TooManyRedirectsException extends CurlException implements DetailedExcepti
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Too many redirects',
-        $code    = 47
-    ) {
+    public function __construct() {
+        $message = 'Too many redirects';
+        $code    = 47;
         parent::__construct($message, $code);
     }
 

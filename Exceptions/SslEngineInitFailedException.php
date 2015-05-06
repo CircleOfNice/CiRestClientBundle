@@ -32,14 +32,10 @@ class SslEngineInitFailedException extends CurlException implements DetailedExce
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Initiating the SSL Engine failed',
-        $code    = 66
-    ) {
+    public function __construct() {
+        $message = 'Initiating the SSL Engine failed';
+        $code    = 66;
         parent::__construct($message, $code);
     }
 

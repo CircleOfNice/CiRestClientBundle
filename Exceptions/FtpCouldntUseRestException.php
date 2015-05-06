@@ -32,14 +32,10 @@ class FtpCouldntUseRestException extends CurlException implements DetailedExcept
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'The FTP REST command returned error',
-        $code    = 31
-    ) {
+    public function __construct() {
+        $message = 'The FTP REST command returned error';
+        $code    = 31;
         parent::__construct($message, $code);
     }
 

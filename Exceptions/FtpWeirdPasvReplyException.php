@@ -32,14 +32,10 @@ class FtpWeirdPasvReplyException extends CurlException implements DetailedExcept
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'libcurl failed to get a sensible result back from the server as a response to either a PASV or a EPSV command.',
-        $code    = 13
-    ) {
+    public function __construct() {
+        $message = 'libcurl failed to get a sensible result back from the server as a response to either a PASV or a EPSV command.';
+        $code    = 13;
         parent::__construct($message, $code);
     }
 

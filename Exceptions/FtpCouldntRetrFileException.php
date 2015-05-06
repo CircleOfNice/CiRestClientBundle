@@ -32,14 +32,10 @@ class FtpCouldntRetrFileException extends CurlException implements DetailedExcep
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'This was either a weird reply to a \'RETR\' command or a zero byte transfer complete',
-        $code    = 19
-    ) {
+    public function __construct() {
+        $message = 'This was either a weird reply to a \'RETR\' command or a zero byte transfer complete';
+        $code    = 19;
         parent::__construct($message, $code);
     }
 

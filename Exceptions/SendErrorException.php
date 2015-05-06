@@ -32,14 +32,10 @@ class SendErrorException extends CurlException implements DetailedExceptionInter
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Failed sending network data',
-        $code    = 55
-    ) {
+    public function __construct() {
+        $message = 'Failed sending network data';
+        $code    = 55;
         parent::__construct($message, $code);
     }
 

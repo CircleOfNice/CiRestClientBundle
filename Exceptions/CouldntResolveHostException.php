@@ -32,14 +32,10 @@ class CouldntResolveHostException extends CurlException implements DetailedExcep
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Couldn\'t resolve host',
-        $code    = 6
-    ) {
+    public function __construct() {
+        $message = 'Couldn\'t resolve host';
+        $code    = 6;
         parent::__construct($message, $code);
     }
 

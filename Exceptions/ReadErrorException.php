@@ -32,14 +32,10 @@ class ReadErrorException extends CurlException implements DetailedExceptionInter
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'There was a problem reading a local file or an error returned by the read callback',
-        $code    = 26
-    ) {
+    public function __construct() {
+        $message = 'There was a problem reading a local file or an error returned by the read callback';
+        $code    = 26;
         parent::__construct($message, $code);
     }
 

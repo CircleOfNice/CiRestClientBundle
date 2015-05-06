@@ -32,14 +32,10 @@ class SslCertProblemException extends CurlException implements DetailedException
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'problem with the local client certificate',
-        $code    = 58
-    ) {
+    public function __construct() {
+        $message = 'problem with the local client certificate';
+        $code    = 58;
         parent::__construct($message, $code);
     }
 

@@ -32,14 +32,10 @@ class UnknownOptionException extends CurlException implements DetailedExceptionI
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'An option passed to libcurl is not recognized/known',
-        $code    = 48
-    ) {
+    public function __construct() {
+        $message = 'An option passed to libcurl is not recognized/known';
+        $code    = 48;
         parent::__construct($message, $code);
     }
 

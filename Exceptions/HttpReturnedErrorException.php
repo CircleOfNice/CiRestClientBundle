@@ -32,14 +32,10 @@ class HttpReturnedErrorException extends CurlException implements DetailedExcept
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Http returned error',
-        $code    = 22
-    ) {
+    public function __construct() {
+        $message = 'Http returned error';
+        $code    = 22;
         parent::__construct($message, $code);
     }
 

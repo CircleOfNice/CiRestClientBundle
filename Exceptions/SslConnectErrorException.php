@@ -32,14 +32,10 @@ class SslConnectErrorException extends CurlException implements DetailedExceptio
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'A problem occurred somewhere in the SSL/TLS handshake',
-        $code    = 35
-    ) {
+    public function __construct() {
+        $message = 'A problem occurred somewhere in the SSL/TLS handshake';
+        $code    = 35;
         parent::__construct($message, $code);
     }
 

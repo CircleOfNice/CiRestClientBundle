@@ -32,14 +32,10 @@ class AgainException extends CurlException implements DetailedExceptionInterface
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Socket is not ready for send/recv wait till it\'s ready and try again. This return code is only returned from curl_easy_recv and curl_easy_send',
-        $code    = 81
-    ) {
+    public function __construct() {
+        $message = 'Socket is not ready for send/recv wait till it\'s ready and try again. This return code is only returned from curl_easy_recv and curl_easy_send';
+        $code    = 81;
         parent::__construct($message, $code);
     }
 

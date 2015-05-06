@@ -32,14 +32,10 @@ class PartialFileException extends CurlException implements DetailedExceptionInt
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'A file transfer was shorter or larger than expected',
-        $code    = 18
-    ) {
+    public function __construct() {
+        $message = 'A file transfer was shorter or larger than expected';
+        $code    = 18;
         parent::__construct($message, $code);
     }
 

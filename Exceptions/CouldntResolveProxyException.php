@@ -31,14 +31,10 @@ class CouldntResolveProxyException extends CurlException implements DetailedExce
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Couldn\'t resolve proxy',
-        $code    = 5
-    ) {
+    public function __construct() {
+        $message = 'Couldn\'t resolve proxy';
+        $code    = 5;
         parent::__construct($message, $code);
     }
 

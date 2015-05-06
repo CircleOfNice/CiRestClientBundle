@@ -32,14 +32,10 @@ class Http2Exception extends CurlException implements DetailedExceptionInterface
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'A problem was detected in the HTTP2 framing layer',
-        $code    = 16
-    ) {
+    public function __construct() {
+        $message = 'A problem was detected in the HTTP2 framing layer';
+        $code    = 16;
         parent::__construct($message, $code);
     }
 

@@ -32,14 +32,10 @@ class SslCacertException extends CurlException implements DetailedExceptionInter
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Peer certificate cannot be authenticated with known CA certificates.',
-        $code    = 60
-    ) {
+    public function __construct() {
+        $message = 'Peer certificate cannot be authenticated with known CA certificates.';
+        $code    = 60;
         parent::__construct($message, $code);
     }
 

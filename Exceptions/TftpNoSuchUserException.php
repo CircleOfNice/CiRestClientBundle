@@ -32,14 +32,10 @@ class TftpNoSuchUserException extends CurlException implements DetailedException
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'This error should never be returned by a properly functioning TFTP server',
-        $code    = 74
-    ) {
+    public function __construct() {
+        $message = 'This error should never be returned by a properly functioning TFTP server';
+        $code    = 74;
         parent::__construct($message, $code);
     }
 

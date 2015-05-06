@@ -32,14 +32,10 @@ class ConvReqdException extends CurlException implements DetailedExceptionInterf
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Caller must register conversion callbacks',
-        $code    = 76
-    ) {
+    public function __construct() {
+        $message = 'Caller must register conversion callbacks';
+        $code    = 76;
         parent::__construct($message, $code);
     }
 

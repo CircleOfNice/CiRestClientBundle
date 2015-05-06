@@ -32,14 +32,10 @@ class OperationTimedOutException extends CurlException implements DetailedExcept
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Operation timeout. The specified time-out period was reached according to the conditions.',
-        $code    = 28
-    ) {
+    public function __construct() {
+        $message = 'Operation timeout. The specified time-out period was reached according to the conditions.';
+        $code    = 28;
         parent::__construct($message, $code);
     }
 

@@ -32,14 +32,10 @@ class FtpPretFailedException extends CurlException implements DetailedExceptionI
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'The FTP server does not understand the PRET command at all or does not support the given argument.',
-        $code    = 84
-    ) {
+    public function __construct() {
+        $message = 'The FTP server does not understand the PRET command at all or does not support the given argument.';
+        $code    = 84;
         parent::__construct($message, $code);
     }
 

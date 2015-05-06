@@ -32,14 +32,10 @@ class RemoteFileExistsException extends CurlException implements DetailedExcepti
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'File already exists and will not be overwritten',
-        $code    = 73
-    ) {
+    public function __construct() {
+        $message = 'File already exists and will not be overwritten';
+        $code    = 73;
         parent::__construct($message, $code);
     }
 

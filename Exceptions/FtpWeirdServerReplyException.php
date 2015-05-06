@@ -32,14 +32,10 @@ class FtpWeirdServerReplyException extends CurlException implements DetailedExce
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'After connecting to a FTP server, libcurl expects to get a certain reply back',
-        $code    = 8
-    ) {
+    public function __construct() {
+        $message = 'After connecting to a FTP server, libcurl expects to get a certain reply back';
+        $code    = 8;
         parent::__construct($message, $code);
     }
 

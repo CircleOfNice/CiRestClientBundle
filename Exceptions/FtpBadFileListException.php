@@ -32,14 +32,10 @@ class FtpBadFileListException extends CurlException implements DetailedException
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Unable to parse FTP file list',
-        $code    = 87
-    ) {
+    public function __construct() {
+        $message = 'Unable to parse FTP file list';
+        $code    = 87;
         parent::__construct($message, $code);
     }
 

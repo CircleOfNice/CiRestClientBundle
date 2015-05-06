@@ -32,14 +32,10 @@ class TftpIllegalException extends CurlException implements DetailedExceptionInt
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Illegal TFTP operation',
-        $code    = 71
-    ) {
+    public function __construct() {
+        $message = 'Illegal TFTP operation';
+        $code    = 71;
         parent::__construct($message, $code);
     }
 

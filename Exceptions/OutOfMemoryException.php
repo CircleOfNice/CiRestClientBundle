@@ -32,14 +32,10 @@ class OutOfMemoryException extends CurlException implements DetailedExceptionInt
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'A memory allocation request failed',
-        $code    = 27
-    ) {
+    public function __construct() {
+        $message = 'A memory allocation request failed';
+        $code    = 27;
         parent::__construct($message, $code);
     }
 

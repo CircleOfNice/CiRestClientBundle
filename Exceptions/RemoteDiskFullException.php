@@ -32,14 +32,10 @@ class RemoteDiskFullException extends CurlException implements DetailedException
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Out of disk space on the server',
-        $code    = 70
-    ) {
+    public function __construct() {
+        $message = 'Out of disk space on the server';
+        $code    = 70;
         parent::__construct($message, $code);
     }
 

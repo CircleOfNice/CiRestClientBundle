@@ -32,14 +32,10 @@ class SendFailRewindException extends CurlException implements DetailedException
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'When doing a send operation curl had to rewind the data to retransmit, but the rewinding operation failed',
-        $code    = 65
-    ) {
+    public function __construct() {
+        $message = 'When doing a send operation curl had to rewind the data to retransmit, but the rewinding operation failed';
+        $code    = 65;
         parent::__construct($message, $code);
     }
 

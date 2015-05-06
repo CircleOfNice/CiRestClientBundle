@@ -32,14 +32,10 @@ class InterfaceFailedException extends CurlException implements DetailedExceptio
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Interface error',
-        $code    = 45
-    ) {
+    public function __construct() {
+        $message = 'Interface error';
+        $code    = 45;
         parent::__construct($message, $code);
     }
 

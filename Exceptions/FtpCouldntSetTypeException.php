@@ -32,14 +32,10 @@ class FtpCouldntSetTypeException extends CurlException implements DetailedExcept
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Received an error when trying to set the transfer mode to binary or ASCII',
-        $code    = 17
-    ) {
+    public function __construct() {
+        $message = 'Received an error when trying to set the transfer mode to binary or ASCII';
+        $code    = 17;
         parent::__construct($message, $code);
     }
 

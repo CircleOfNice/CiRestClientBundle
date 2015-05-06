@@ -32,14 +32,10 @@ class FtpWeird227FormatException extends CurlException implements DetailedExcept
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'FTP servers return a 227-line as a response to a PASV command',
-        $code    = 14
-    ) {
+    public function __construct() {
+        $message = 'FTP servers return a 227-line as a response to a PASV command';
+        $code    = 14;
         parent::__construct($message, $code);
     }
 

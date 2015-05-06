@@ -32,14 +32,10 @@ class FailedInitException extends CurlException implements DetailedExceptionInte
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Very early initialization code failed',
-        $code    = 2
-    ) {
+    public function __construct() {
+        $message = 'Very early initialization code failed';
+        $code    = 2;
         parent::__construct($message, $code);
     }
 

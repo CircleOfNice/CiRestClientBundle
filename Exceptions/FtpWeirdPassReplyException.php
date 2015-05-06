@@ -32,14 +32,10 @@ class FtpWeirdPassReplyException extends CurlException implements DetailedExcept
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'After having sent the FTP password to the server, libcurl expects a proper reply.',
-        $code    = 11
-    ) {
+    public function __construct() {
+        $message = 'After having sent the FTP password to the server, libcurl expects a proper reply.';
+        $code    = 11;
         parent::__construct($message, $code);
     }
 

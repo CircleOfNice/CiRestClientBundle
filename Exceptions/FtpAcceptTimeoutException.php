@@ -32,14 +32,11 @@ class FtpAcceptTimeoutException extends CurlException implements DetailedExcepti
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'During an active FTP session while waiting for the server to connect, the CURLOPT_ACCEPTTIMOUT_MS(3) (or the internal default) timeout expired',
-        $code    = 12
-    ) {
+    public function __construct() {
+        $message = 'During an active FTP session while waiting for the server to connect, ' .
+            'the CURLOPT_ACCEPTTIMOUT_MS(3) (or the internal default) timeout expired';
+        $code    = 12;
         parent::__construct($message, $code);
     }
 
@@ -48,6 +45,7 @@ class FtpAcceptTimeoutException extends CurlException implements DetailedExcepti
      * @codeCoverageIgnore
      */
     public function getDetailedMessage() {
-        return 'During an active FTP session while waiting for the server to connect, the CURLOPT_ACCEPTTIMOUT_MS(3) (or the internal default) timeout expired.';
+        return 'During an active FTP session while waiting for the server to connect, ' .
+        'the CURLOPT_ACCEPTTIMOUT_MS(3) (or the internal default) timeout expired.';
     }
 }

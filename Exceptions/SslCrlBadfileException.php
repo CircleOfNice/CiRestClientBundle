@@ -32,14 +32,10 @@ class SslCrlBadfileException extends CurlException implements DetailedExceptionI
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Failed to load CRL file',
-        $code    = 82
-    ) {
+    public function __construct() {
+        $message = 'Failed to load CRL file';
+        $code    = 82;
         parent::__construct($message, $code);
     }
 

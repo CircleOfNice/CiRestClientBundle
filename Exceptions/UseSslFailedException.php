@@ -32,14 +32,10 @@ class UseSslFailedException extends CurlException implements DetailedExceptionIn
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Requested FTP SSL level failed',
-        $code    = 64
-    ) {
+    public function __construct() {
+        $message = 'Requested FTP SSL level failed';
+        $code    = 64;
         parent::__construct($message, $code);
     }
 

@@ -32,14 +32,10 @@ class FileCouldntReadFileException extends CurlException implements DetailedExce
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'A file given with FILE:// couldn\'t be opened',
-        $code    = 37
-    ) {
+    public function __construct() {
+        $message = 'A file given with FILE:// couldn\'t be opened';
+        $code    = 37;
         parent::__construct($message, $code);
     }
 

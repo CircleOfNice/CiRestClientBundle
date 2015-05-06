@@ -32,14 +32,10 @@ class RemoteFileNotFoundException extends CurlException implements DetailedExcep
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'The resource referenced in the URL does not exist',
-        $code    = 78
-    ) {
+    public function __construct() {
+        $message = 'The resource referenced in the URL does not exist';
+        $code    = 78;
         parent::__construct($message, $code);
     }
 

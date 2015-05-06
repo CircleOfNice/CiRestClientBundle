@@ -32,14 +32,10 @@ class WriteErrorException extends CurlException implements DetailedExceptionInte
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'An error occurred when writing received data to a local file, or an error was returned to libcurl from a write callback.',
-        $code    = 23
-    ) {
+    public function __construct() {
+        $message = 'An error occurred when writing received data to a local file, or an error was returned to libcurl from a write callback.';
+        $code    = 23;
         parent::__construct($message, $code);
     }
 

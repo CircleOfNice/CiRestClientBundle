@@ -32,14 +32,10 @@ class FilesizeExceededException extends CurlException implements DetailedExcepti
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Maximum file size exceeded',
-        $code    = 63
-    ) {
+    public function __construct() {
+        $message = 'Maximum file size exceeded';
+        $code    = 63;
         parent::__construct($message, $code);
     }
 

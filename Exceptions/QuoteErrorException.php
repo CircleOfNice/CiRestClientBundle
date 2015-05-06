@@ -32,14 +32,10 @@ class QuoteErrorException extends CurlException implements DetailedExceptionInte
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Quote command failed',
-        $code    = 21
-    ) {
+    public function __construct() {
+        $message = 'Quote command failed';
+        $code    = 21;
         parent::__construct($message, $code);
     }
 

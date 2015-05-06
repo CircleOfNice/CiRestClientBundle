@@ -32,14 +32,10 @@ class SslCipherException extends CurlException implements DetailedExceptionInter
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Couldn\'t use specified cipher.',
-        $code    = 59
-    ) {
+    public function __construct() {
+        $message = 'Couldn\'t use specified cipher.';
+        $code    = 59;
         parent::__construct($message, $code);
     }
 

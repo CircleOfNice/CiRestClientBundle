@@ -32,14 +32,10 @@ class ConvFailedException extends CurlException implements DetailedExceptionInte
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Character conversion failed',
-        $code    = 75
-    ) {
+    public function __construct() {
+        $message = 'Character conversion failed';
+        $code    = 75;
         parent::__construct($message, $code);
     }
 

@@ -32,14 +32,10 @@ class SslCacertBadfileException extends CurlException implements DetailedExcepti
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Problem with reading the SSL CA cert',
-        $code    = 77
-    ) {
+    public function __construct() {
+        $message = 'Problem with reading the SSL CA cert';
+        $code    = 77;
         parent::__construct($message, $code);
     }
 

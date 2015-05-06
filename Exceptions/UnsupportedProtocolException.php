@@ -32,14 +32,10 @@ class UnsupportedProtocolException extends CurlException implements DetailedExce
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'The URL you passed to libcurl used a protocol that this libcurl does not support',
-        $code    = 1
-    ) {
+    public function __construct() {
+        $message = 'The URL you passed to libcurl used a protocol that this libcurl does not support';
+        $code    = 1;
         parent::__construct($message, $code);
     }
 

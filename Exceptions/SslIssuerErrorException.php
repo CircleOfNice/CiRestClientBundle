@@ -32,14 +32,10 @@ class SslIssuerErrorException extends CurlException implements DetailedException
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Issuer check failed',
-        $code    = 83
-    ) {
+    public function __construct() {
+        $message = 'Issuer check failed';
+        $code    = 83;
         parent::__construct($message, $code);
     }
 

@@ -32,14 +32,10 @@ class TftpUnknownIdException extends CurlException implements DetailedExceptionI
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Unknown TFTP transfer ID',
-        $code    = 72
-    ) {
+    public function __construct() {
+        $message = 'Unknown TFTP transfer ID';
+        $code    = 72;
         parent::__construct($message, $code);
     }
 

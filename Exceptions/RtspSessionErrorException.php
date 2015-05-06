@@ -32,14 +32,10 @@ class RtspSessionErrorException extends CurlException implements DetailedExcepti
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Mismatch of RTSP Session Identifiers',
-        $code    = 86
-    ) {
+    public function __construct() {
+        $message = 'Mismatch of RTSP Session Identifiers';
+        $code    = 86;
         parent::__construct($message, $code);
     }
 

@@ -32,14 +32,10 @@ class LoginDeniedException extends CurlException implements DetailedExceptionInt
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'The remote server denied curl to login',
-        $code    = 67
-    ) {
+    public function __construct() {
+        $message = 'The remote server denied curl to login';
+        $code    = 67;
         parent::__construct($message, $code);
     }
 

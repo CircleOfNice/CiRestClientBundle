@@ -32,14 +32,10 @@ class BadFunctionArgumentException extends CurlException implements DetailedExce
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Internal error. A function was called with a bad parameter.',
-        $code    = 43
-    ) {
+    public function __construct() {
+        $message = 'Internal error. A function was called with a bad parameter.';
+        $code    = 43;
         parent::__construct($message, $code);
     }
 

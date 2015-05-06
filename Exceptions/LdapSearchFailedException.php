@@ -32,14 +32,10 @@ class LdapSearchFailedException extends CurlException implements DetailedExcepti
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'LDAP search failed',
-        $code    = 39
-    ) {
+    public function __construct() {
+        $message = 'LDAP search failed';
+        $code    = 39;
         parent::__construct($message, $code);
     }
 

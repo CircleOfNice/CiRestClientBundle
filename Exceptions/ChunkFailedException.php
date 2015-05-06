@@ -32,14 +32,10 @@ class ChunkFailedException extends CurlException implements DetailedExceptionInt
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Chunk callback reported error',
-        $code    = 88
-    ) {
+    public function __construct() {
+        $message = 'Chunk callback reported error';
+        $code    = 88;
         parent::__construct($message, $code);
     }
 

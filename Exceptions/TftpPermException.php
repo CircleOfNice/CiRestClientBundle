@@ -32,14 +32,10 @@ class TftpPermException extends CurlException implements DetailedExceptionInterf
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Permission problem on TFTP server',
-        $code    = 69
-    ) {
+    public function __construct() {
+        $message = 'Permission problem on TFTP server';
+        $code    = 69;
         parent::__construct($message, $code);
     }
 

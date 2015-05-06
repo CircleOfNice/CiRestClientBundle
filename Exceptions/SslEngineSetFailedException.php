@@ -32,14 +32,10 @@ class SslEngineSetFailedException extends CurlException implements DetailedExcep
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Failed setting the selected SSL crypto engine as default!',
-        $code    = 54
-    ) {
+    public function __construct() {
+        $message = 'Failed setting the selected SSL crypto engine as default!';
+        $code    = 54;
         parent::__construct($message, $code);
     }
 

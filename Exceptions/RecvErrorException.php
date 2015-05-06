@@ -32,14 +32,10 @@ class RecvErrorException extends CurlException implements DetailedExceptionInter
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Failure with receiving network data',
-        $code    = 56
-    ) {
+    public function __construct() {
+        $message = 'Failure with receiving network data';
+        $code    = 56;
         parent::__construct($message, $code);
     }
 

@@ -32,14 +32,10 @@ class HttpPostErrorException extends CurlException implements DetailedExceptionI
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'An error occured on post',
-        $code    = 34
-    ) {
+    public function __construct() {
+        $message = 'An error occured on post';
+        $code    = 34;
         parent::__construct($message, $code);
     }
 

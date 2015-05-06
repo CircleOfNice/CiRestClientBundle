@@ -32,14 +32,10 @@ class SslShutdownFailedException extends CurlException implements DetailedExcept
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Failed to shut down the SSL connection',
-        $code    = 80
-    ) {
+    public function __construct() {
+        $message = 'Failed to shut down the SSL connection';
+        $code    = 80;
         parent::__construct($message, $code);
     }
 

@@ -32,14 +32,10 @@ class RtspCseqErrorException extends CurlException implements DetailedExceptionI
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Mismatch of RTSP CSeq numbers',
-        $code    = 85
-    ) {
+    public function __construct() {
+        $message = 'Mismatch of RTSP CSeq numbers';
+        $code    = 85;
         parent::__construct($message, $code);
     }
 

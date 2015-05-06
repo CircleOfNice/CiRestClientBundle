@@ -32,14 +32,10 @@ class FtpPortFailedException extends CurlException implements DetailedExceptionI
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'The FTP PORT command returned error',
-        $code    = 30
-    ) {
+    public function __construct() {
+        $message = 'The FTP PORT command returned error';
+        $code    = 30;
         parent::__construct($message, $code);
     }
 

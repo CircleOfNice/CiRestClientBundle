@@ -32,14 +32,10 @@ class RangeErrorException extends CurlException implements DetailedExceptionInte
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'The server does not support or accept range requests',
-        $code    = 33
-    ) {
+    public function __construct() {
+        $message = 'The server does not support or accept range requests';
+        $code    = 33;
         parent::__construct($message, $code);
     }
 

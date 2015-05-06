@@ -32,14 +32,10 @@ class UploadFailedException extends CurlException implements DetailedExceptionIn
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Failed starting the upload',
-        $code    = 25
-    ) {
+    public function __construct() {
+        $message = 'Failed starting the upload';
+        $code    = 25;
         parent::__construct($message, $code);
     }
 

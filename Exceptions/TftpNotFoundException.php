@@ -32,14 +32,10 @@ class TftpNotFoundException extends CurlException implements DetailedExceptionIn
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'File not found on TFTP server',
-        $code    = 68
-    ) {
+    public function __construct() {
+        $message = 'File not found on TFTP server';
+        $code    = 68;
         parent::__construct($message, $code);
     }
 

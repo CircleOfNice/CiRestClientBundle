@@ -32,14 +32,10 @@ class FunctionNotFoundException extends CurlException implements DetailedExcepti
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Function not found. A required zlib function was not found.',
-        $code    = 41
-    ) {
+    public function __construct() {
+        $message = 'Function not found. A required zlib function was not found.';
+        $code    = 41;
         parent::__construct($message, $code);
     }
 

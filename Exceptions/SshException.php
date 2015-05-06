@@ -32,14 +32,10 @@ class SshException extends CurlException implements DetailedExceptionInterface {
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'An unspecified error occurred during the SSH session',
-        $code    = 79
-    ) {
+    public function __construct() {
+        $message = 'An unspecified error occurred during the SSH session';
+        $code    = 79;
         parent::__construct($message, $code);
     }
 

@@ -32,14 +32,10 @@ class BadDownloadResumeException extends CurlException implements DetailedExcept
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'The download could not be resumed because the specified offset was out of the file boundary.',
-        $code    = 36
-    ) {
+    public function __construct() {
+        $message = 'The download could not be resumed because the specified offset was out of the file boundary.';
+        $code    = 36;
         parent::__construct($message, $code);
     }
 

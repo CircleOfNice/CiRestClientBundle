@@ -32,14 +32,10 @@ class AbortedByCallbackException extends CurlException implements DetailedExcept
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Aborted by callback. A callback returned "abort" to libcurl.',
-        $code    = 42
-    ) {
+    public function __construct() {
+        $message = 'Aborted by callback. A callback returned "abort" to libcurl.';
+        $code    = 42;
         parent::__construct($message, $code);
     }
 

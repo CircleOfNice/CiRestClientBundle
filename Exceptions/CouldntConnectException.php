@@ -32,14 +32,10 @@ class CouldntConnectException extends CurlException implements DetailedException
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Failed to connect() to host or proxy',
-        $code    = 7
-    ) {
+    public function __construct() {
+        $message = 'Failed to connect() to host or proxy';
+        $code    = 7;
         parent::__construct($message, $code);
     }
 

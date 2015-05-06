@@ -32,14 +32,10 @@ class TelnetOptionSyntaxException extends CurlException implements DetailedExcep
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'A telnet option string was Illegally formatted',
-        $code    = 49
-    ) {
+    public function __construct() {
+        $message = 'A telnet option string was Illegally formatted';
+        $code    = 49;
         parent::__construct($message, $code);
     }
 

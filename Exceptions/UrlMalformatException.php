@@ -32,14 +32,10 @@ class UrlMalformatException extends CurlException implements DetailedExceptionIn
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'The URL was not properly formatted',
-        $code    = 3
-    ) {
+    public function __construct() {
+        $message = 'The URL was not properly formatted';
+        $code    = 3;
         parent::__construct($message, $code);
     }
 

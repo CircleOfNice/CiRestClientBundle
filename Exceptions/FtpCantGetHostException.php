@@ -32,14 +32,10 @@ class FtpCantGetHostException extends CurlException implements DetailedException
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'An internal failure to lookup the host used for the new connection',
-        $code    = 15
-    ) {
+    public function __construct() {
+        $message = 'An internal failure to lookup the host used for the new connection';
+        $code    = 15;
         parent::__construct($message, $code);
     }
 

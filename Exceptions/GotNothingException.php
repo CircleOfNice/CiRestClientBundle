@@ -32,14 +32,10 @@ class GotNothingException extends CurlException implements DetailedExceptionInte
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'The specified crypto engine wasn\'t found.',
-        $code    = 52
-    ) {
+    public function __construct() {
+        $message = 'The specified crypto engine wasn\'t found.';
+        $code    = 52;
         parent::__construct($message, $code);
     }
 

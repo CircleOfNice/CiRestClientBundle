@@ -32,14 +32,10 @@ class BadContentEncodingException extends CurlException implements DetailedExcep
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'Unrecognized transfer encoding',
-        $code    = 61
-    ) {
+    public function __construct() {
+        $message = 'Unrecognized transfer encoding';
+        $code    = 61;
         parent::__construct($message, $code);
     }
 

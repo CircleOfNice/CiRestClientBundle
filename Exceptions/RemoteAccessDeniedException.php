@@ -32,14 +32,10 @@ class RemoteAccessDeniedException extends CurlException implements DetailedExcep
 
     /**
      * Sets all necessary dependencies
-     *
-     * @param string $message
-     * @param int    $code
      */
-    public function __construct(
-        $message = 'We were denied access to the resource given in the URL',
-        $code    = 9
-    ) {
+    public function __construct() {
+        $message = 'We were denied access to the resource given in the URL';
+        $code    = 9;
         parent::__construct($message, $code);
     }
 
