@@ -99,7 +99,25 @@ trait Exceptions {
             67  => 'LoginDeniedException',
             68  => 'TftpNotFoundException',
             69  => 'TftpPermException',
-            70  => 'RemoteDiskFullException'
+            70  => 'RemoteDiskFullException',
+            71  => 'TftpIllegalException',
+            72  => 'TftpUnknownIdException',
+            73  => 'RemoteFileExistsException',
+            74  => 'TftpNoSuchUserException',
+            75  => 'ConvFailedException',
+            76  => 'ConvReqdException',
+            77  => 'SslCacertBadfileException',
+            78  => 'RemoteFileNotFoundException',
+            79  => 'SshException',
+            80  => 'SslShutdownFailedException',
+            81  => 'AgainException',
+            82  => 'SslCrlBadfileException',
+            83  => 'SslIssuerErrorException',
+            84  => 'FtpPretFailedException',
+            85  => 'RtspCseqErrorException',
+            86  => 'RtspSessionErrorException',
+            87  => 'FtpBadFileListException',
+            88  => 'ChunkFailedException'
         );
     }
 

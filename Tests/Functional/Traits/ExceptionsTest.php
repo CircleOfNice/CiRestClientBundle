@@ -100,6 +100,24 @@ class ExceptionsTest extends \PHPUnit_Framework_TestCase {
      * @covers Ci\RestClientBundle\Exceptions\TftpNotFoundException
      * @covers Ci\RestClientBundle\Exceptions\TftpPermException
      * @covers Ci\RestClientBundle\Exceptions\RemoteDiskFullException
+     * @covers Ci\RestClientBundle\Exceptions\SslCacertBadfileException
+     * @covers Ci\RestClientBundle\Exceptions\RemoteFileNotFoundException
+     * @covers Ci\RestClientBundle\Exceptions\SshException
+     * @covers Ci\RestClientBundle\Exceptions\SslShutdownFailedException
+     * @covers Ci\RestClientBundle\Exceptions\AgainException
+     * @covers Ci\RestClientBundle\Exceptions\SslCrlBadfileException
+     * @covers Ci\RestClientBundle\Exceptions\SslIssuerErrorException
+     * @covers Ci\RestClientBundle\Exceptions\FtpPretFailedException
+     * @covers Ci\RestClientBundle\Exceptions\RtspCseqErrorException
+     * @covers Ci\RestClientBundle\Exceptions\RtspSessionErrorException
+     * @covers Ci\RestClientBundle\Exceptions\FtpBadFileListException
+     * @covers Ci\RestClientBundle\Exceptions\ChunkFailedException
+     * @covers Ci\RestClientBundle\Exceptions\ConvFailedException
+     * @covers Ci\RestClientBundle\Exceptions\ConvReqdException
+     * @covers Ci\RestClientBundle\Exceptions\RemoteFileExistsException
+     * @covers Ci\RestClientBundle\Exceptions\TftpIllegalException
+     * @covers Ci\RestClientBundle\Exceptions\TftpNoSuchUserException
+     * @covers Ci\RestClientBundle\Exceptions\TftpUnknownIdException
      */
     public function curlExceptionTest() {
         $this->assertExpectedCurlException(999, 'Ci\RestClientBundle\Exceptions\CurlException');
