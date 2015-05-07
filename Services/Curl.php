@@ -94,8 +94,8 @@ class Curl implements CurlInterface {
         $curlResponse = $this->execute();
         $curlMetaData = (object) curl_getinfo($this->curl);
 
-        curl_reset($this->curl);
         $this->curlOptionsHandler->reset();
+        function_exists(curl_reset($this->curl)) ? curl_reset($this->curl) : curl_setopt_array($this->curl, $this->curlOptionsHandler->getOptions());
 
         return $this->createResponse($curlResponse, $curlMetaData);
     }
