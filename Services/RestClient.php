@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of CiRestClientBundle.
  *
@@ -25,6 +26,7 @@ namespace Ci\RestClientBundle\Services;
  * @copyright 2015 TeeAge-Beatz UG
  */
 class RestClient implements RestInterface {
+
     /**
      * This variable stores the curl instance created through curl initiation
      *
@@ -106,6 +108,20 @@ class RestClient implements RestInterface {
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function link($url, array $options = array()) {
+        return $this->curl->sendRequest($url, 'LINK', $options);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function unlink($url, array $options = array()) {
+        return $this->curl->sendRequest($url, 'UNLINK', $options);
+    }
+
+    /**
      * sets the content type
      *
      * @param  $contentType
@@ -115,4 +131,5 @@ class RestClient implements RestInterface {
         $this->curl->setContentType($contentType);
         return $this;
     }
+
 }
