@@ -57,7 +57,7 @@ trait Assertions {
     private function assertHttpMethod($method) {
         if (!$this->assertString($method)) return false;
         $validHttpMethods = array(
-            'GET', 'POST', 'PUT', 'DELETE', 'HEAD', 'OPTIONS', 'TRACE', 'CONNECT', 'PATCH'
+            'GET', 'POST', 'PUT', 'DELETE', 'HEAD', 'OPTIONS', 'TRACE', 'CONNECT', 'PATCH', 'LINK', 'UNLINK'
         );
         if (!in_array($method, $validHttpMethods)) return false;
         return true;
