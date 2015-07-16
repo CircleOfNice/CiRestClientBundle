@@ -274,4 +274,30 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertNotEmpty($response->getContent());
     }
+
+    /**
+     * @test
+     * @group  small
+     * @covers ::link
+     * @covers ::<private>
+     */
+    public function link() {
+        $response = $this->restClient->link($this->getMockControllerUrl() . '/Mock.png');
+        $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
+        $this->assertEquals(501, $response->getStatusCode());
+        $this->assertNotEmpty($response->getContent());
+    }
+
+    /**
+     * @test
+     * @group  small
+     * @covers ::unlink
+     * @covers ::<private>
+     */
+    public function unlink() {
+        $response = $this->restClient->unlink($this->getMockControllerUrl() . '/Mock.png');
+        $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
+        $this->assertEquals(501, $response->getStatusCode());
+        $this->assertNotEmpty($response->getContent());
+    }
 }

@@ -28,5 +28,6 @@ if (isset($_SERVER["HTTP_CONTENT_TYPE"])) {
 $httpCode = !isset($_GET['httpCode']) ? 200 : $_GET['httpCode'];
 if ($_SERVER['REQUEST_URI'] === '/404') $httpCode = 404;
 http_response_code($httpCode);
+if (preg_match('/\.png/', $_SERVER['REQUEST_URI'])) return fopen($_SERVER['REQUEST_URI'], 'r');
 
 echo strtolower($_SERVER['REQUEST_METHOD']);
