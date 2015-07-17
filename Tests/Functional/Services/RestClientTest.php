@@ -281,7 +281,7 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
      * @covers ::link
      * @covers ::<private>
      */
-    public function link() {
+    public function linkOnError() {
         $response = $this->restClient->link($this->getMockControllerUrl() . '/Mock.png');
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertEquals(501, $response->getStatusCode());
@@ -294,7 +294,7 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
      * @covers ::unlink
      * @covers ::<private>
      */
-    public function unlink() {
+    public function unlinkOnError() {
         $response = $this->restClient->unlink($this->getMockControllerUrl() . '/Mock.png');
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertEquals(501, $response->getStatusCode());
