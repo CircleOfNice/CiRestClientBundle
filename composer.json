@@ -7,7 +7,7 @@
     "email" : "info@circle.ai"
   }],
   "keywords" : [
-    "REST client curl POST GET PUT DELETE OPTIONS CONNECT PATCH TRACE HEAD content-type payload library plugin"
+    "REST client curl POST GET PUT DELETE OPTIONS CONNECT PATCH TRACE HEAD LINK UNLINK content-type payload library plugin"
   ],
   "license" : [
     "GPL"
@@ -27,7 +27,7 @@
   "target-dir" : "Ci/RestClientBundle",
   "extra" : {
     "branch-alias" : {
-      "dev-master" : "0.2-dev"
+      "dev-master" : "0.3-dev"
     }
   }
 }
