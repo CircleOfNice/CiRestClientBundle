@@ -25,12 +25,13 @@ namespace Ci\RestClientBundle\Services;
  * @copyright 2015 TeeAge-Beatz UG
  */
 class RestClient implements RestInterface {
+
     /**
      * This variable stores the curl instance created through curl initiation
      *
      * @var Curl
      */
-    private $curl;
+    protected $curl;
 
     /**
      * Constructor
