@@ -1,6 +1,9 @@
+parameters:
+    ci.restclient.class: Ci\RestClientBundle\Services\RestClient
+
 services:
     ci.restclient:
-        class: Ci\RestClientBundle\Services\RestClient
+        class: %ci.restclient.class%
         arguments: [ @ci.curl ]
     ci.curl:
         class: Ci\RestClientBundle\Services\Curl
