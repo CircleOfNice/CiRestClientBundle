@@ -159,7 +159,7 @@ The bundle can be tested via phpunit.
 ##Executing tests
 The Tests are executed against a local php server located in the Tests/TestServer folder. Execute the tests via
 ```
-make test
+make
 ```
 
 #Roadmap
