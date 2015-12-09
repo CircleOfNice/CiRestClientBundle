@@ -8,3 +8,4 @@ ci_rest_client:
         CURLOPT_CRLF:           true
         CURLOPT_SSLVERSION:     3
         CURLOPT_FOLLOWLOCATION: true
+        CURLOPT_SSL_VERIFYPEER: true
