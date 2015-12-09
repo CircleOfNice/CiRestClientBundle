@@ -62,14 +62,4 @@ trait Assertions {
         if (!in_array($method, $validHttpMethods)) return false;
         return true;
     }
-
-    /**
-     * Validates/Checks the HTTP or HTTPS from given URL
-     *
-     * @param  string $url
-     * @return $this
-     */
-    private function assertUrlHttps($url) {
-        return preg_match('#^https:\/\/#', $url) && $this->assertUrl($url);
-    }
 }

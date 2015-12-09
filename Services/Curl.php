@@ -155,7 +155,6 @@ class Curl implements CurlInterface {
      */
     private function setURL($url) {
         $this->curlOptionsHandler->setOption(CURLOPT_URL, $url);
-        $this->curlOptionsHandler->setOption(CURLOPT_SSL_VERIFYPEER, $this->assertUrlHttps($url));
         return $this;
     }
 
