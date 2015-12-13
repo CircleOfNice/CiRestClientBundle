@@ -30,7 +30,7 @@ So all in all let's call it a day and start goin' gorillas with this one.
 
 ##Step 1: Download the bundle using composer
 Add the bundle by running the command:
-```shell
+```bash
 php composer.phar require ci/restclientbundle
 ```
 Composer will install the bundle to your project's ```vendor/ci``` directory.
