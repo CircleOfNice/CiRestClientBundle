@@ -30,7 +30,7 @@ So all in all let's call it a day and start goin' gorillas with this one.
 
 ##Step 1: Download the bundle using composer
 Add the bundle by running the command:
-```bash
+```console
 php composer.phar require ci/restclientbundle
 ```
 Composer will install the bundle to your project's ```vendor/ci``` directory.
@@ -59,7 +59,7 @@ The names and their possible values can be found here: http://php.net/manual/de/
 
 You can change the configuration by adding the following lines to your app/config.yml:
 
-```
+```yml
 ci_rest_client:
     curl:
       defaults:
@@ -70,7 +70,7 @@ ci_rest_client:
 
 ##Example:
 
-```
+```yml
 ci_rest_client:
     curl:
       defaults:
@@ -85,7 +85,7 @@ You cannot change the default value for CURLOPT_RETURNTRANSFER (default=true).
 
 #Usage
 
-```
+```php
 $restClient = $this->container->get('ci.restclient');
 
 $restClient->get('http://www.someUrl.com');
@@ -110,7 +110,7 @@ The exception class representing a libcurl error has the following naming conven
 - The OperationTimedOutException is the exception corresponding to the libcurl error CURLE_OPERATION_TIMEDOUT
 
 Knowing that all these exceptions exist improves exception handling a lot:
-```
+```php
 try {
   $restClient->get('http://www.someUrl.com');
 } catch (Ci\RestClientBundle\Exceptions\OperationTimedOutException $exception) {
@@ -120,7 +120,7 @@ try {
 ```
 
 If you still want to catch all rest exceptions catch the basic libcurl exception:
-```
+```php
 try {
   $restClient->get('http://www.someUrl.com');
 } catch (Ci\RestClientBundle\Exceptions\CurlException $exception) {
@@ -132,7 +132,7 @@ try {
 
 You can add additional options to customize a specific request by adding an option array as key value store.
 
-```
+```php
 $restClient = $this->container->get('ci.restclient');
 
 $restClient->get('http://www.someUrl.com', array(CURLOPT_CONNECTTIMEOUT => 30));
@@ -158,7 +158,7 @@ The bundle can be tested via phpunit.
 
 ##Executing tests
 The Tests are executed against a local php server located in the Tests/TestServer folder. Execute the tests via
-```
+```console
 make
 ```
 
