@@ -9,7 +9,7 @@ There are some Symfony2 bundles providing abstractions for REST requests, but no
 
 Some days ago we faced the same frustrating challenge again and started to meditate about the idea that our specific API needs really aren't that particular. So we questioned ourselves how a simple REST-Client-API should look like:
 
-```
+```php
 $restclient->post($url, $payload);
 $restclient->get($url);
 $restclient->put($url, $payload);
