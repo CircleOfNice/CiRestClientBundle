@@ -98,7 +98,7 @@ class CurlTest extends \PHPUnit_Framework_TestCase {
      */
     public function setContentType() {
         $this->curl->setContentType('application/json');
-        $response = $this->curl->sendRequest($this->getHTTP200Route('post'), 'POST');
+        $response = $this->curl->sendRequest($this->getHTTP200Route('get'), 'GET');
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertSame('application/json', $response->headers->get('Content-Type'));
     }

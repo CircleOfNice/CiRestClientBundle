@@ -142,7 +142,7 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
      */
     public function setContentType() {
         $this->restClient->setContentType('application/json');
-        $response = $this->restClient->post($this->getHTTP200Route(), 'payload');
+        $response = $this->restClient->get($this->getHTTP200Route());
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\Response', $response);
         $this->assertSame('application/json', $response->headers->get('Content-Type'));
     }
