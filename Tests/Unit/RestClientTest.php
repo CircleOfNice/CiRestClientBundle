@@ -1,24 +1,24 @@
 <?php
 /**
- * This file is part of CiRestClientBundle.
+ * This file is part of CircleRestClientBundle.
  *
- * CiRestClientBundle is free software: you can redistribute it and/or modify
+ * CircleRestClientBundle is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * CiRestClientBundle is distributed in the hope that it will be useful,
+ * CircleRestClientBundle is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with CiRestClientBundle.  If not, see <http://www.gnu.org/licenses/>.
+ * along with CircleRestClientBundle.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Ci\RestClientBundle\Tests\Unit\Services;
+namespace Circle\RestClientBundle\Tests\Unit\Services;
 
-use Ci\RestClientBundle\Services\RestClient;
+use Circle\RestClientBundle\Services\RestClient;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -27,7 +27,7 @@ use Symfony\Component\HttpFoundation\Response;
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  *
- * @coversDefaultClass Ci\RestClientBundle\Services\RestClient
+ * @coversDefaultClass Circle\RestClientBundle\Services\RestClient
  *
  * @SuppressWarnings("PHPMD.StaticAccess")
  */
@@ -44,7 +44,7 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
     private $restClient;
 
     /**
-     * @var Mockup<Ci\RestClientBundle\Services\Curl>
+     * @var Mockup<Circle\RestClientBundle\Services\Curl>
      */
     private $curl;
 
@@ -52,7 +52,7 @@ class RestClientTest extends \PHPUnit_Framework_TestCase {
      * {@inheritDoc}
      */
     public function setUp() {
-        $this->curl                 = $this->getMockBuilder('Ci\RestClientBundle\Services\Curl')->disableOriginalConstructor()->getMock();
+        $this->curl                 = $this->getMockBuilder('Circle\RestClientBundle\Services\Curl')->disableOriginalConstructor()->getMock();
         $this->restClient           = new RestClient($this->curl);
         $this->mockControllerUrl    = 'http://someUrl.com';
     }

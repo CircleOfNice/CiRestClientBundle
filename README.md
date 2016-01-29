@@ -1,4 +1,4 @@
-CiRestClientBundle
+RestClientBundle
 ========
 
 A Smart REST client with an intuitive API, providing all REST methods and returning a Symfony Response Object.
@@ -46,7 +46,7 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
-        new Ci\RestClientBundle\CiRestClientBundle(),
+        new Circle\RestClientBundle\CircleRestClientBundle(),
     );
 }
 ```
@@ -60,7 +60,7 @@ The names and their possible values can be found here: http://php.net/manual/de/
 You can change the configuration by adding the following lines to your app/config.yml:
 
 ```yml
-ci_rest_client:
+circle_rest_client:
     curl:
       defaults:
         $optionName: $value
@@ -71,7 +71,7 @@ ci_rest_client:
 ##Example:
 
 ```yml
-ci_rest_client:
+circle_rest_client:
     curl:
       defaults:
         CURLOPT_HTTPHEADER:     [ 'Content-Type: application/json' ]
@@ -86,7 +86,7 @@ You cannot change the default value for CURLOPT_RETURNTRANSFER (default=true).
 #Usage
 
 ```php
-$restClient = $this->container->get('ci.restclient');
+$restClient = $this->container->get('circle.restclient');
 
 $restClient->get('http://www.someUrl.com');
 $restClient->post('http://www.someUrl.com', 'somePayload');
@@ -113,7 +113,7 @@ Knowing that all these exceptions exist improves exception handling a lot:
 ```php
 try {
   $restClient->get('http://www.someUrl.com');
-} catch (Ci\RestClientBundle\Exceptions\OperationTimedOutException $exception) {
+} catch (Circle\RestClientBundle\Exceptions\OperationTimedOutException $exception) {
   // do something
 }
 
@@ -123,7 +123,7 @@ If you still want to catch all rest exceptions catch the basic libcurl exception
 ```php
 try {
   $restClient->get('http://www.someUrl.com');
-} catch (Ci\RestClientBundle\Exceptions\CurlException $exception) {
+} catch (Circle\RestClientBundle\Exceptions\CurlException $exception) {
   // do something
 }
 ```
@@ -133,7 +133,7 @@ try {
 You can add additional options to customize a specific request by adding an option array as key value store.
 
 ```php
-$restClient = $this->container->get('ci.restclient');
+$restClient = $this->container->get('circle.restclient');
 
 $restClient->get('http://www.someUrl.com', array(CURLOPT_CONNECTTIMEOUT => 30));
 $restClient->post('http://www.someUrl.com', 'somePayload', array(CURLOPT_CONNECTTIMEOUT => 30));

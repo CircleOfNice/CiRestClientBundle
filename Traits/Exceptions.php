@@ -1,24 +1,24 @@
 <?php
 /**
- * This file is part of CiRestClientBundle.
+ * This file is part of CircleRestClientBundle.
  *
- * CiRestClientBundle is free software: you can redistribute it and/or modify
+ * CircleRestClientBundle is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * CiRestClientBundle is distributed in the hope that it will be useful,
+ * CircleRestClientBundle is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with CiRestClientBundle.  If not, see <http://www.gnu.org/licenses/>.
+ * along with CircleRestClientBundle.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Ci\RestClientBundle\Traits;
+namespace Circle\RestClientBundle\Traits;
 
-use Ci\RestClientBundle\Exceptions as CurlExceptions;
+use Circle\RestClientBundle\Exceptions as CurlExceptions;
 
 /**
  * Provides exception functions
@@ -30,7 +30,7 @@ use Ci\RestClientBundle\Exceptions as CurlExceptions;
  */
 trait Exceptions {
 
-    private $exceptionsNamespace = 'Ci\RestClientBundle\Exceptions';
+    private $exceptionsNamespace = 'Circle\RestClientBundle\Exceptions';
 
     /**
      * returns all curl error codes and their related exception classes
@@ -133,7 +133,7 @@ trait Exceptions {
 
         $exceptionClass = $this->exceptionsNamespace . '\\' . $this->getExceptionCodeMappings()[$code];
         if (!class_exists($exceptionClass)) throw new \RuntimeException(
-            $exceptionClass . ' does not exist. Check class var $exceptionCodeMappings in Ci\RestClientBundle\Traits\Exceptions.'
+            $exceptionClass . ' does not exist. Check class var $exceptionCodeMappings in Circle\RestClientBundle\Traits\Exceptions.'
         );
         throw new $exceptionClass($message, $code);
 

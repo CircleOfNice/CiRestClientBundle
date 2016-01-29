@@ -21,13 +21,13 @@
   },
   "autoload" : {
     "psr-0" : {
-      "Ci\\RestClientBundle" : ""
+      "Circle\\RestClientBundle" : ""
     }
   },
-  "target-dir" : "Ci/RestClientBundle",
+  "target-dir" : "Circle/RestClientBundle",
   "extra" : {
     "branch-alias" : {
-      "dev-master" : "0.3-dev"
+      "dev-master" : "1.0-dev"
     }
   }
 }
