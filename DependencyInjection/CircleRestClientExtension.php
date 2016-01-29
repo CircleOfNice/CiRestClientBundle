@@ -1,22 +1,22 @@
 <?php
 /**
- * This file is part of CiRestClientBundle.
+ * This file is part of CircleRestClientBundle.
  *
- * CiRestClientBundle is free software: you can redistribute it and/or modify
+ * CircleRestClientBundle is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * CiRestClientBundle is distributed in the hope that it will be useful,
+ * CircleRestClientBundle is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with CiRestClientBundle.  If not, see <http://www.gnu.org/licenses/>.
+ * along with CircleRestClientBundle.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Ci\RestClientBundle\DependencyInjection;
+namespace Circle\RestClientBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -30,7 +30,7 @@ use Symfony\Component\Yaml\Yaml;
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  */
-class CiRestClientExtension extends Extension
+class CircleRestClientExtension extends Extension
 {
     /**
      * {@inheritdoc}
@@ -41,20 +41,20 @@ class CiRestClientExtension extends Extension
     {
         $curlConfigFile   = __DIR__ . '/../Resources/config/curl_config.yml';
         $configs          = array_merge(Yaml::parse(file_get_contents($curlConfigFile)), $configs);
-        if (!isset($configs['ci_rest_client'])) throw new \RuntimeException('configuration ci_rest_client is missing.');
+        if (!isset($configs['circle_rest_client'])) throw new \RuntimeException('configuration circle_rest_client is missing.');
 
         $configuration  = new Configuration();
         $config         = $this->processConfiguration($configuration, $configs);
 
-        if (!isset($config['curl'])) throw new \RuntimeException('configuration ci_rest_client.curl is missing.');
-        if (!isset($config['curl']['defaults'])) throw new \RuntimeException('configuration ci_rest_client.curl.defaults is missing.');
+        if (!isset($config['curl'])) throw new \RuntimeException('configuration circle_rest_client.curl is missing.');
+        if (!isset($config['curl']['defaults'])) throw new \RuntimeException('configuration circle_rest_client.curl.defaults is missing.');
 
         $options = array();
         foreach ($config['curl']['defaults'] as $key => $value) {
             $options[constant($key)] = $value;
         };
 
-        $container->setParameter('ci.restclient.curl.defaults', $options);
+        $container->setParameter('circle.restclient.curl.defaults', $options);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');

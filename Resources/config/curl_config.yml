@@ -1,4 +1,4 @@
-ci_rest_client:
+circle_rest_client:
     curl:
       defaults:
         CURLOPT_HTTPHEADER:     [ 'Content-Type: text/plain' ]

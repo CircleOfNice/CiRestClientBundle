@@ -1,22 +1,22 @@
 <?php
 /**
- * This file is part of CiRestClientBundle.
+ * This file is part of CircleRestClientBundle.
  *
- * CiRestClientBundle is free software: you can redistribute it and/or modify
+ * CircleRestClientBundle is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * CiRestClientBundle is distributed in the hope that it will be useful,
+ * CircleRestClientBundle is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with CiRestClientBundle.  If not, see <http://www.gnu.org/licenses/>.
+ * along with CircleRestClientBundle.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Ci\RestClientBundle\Services;
+namespace Circle\RestClientBundle\Services;
 
 /**
  * Sends curl requests
@@ -37,7 +37,7 @@ class RestClient implements RestInterface {
      * Constructor
      *
      * @param  Curl $curl
-     * @throws \Ci\RestClientBundle\Exceptions\CurlException (Curl not installed.)
+     * @throws \Circle\RestClientBundle\Exceptions\CurlException (Curl not installed.)
      */
     public function __construct(Curl $curl) {
         $this->curl = $curl;

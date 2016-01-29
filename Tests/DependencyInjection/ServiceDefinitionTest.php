@@ -1,7 +1,7 @@
 <?php
 
-namespace Ci\RestClientBundle\Tests\DependencyInjection;
-use Ci\RestClientBundle\DependencyInjection\CiRestClientExtension;
+namespace Circle\RestClientBundle\Tests\DependencyInjection;
+use Circle\RestClientBundle\DependencyInjection\CircleRestClientExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  */
 class ServiceDefinitionTest extends \PHPUnit_Framework_TestCase {
     /**
-     * @var CiRestClientExtension
+     * @var CircleRestClientExtension
      */
     private $extension;
 
@@ -28,7 +28,7 @@ class ServiceDefinitionTest extends \PHPUnit_Framework_TestCase {
      */
     protected function setUp()
     {
-        $this->extension = new CiRestClientExtension();
+        $this->extension = new CircleRestClientExtension();
 
         $this->container = new ContainerBuilder();
         $this->container->registerExtension($this->extension);
@@ -39,16 +39,16 @@ class ServiceDefinitionTest extends \PHPUnit_Framework_TestCase {
      *
      * @test
      *
-     * @covers Ci\RestClientBundle\DependencyInjection\CiRestClientExtension::load
-     * @covers Ci\RestClientBundle\DependencyInjection\Configuration::getConfigTreeBuilder
+     * @covers Circle\RestClientBundle\DependencyInjection\CircleRestClientExtension::load
+     * @covers Circle\RestClientBundle\DependencyInjection\Configuration::getConfigTreeBuilder
      */
     public function restClientConfig()
     {
         $this->loadConfiguration($this->container);
         $this->container->compile();
 
-        $this->assertTrue($this->container->has('ci.restclient'));
-        $this->assertInstanceOf('Ci\RestClientBundle\Services\RestClient', $this->container->get('ci.restclient'));
+        $this->assertTrue($this->container->has('circle.restclient'));
+        $this->assertInstanceOf('Circle\RestClientBundle\Services\RestClient', $this->container->get('circle.restclient'));
     }
 
     /**
@@ -56,13 +56,13 @@ class ServiceDefinitionTest extends \PHPUnit_Framework_TestCase {
      *
      * @test
      *
-     * @covers Ci\RestClientBundle\DependencyInjection\CiRestClientExtension::load
-     * @covers Ci\RestClientBundle\DependencyInjection\Configuration::getConfigTreeBuilder
+     * @covers Circle\RestClientBundle\DependencyInjection\CircleRestClientExtension::load
+     * @covers Circle\RestClientBundle\DependencyInjection\Configuration::getConfigTreeBuilder
      */
     public function configuration()
     {
         $preConfigs = array(
-            'ci_rest_client' => array(
+            'circle_rest_client' => array(
                 'curl' => array(
                     'defaults' => array(
                         'CURLOPT_MAXREDIRS'       => 30,
@@ -73,10 +73,10 @@ class ServiceDefinitionTest extends \PHPUnit_Framework_TestCase {
         $this->loadConfiguration($this->container, $preConfigs);
         $this->container->compile();
 
-        $this->assertTrue($this->container->hasParameter('ci.restclient.curl.defaults'));
+        $this->assertTrue($this->container->hasParameter('circle.restclient.curl.defaults'));
         $this->assertSame(
-            $preConfigs['ci_rest_client']['curl']['defaults']['CURLOPT_MAXREDIRS'],
-            $this->container->getParameter('ci.restclient.curl.defaults')[CURLOPT_MAXREDIRS]
+            $preConfigs['circle_rest_client']['curl']['defaults']['CURLOPT_MAXREDIRS'],
+            $this->container->getParameter('circle.restclient.curl.defaults')[CURLOPT_MAXREDIRS]
         );
     }
 

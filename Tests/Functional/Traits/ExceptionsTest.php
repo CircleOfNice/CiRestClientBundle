@@ -1,24 +1,24 @@
 <?php
 /**
- * This file is part of CiRestClientBundle.
+ * This file is part of CircleRestClientBundle.
  *
- * CiRestClientBundle is free software: you can redistribute it and/or modify
+ * CircleRestClientBundle is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * CiRestClientBundle is distributed in the hope that it will be useful,
+ * CircleRestClientBundle is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with CiRestClientBundle.  If not, see <http://www.gnu.org/licenses/>.
+ * along with CircleRestClientBundle.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Ci\RestClientBundle\Tests\Functional\Traits;
+namespace Circle\RestClientBundle\Tests\Functional\Traits;
 
-use Ci\RestClientBundle\Traits\Exceptions;
+use Circle\RestClientBundle\Traits\Exceptions;
 
 /**
  * Provides functions to get Routes and URLs for testing issues
@@ -26,7 +26,7 @@ use Ci\RestClientBundle\Traits\Exceptions;
  * @author    Tobias Hauck <tobias.hauck@teeage-beatz.de>
  * @copyright 2015 TeeAge-Beatz UG
  *
- * @coversDefaultClass Ci\RestClientBundle\Traits\Exceptions
+ * @coversDefaultClass Circle\RestClientBundle\Traits\Exceptions
  *
  * @SuppressWarnings("PHPMD.StaticAccess")
  */
@@ -39,96 +39,96 @@ class ExceptionsTest extends \PHPUnit_Framework_TestCase {
      * @group  small
      * @covers ::curlException
      * @covers ::getExceptionCodeMappings
-     * @covers Ci\RestClientBundle\Exceptions\CouldntResolveHostException
-     * @covers Ci\RestClientBundle\Exceptions\CouldntResolveProxyException
-     * @covers Ci\RestClientBundle\Exceptions\FailedInitException
-     * @covers Ci\RestClientBundle\Exceptions\NotBuiltInException
-     * @covers Ci\RestClientBundle\Exceptions\UnsupportedProtocolException
-     * @covers Ci\RestClientBundle\Exceptions\UrlMalformatException
-     * @covers Ci\RestClientBundle\Exceptions\CouldntConnectException
-     * @covers Ci\RestClientBundle\Exceptions\FtpWeirdServerReplyException
-     * @covers Ci\RestClientBundle\Exceptions\RemoteAccessDeniedException
-     * @covers Ci\RestClientBundle\Exceptions\FtpAcceptFailedException
-     * @covers Ci\RestClientBundle\Exceptions\FtpWeirdPassReplyException
-     * @covers Ci\RestClientBundle\Exceptions\FtpAcceptTimeoutException
-     * @covers Ci\RestClientBundle\Exceptions\FtpWeirdPasvReplyException
-     * @covers Ci\RestClientBundle\Exceptions\FtpWeird227FormatException
-     * @covers Ci\RestClientBundle\Exceptions\FtpCantGetHostException
-     * @covers Ci\RestClientBundle\Exceptions\Http2Exception
-     * @covers Ci\RestClientBundle\Exceptions\FtpCouldntSetTypeException
-     * @covers Ci\RestClientBundle\Exceptions\PartialFileException
-     * @covers Ci\RestClientBundle\Exceptions\FtpCouldntRetrFileException
-     * @covers Ci\RestClientBundle\Exceptions\QuoteErrorException
-     * @covers Ci\RestClientBundle\Exceptions\HttpReturnedErrorException
-     * @covers Ci\RestClientBundle\Exceptions\WriteErrorException
-     * @covers Ci\RestClientBundle\Exceptions\ReadErrorException
-     * @covers Ci\RestClientBundle\Exceptions\UploadFailedException
-     * @covers Ci\RestClientBundle\Exceptions\OutOfMemoryException
-     * @covers Ci\RestClientBundle\Exceptions\OperationTimedOutException
-     * @covers Ci\RestClientBundle\Exceptions\FtpPortFailedException
-     * @covers Ci\RestClientBundle\Exceptions\FtpCouldntUseRestException
-     * @covers Ci\RestClientBundle\Exceptions\RangeErrorException
-     * @covers Ci\RestClientBundle\Exceptions\HttpPostErrorException
-     * @covers Ci\RestClientBundle\Exceptions\SslConnectErrorException
-     * @covers Ci\RestClientBundle\Exceptions\BadDownloadResumeException
-     * @covers Ci\RestClientBundle\Exceptions\FileCouldntReadFileException
-     * @covers Ci\RestClientBundle\Exceptions\LdapCannotBindException
-     * @covers Ci\RestClientBundle\Exceptions\LdapSearchFailedException
-     * @covers Ci\RestClientBundle\Exceptions\FunctionNotFoundException
-     * @covers Ci\RestClientBundle\Exceptions\AbortedByCallbackException
-     * @covers Ci\RestClientBundle\Exceptions\BadFunctionArgumentException
-     * @covers Ci\RestClientBundle\Exceptions\InterfaceFailedException
-     * @covers Ci\RestClientBundle\Exceptions\TooManyRedirectsException
-     * @covers Ci\RestClientBundle\Exceptions\UnknownOptionException
-     * @covers Ci\RestClientBundle\Exceptions\TelnetOptionSyntaxException
-     * @covers Ci\RestClientBundle\Exceptions\PeerFailedverificationException
-     * @covers Ci\RestClientBundle\Exceptions\GotNothingException
-     * @covers Ci\RestClientBundle\Exceptions\SslEngineNotFoundException
-     * @covers Ci\RestClientBundle\Exceptions\SslEngineSetFailedException
-     * @covers Ci\RestClientBundle\Exceptions\SendErrorException
-     * @covers Ci\RestClientBundle\Exceptions\RecvErrorException
-     * @covers Ci\RestClientBundle\Exceptions\SslCertProblemException
-     * @covers Ci\RestClientBundle\Exceptions\SslCipherException
-     * @covers Ci\RestClientBundle\Exceptions\SslCacertException
-     * @covers Ci\RestClientBundle\Exceptions\BadContentEncodingException
-     * @covers Ci\RestClientBundle\Exceptions\LdapInvalidUrlException
-     * @covers Ci\RestClientBundle\Exceptions\FilesizeExceededException
-     * @covers Ci\RestClientBundle\Exceptions\UseSslFailedException
-     * @covers Ci\RestClientBundle\Exceptions\SendFailRewindException
-     * @covers Ci\RestClientBundle\Exceptions\SslEngineInitFailedException
-     * @covers Ci\RestClientBundle\Exceptions\LoginDeniedException
-     * @covers Ci\RestClientBundle\Exceptions\TftpNotFoundException
-     * @covers Ci\RestClientBundle\Exceptions\TftpPermException
-     * @covers Ci\RestClientBundle\Exceptions\RemoteDiskFullException
-     * @covers Ci\RestClientBundle\Exceptions\SslCacertBadfileException
-     * @covers Ci\RestClientBundle\Exceptions\RemoteFileNotFoundException
-     * @covers Ci\RestClientBundle\Exceptions\SshException
-     * @covers Ci\RestClientBundle\Exceptions\SslShutdownFailedException
-     * @covers Ci\RestClientBundle\Exceptions\AgainException
-     * @covers Ci\RestClientBundle\Exceptions\SslCrlBadfileException
-     * @covers Ci\RestClientBundle\Exceptions\SslIssuerErrorException
-     * @covers Ci\RestClientBundle\Exceptions\FtpPretFailedException
-     * @covers Ci\RestClientBundle\Exceptions\RtspCseqErrorException
-     * @covers Ci\RestClientBundle\Exceptions\RtspSessionErrorException
-     * @covers Ci\RestClientBundle\Exceptions\FtpBadFileListException
-     * @covers Ci\RestClientBundle\Exceptions\ChunkFailedException
-     * @covers Ci\RestClientBundle\Exceptions\ConvFailedException
-     * @covers Ci\RestClientBundle\Exceptions\ConvReqdException
-     * @covers Ci\RestClientBundle\Exceptions\RemoteFileExistsException
-     * @covers Ci\RestClientBundle\Exceptions\TftpIllegalException
-     * @covers Ci\RestClientBundle\Exceptions\TftpNoSuchUserException
-     * @covers Ci\RestClientBundle\Exceptions\TftpUnknownIdException
+     * @covers Circle\RestClientBundle\Exceptions\CouldntResolveHostException
+     * @covers Circle\RestClientBundle\Exceptions\CouldntResolveProxyException
+     * @covers Circle\RestClientBundle\Exceptions\FailedInitException
+     * @covers Circle\RestClientBundle\Exceptions\NotBuiltInException
+     * @covers Circle\RestClientBundle\Exceptions\UnsupportedProtocolException
+     * @covers Circle\RestClientBundle\Exceptions\UrlMalformatException
+     * @covers Circle\RestClientBundle\Exceptions\CouldntConnectException
+     * @covers Circle\RestClientBundle\Exceptions\FtpWeirdServerReplyException
+     * @covers Circle\RestClientBundle\Exceptions\RemoteAccessDeniedException
+     * @covers Circle\RestClientBundle\Exceptions\FtpAcceptFailedException
+     * @covers Circle\RestClientBundle\Exceptions\FtpWeirdPassReplyException
+     * @covers Circle\RestClientBundle\Exceptions\FtpAcceptTimeoutException
+     * @covers Circle\RestClientBundle\Exceptions\FtpWeirdPasvReplyException
+     * @covers Circle\RestClientBundle\Exceptions\FtpWeird227FormatException
+     * @covers Circle\RestClientBundle\Exceptions\FtpCantGetHostException
+     * @covers Circle\RestClientBundle\Exceptions\Http2Exception
+     * @covers Circle\RestClientBundle\Exceptions\FtpCouldntSetTypeException
+     * @covers Circle\RestClientBundle\Exceptions\PartialFileException
+     * @covers Circle\RestClientBundle\Exceptions\FtpCouldntRetrFileException
+     * @covers Circle\RestClientBundle\Exceptions\QuoteErrorException
+     * @covers Circle\RestClientBundle\Exceptions\HttpReturnedErrorException
+     * @covers Circle\RestClientBundle\Exceptions\WriteErrorException
+     * @covers Circle\RestClientBundle\Exceptions\ReadErrorException
+     * @covers Circle\RestClientBundle\Exceptions\UploadFailedException
+     * @covers Circle\RestClientBundle\Exceptions\OutOfMemoryException
+     * @covers Circle\RestClientBundle\Exceptions\OperationTimedOutException
+     * @covers Circle\RestClientBundle\Exceptions\FtpPortFailedException
+     * @covers Circle\RestClientBundle\Exceptions\FtpCouldntUseRestException
+     * @covers Circle\RestClientBundle\Exceptions\RangeErrorException
+     * @covers Circle\RestClientBundle\Exceptions\HttpPostErrorException
+     * @covers Circle\RestClientBundle\Exceptions\SslConnectErrorException
+     * @covers Circle\RestClientBundle\Exceptions\BadDownloadResumeException
+     * @covers Circle\RestClientBundle\Exceptions\FileCouldntReadFileException
+     * @covers Circle\RestClientBundle\Exceptions\LdapCannotBindException
+     * @covers Circle\RestClientBundle\Exceptions\LdapSearchFailedException
+     * @covers Circle\RestClientBundle\Exceptions\FunctionNotFoundException
+     * @covers Circle\RestClientBundle\Exceptions\AbortedByCallbackException
+     * @covers Circle\RestClientBundle\Exceptions\BadFunctionArgumentException
+     * @covers Circle\RestClientBundle\Exceptions\InterfaceFailedException
+     * @covers Circle\RestClientBundle\Exceptions\TooManyRedirectsException
+     * @covers Circle\RestClientBundle\Exceptions\UnknownOptionException
+     * @covers Circle\RestClientBundle\Exceptions\TelnetOptionSyntaxException
+     * @covers Circle\RestClientBundle\Exceptions\PeerFailedverificationException
+     * @covers Circle\RestClientBundle\Exceptions\GotNothingException
+     * @covers Circle\RestClientBundle\Exceptions\SslEngineNotFoundException
+     * @covers Circle\RestClientBundle\Exceptions\SslEngineSetFailedException
+     * @covers Circle\RestClientBundle\Exceptions\SendErrorException
+     * @covers Circle\RestClientBundle\Exceptions\RecvErrorException
+     * @covers Circle\RestClientBundle\Exceptions\SslCertProblemException
+     * @covers Circle\RestClientBundle\Exceptions\SslCipherException
+     * @covers Circle\RestClientBundle\Exceptions\SslCacertException
+     * @covers Circle\RestClientBundle\Exceptions\BadContentEncodingException
+     * @covers Circle\RestClientBundle\Exceptions\LdapInvalidUrlException
+     * @covers Circle\RestClientBundle\Exceptions\FilesizeExceededException
+     * @covers Circle\RestClientBundle\Exceptions\UseSslFailedException
+     * @covers Circle\RestClientBundle\Exceptions\SendFailRewindException
+     * @covers Circle\RestClientBundle\Exceptions\SslEngineInitFailedException
+     * @covers Circle\RestClientBundle\Exceptions\LoginDeniedException
+     * @covers Circle\RestClientBundle\Exceptions\TftpNotFoundException
+     * @covers Circle\RestClientBundle\Exceptions\TftpPermException
+     * @covers Circle\RestClientBundle\Exceptions\RemoteDiskFullException
+     * @covers Circle\RestClientBundle\Exceptions\SslCacertBadfileException
+     * @covers Circle\RestClientBundle\Exceptions\RemoteFileNotFoundException
+     * @covers Circle\RestClientBundle\Exceptions\SshException
+     * @covers Circle\RestClientBundle\Exceptions\SslShutdownFailedException
+     * @covers Circle\RestClientBundle\Exceptions\AgainException
+     * @covers Circle\RestClientBundle\Exceptions\SslCrlBadfileException
+     * @covers Circle\RestClientBundle\Exceptions\SslIssuerErrorException
+     * @covers Circle\RestClientBundle\Exceptions\FtpPretFailedException
+     * @covers Circle\RestClientBundle\Exceptions\RtspCseqErrorException
+     * @covers Circle\RestClientBundle\Exceptions\RtspSessionErrorException
+     * @covers Circle\RestClientBundle\Exceptions\FtpBadFileListException
+     * @covers Circle\RestClientBundle\Exceptions\ChunkFailedException
+     * @covers Circle\RestClientBundle\Exceptions\ConvFailedException
+     * @covers Circle\RestClientBundle\Exceptions\ConvReqdException
+     * @covers Circle\RestClientBundle\Exceptions\RemoteFileExistsException
+     * @covers Circle\RestClientBundle\Exceptions\TftpIllegalException
+     * @covers Circle\RestClientBundle\Exceptions\TftpNoSuchUserException
+     * @covers Circle\RestClientBundle\Exceptions\TftpUnknownIdException
      */
     public function curlExceptionTest() {
-        $this->assertExpectedCurlException(999, 'Ci\RestClientBundle\Exceptions\CurlException');
+        $this->assertExpectedCurlException(999, 'Circle\RestClientBundle\Exceptions\CurlException');
 
         foreach ($this->getExceptionCodeMappings() as $errorCode => $exceptionNamespace) {
-            $exceptionNamespace = 'Ci\RestClientBundle\Exceptions\\' . $exceptionNamespace;
+            $exceptionNamespace = 'Circle\RestClientBundle\Exceptions\\' . $exceptionNamespace;
             $this->assertExpectedCurlException($errorCode, $exceptionNamespace);
 
             $exception = new $exceptionNamespace();
             $this->assertSame($errorCode, $exception->getCode());
-            $this->assertInstanceOf('Ci\RestClientBundle\Exceptions\Interfaces\DetailedExceptionInterface', $exception);
+            $this->assertInstanceOf('Circle\RestClientBundle\Exceptions\Interfaces\DetailedExceptionInterface', $exception);
         }
     }
 
