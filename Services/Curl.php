@@ -94,7 +94,7 @@ class Curl implements CurlInterface {
 
         $curlResponse = $this->execute();
         $headerSize = curl_getinfo($this->curl, CURLINFO_HEADER_SIZE);
-        $headers = substr($curlResponse, 0, $headerSize);
+        $headers = ResponseHeaders::create($curlResponse, $headerSize);
         $content = substr($curlResponse, $headerSize);
         $curlMetaData = (object) curl_getinfo($this->curl);
 
@@ -127,7 +127,7 @@ class Curl implements CurlInterface {
      * @SuppressWarnings("PHPMD.StaticAccess");
      *
      * @param string    $content
-     * @param string    $headers
+     * @param array    $headers
      * @param \stdClass $curlMetaData
      *
      * @return Response
@@ -135,7 +135,7 @@ class Curl implements CurlInterface {
     private function createResponse($content, $headers, \stdClass $curlMetaData) {
         $response = new Response();
         $response->setContent($content);
-        $response->headers->add(self::httpParseHeaders($headers));
+        $response->headers->add($headers);
         $response->setStatusCode($curlMetaData->http_code);
 
         return $response;
@@ -193,33 +193,4 @@ class Curl implements CurlInterface {
         if (!curl_errno($this->curl)) return array();
         return array('error_no' => curl_errno($this->curl), 'error' => curl_error($this->curl));
     }
-    
-    /**
-     * Parse Http Headers in array
-     * 
-     * @param string $header
-     * @return Array
-     */
-     public static function httpParseHeaders($header) {
-         if (function_exists('http_parse_headers')) return http_parse_headers($header);
-
-         $retVal = array();
-         $fields = explode("\r\n", preg_replace('/\x0D\x0A[\x09\x20]+/', ' ', $header));
-         foreach ($fields as $field) {
-             $match = array();
-             if (preg_match('/([^:]+): (.+)/m', $field, $match)) {
-                 $match[1] = preg_replace_callback('/(?<=^|[\x09\x20\x2D])./',function($matches) {
-                        return strtoupper($matches[0]);
-                    }
-                    , strtolower(trim($match[1])));
-                 if (isset($retVal[$match[1]])) {
-                     $retVal[$match[1]] = array($retVal[$match[1]], $match[2]);
-                 } else {
-                     $retVal[$match[1]] = trim($match[2]);
-                 }
-             }
-         }
-         
-         return $retVal;
-     }
 }
