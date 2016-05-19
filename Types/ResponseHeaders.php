@@ -30,10 +30,10 @@ class ResponseHeaders {
     /**
      * Creates Header array from a Response string
      * 
-     * @see https://pecl.php.net/
-     * @param string $curlResponse
-     * @param string $headerSize
-     * @return Array
+     * @see    https://pecl.php.net/
+     * @param  string $curlResponse
+     * @param  string $headerSize
+     * @return array
      */
     public static function create($curlResponse, $headerSize) { 
         $headers = substr($curlResponse, 0, $headerSize);

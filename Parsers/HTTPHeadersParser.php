@@ -29,8 +29,8 @@ class HTTPHeadersParser {
     /**
      * Parse Http Headers in array
      * 
-     * @param string $headers
-     * @return Array
+     * @param  string $headers
+     * @return array
      */
     public static function parse($headers) {
        $fields = explode("\r\n", preg_replace('/\x0D\x0A[\x09\x20]+/', ' ', $headers));
