@@ -16,9 +16,9 @@
  * along with CircleRestClientBundle.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Circle\RestClientBundle\Tests\Functional\Services;
+namespace Circle\RestClientBundle\Tests\Functional\Types;
 
-use Circle\RestClientBundle\Services\ResponseHeaders;
+use Circle\RestClientBundle\Types\ResponseHeaders;
 
 /**
  * Tests the response headers class
@@ -26,7 +26,7 @@ use Circle\RestClientBundle\Services\ResponseHeaders;
  * @author    Timo Linde <info@timo-linde.de>
  * @copyright 2016 TeeAge-Beatz UG
  *
- * @coversDefaultClass Circle\RestClientBundle\Services\ResponseHeaders
+ * @coversDefaultClass Circle\RestClientBundle\Types\ResponseHeaders
  *
  * @SuppressWarnings("PHPMD.StaticAccess")
  */
@@ -34,10 +34,10 @@ class ResponseHeadersTest extends \PHPUnit_Framework_TestCase {
     
     /**
      * @test
-     * @covers ::httpParseHeadersPeclReplacement
+     * @covers ::create
      * @covers ::<private>
      */
-    public function testHttpParseHeadersPeclReplacement() {
+    public function testCreate() {
         $headers = "HTTP/1.1 302 Found\r\n".
             "Date: Tue, 21 Apr 2015 13:57:48 GMT\r\n".
             "Server: Apache/2.2.22 (Debian)\r\n".
@@ -46,7 +46,7 @@ class ResponseHeadersTest extends \PHPUnit_Framework_TestCase {
             "Content-Length: 284\r\n".
             "Content-Type: text/html; charset=iso-8859-1\r\n";
         
-        $parsedHeader = ResponseHeaders::httpParseHeadersPeclReplacement($headers);
+        $parsedHeader = ResponseHeaders::create($headers, strlen($headers));
         $this->assertArrayHasKey('Date', $parsedHeader);
         $this->assertArrayHasKey('Server', $parsedHeader);
         $this->assertArrayHasKey('Location', $parsedHeader);
@@ -59,24 +59,33 @@ class ResponseHeadersTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals("Accept-Encoding", $parsedHeader["Vary"]);
         $this->assertEquals("284", $parsedHeader["Content-Length"]);
         $this->assertEquals("text/html; charset=iso-8859-1", $parsedHeader["Content-Type"]);
-        
-        $headers = "content-type: text/html; charset=UTF-8\r\n".
-            "Server: Funky/1.0\r\n".
-            "Set-Cookie: foo=bar\r\n".
-            "Set-Cookie: baz=quux\r\n".
-            "Folded: works\r\n\ttoo\r\n";
-        $returnValue = ResponseHeaders::httpParseHeadersPeclReplacement($headers);
+    }
+    
+    /**
+     * @test
+     * @covers ::create
+     * @covers ::<private>
+     */
+    public function testCreateCookies() {
+        $headers = "Set-Cookie: foo=bar\r\n".
+            "Set-Cookie: baz=quux\r\n";
+        $returnValue = ResponseHeaders::create($headers, strlen($headers));
         $this->assertTrue(is_array($returnValue));
-        
-        $this->assertTrue(isset($returnValue['Content-Type']));
-        $this->assertEquals($returnValue['Content-Type'], "text/html; charset=UTF-8");
-        
-        $this->assertTrue(isset($returnValue['Server']));
-        $this->assertEquals($returnValue['Server'], "Funky/1.0");
         
         $this->assertTrue(isset($returnValue['Set-Cookie']));
         $this->assertTrue(is_array($returnValue['Set-Cookie']));
         $this->assertEquals(count($returnValue['Set-Cookie']), 2);
+    }
+    
+    /**
+     * @test
+     * @covers ::create
+     * @covers ::<private>
+     */
+    public function testCreateFolded() {
+        $headers = "Folded: works\r\n\ttoo\r\n";
+        $returnValue = ResponseHeaders::create($headers, strlen($headers));
+        $this->assertTrue(is_array($returnValue));
         
         $this->assertTrue(isset($returnValue['Folded']));
         $this->assertEquals($returnValue['Folded'], "works too");

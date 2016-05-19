@@ -16,7 +16,7 @@
  * along with CircleRestClientBundle.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Circle\RestClientBundle\Services;
+namespace Circle\RestClientBundle\Types;
 
 
 /**
@@ -25,45 +25,27 @@ namespace Circle\RestClientBundle\Services;
  * @author    Timo Linde <info@timo-linde.de>
  * @copyright 2016 TeeAge-Beatz UG
  */
-class ResponseHeaders{
+class ResponseHeaders {
     /**
      * {@inheritdoc}
+     * @see https://pecl.php.net/
      */
     public static function create($curlResponse, $headerSize) { 
-        $header = substr($curlResponse, 0, $headerSize);
+        $headers = substr($curlResponse, 0, $headerSize);
         
-
-        return self::httpParseHeaders($header);
+        return function_exists('http_parse_headers') ? http_parse_headers($headers) : self::httpParseHeaders($headers);
     }
     
     /**
      * Parse Http Headers in array
      * 
-     * @see https://pecl.php.net/
-     * @param string $header
+     * @param string $headers
      * @return Array
      */
-     public static function httpParseHeaders($header) {
-         if (function_exists('http_parse_headers')) {
-             return http_parse_headers($header);
-         }
-
-         return self::httpParseHeadersPeclReplacement($header);
-     }
-     
-    /**
-     * Parse Http Headers in array
-     * 
-     * @param string $header
-     * @return Array
-     */
-     public static function httpParseHeadersPeclReplacement($header) {
-        $fields = explode("\r\n", preg_replace('/\x0D\x0A[\x09\x20]+/', ' ', $header));
+     private static function httpParseHeaders($headers) {
+        $fields = explode("\r\n", preg_replace('/\x0D\x0A[\x09\x20]+/', ' ', $headers));
         
-        if(empty($fields)) {
-            
-            return array();
-        }
+        if(empty($fields)) return [];
         
         return array_reduce($fields, function($carry, $field) {
             $match = [];

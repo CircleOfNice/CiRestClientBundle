@@ -21,6 +21,7 @@ namespace Circle\RestClientBundle\Services;
 use Symfony\Component\HttpFoundation\Response;
 use Circle\RestClientBundle\Traits\Exceptions;
 use Circle\RestClientBundle\Traits\Assertions;
+use Circle\RestClientBundle\Types\ResponseHeaders;
 
 /**
  * Sends curl requests
@@ -96,6 +97,7 @@ class Curl implements CurlInterface {
         $headerSize = curl_getinfo($this->curl, CURLINFO_HEADER_SIZE);
         $headers = ResponseHeaders::create($curlResponse, $headerSize);
         $content = substr($curlResponse, $headerSize);
+        $content = empty($content) ? '' : $content;
         $curlMetaData = (object) curl_getinfo($this->curl);
 
         $this->curlOptionsHandler->reset();
