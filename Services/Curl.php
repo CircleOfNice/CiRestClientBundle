@@ -94,10 +94,10 @@ class Curl implements CurlInterface {
         curl_setopt_array($this->curl, $this->curlOptionsHandler->getOptions());
 
         $curlResponse = $this->execute();
-        $headerSize = curl_getinfo($this->curl, CURLINFO_HEADER_SIZE);
-        $headers = ResponseHeaders::create($curlResponse, $headerSize);
-        $content = substr($curlResponse, $headerSize);
-        $content = empty($content) ? '' : $content;
+        $headerSize   = curl_getinfo($this->curl, CURLINFO_HEADER_SIZE);
+        $headers      = ResponseHeaders::create($curlResponse, $headerSize);
+        $content      = substr($curlResponse, $headerSize);
+        $content      = empty($content) ? '' : $content;
         $curlMetaData = (object) curl_getinfo($this->curl);
 
         $this->curlOptionsHandler->reset();
@@ -129,7 +129,7 @@ class Curl implements CurlInterface {
      * @SuppressWarnings("PHPMD.StaticAccess");
      *
      * @param string    $content
-     * @param array    $headers
+     * @param array     $headers
      * @param \stdClass $curlMetaData
      *
      * @return Response

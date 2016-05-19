@@ -16,28 +16,38 @@
  * along with CircleRestClientBundle.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Circle\RestClientBundle\Types;
+namespace Circle\RestClientBundle\Parsers;
 
-use Circle\RestClientBundle\Parsers\HTTPHeadersParser;
 
 /**
- * Gets the Response Headers from a Curl Response
+ * Gets the HTTP Headers from a string
  *
  * @author    Timo Linde <info@timo-linde.de>
  * @copyright 2016 TeeAge-Beatz UG
  */
-class ResponseHeaders {
+class HTTPHeadersParser {    
     /**
-     * Creates Header array from a Response string
+     * Parse Http Headers in array
      * 
-     * @see https://pecl.php.net/
-     * @param string $curlResponse
-     * @param string $headerSize
+     * @param string $headers
      * @return Array
      */
-    public static function create($curlResponse, $headerSize) { 
-        $headers = substr($curlResponse, 0, $headerSize);
-        
-        return function_exists('http_parse_headers') ? http_parse_headers($headers) : HTTPHeadersParser::parse($headers);
+    public static function parse($headers) {
+       $fields = explode("\r\n", preg_replace('/\x0D\x0A[\x09\x20]+/', ' ', $headers));
+
+       if(empty($fields)) return [];
+
+       return array_reduce($fields, function($carry, $field) {
+           $match = [];
+           if (!preg_match('/([^:]+): (.+)/m', $field, $match)) return $carry;
+
+           $match[1] = preg_replace_callback('/(?<=^|[\x09\x20\x2D])./',function($matches) {
+               return strtoupper($matches[0]);
+           }, strtolower(trim($match[1])));
+
+           $carry[$match[1]] = isset($carry[$match[1]]) ? [$carry[$match[1]], $match[2]] : trim($match[2]);
+
+           return $carry;
+       }, []);
     }
 }
