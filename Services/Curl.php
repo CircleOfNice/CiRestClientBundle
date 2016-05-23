@@ -21,6 +21,7 @@ namespace Circle\RestClientBundle\Services;
 use Symfony\Component\HttpFoundation\Response;
 use Circle\RestClientBundle\Traits\Exceptions;
 use Circle\RestClientBundle\Traits\Assertions;
+use Circle\RestClientBundle\Types\ResponseHeaders;
 
 /**
  * Sends curl requests
@@ -85,6 +86,7 @@ class Curl implements CurlInterface {
 
         $this->curlOptionsHandler->setOptions($options);
         $this->curlOptionsHandler->setOption(CURLOPT_RETURNTRANSFER, true);
+        $this->curlOptionsHandler->setOption(CURLOPT_HEADER, true);
 
         $this->setUrl($url);
         $this->setMethod($method);
@@ -92,12 +94,16 @@ class Curl implements CurlInterface {
         curl_setopt_array($this->curl, $this->curlOptionsHandler->getOptions());
 
         $curlResponse = $this->execute();
+        $headerSize   = curl_getinfo($this->curl, CURLINFO_HEADER_SIZE);
+        $headers      = ResponseHeaders::create($curlResponse, $headerSize);
+        $content      = substr($curlResponse, $headerSize);
+        $content      = empty($content) ? '' : $content;
         $curlMetaData = (object) curl_getinfo($this->curl);
 
         $this->curlOptionsHandler->reset();
         function_exists('curl_reset') ? curl_reset($this->curl) : curl_setopt_array($this->curl, $this->curlOptionsHandler->getOptions());
 
-        return $this->createResponse($curlResponse, $curlMetaData);
+        return $this->createResponse($content, $headers, $curlMetaData);
     }
 
     /**
@@ -122,16 +128,17 @@ class Curl implements CurlInterface {
      *
      * @SuppressWarnings("PHPMD.StaticAccess");
      *
-     * @param string    $curlResponse
+     * @param string    $content
+     * @param array     $headers
      * @param \stdClass $curlMetaData
      *
      * @return Response
      */
-    private function createResponse($curlResponse, \stdClass $curlMetaData) {
+    private function createResponse($content, $headers, \stdClass $curlMetaData) {
         $response = new Response();
-        $response->setContent($curlResponse);
+        $response->setContent($content);
+        $response->headers->add($headers);
         $response->setStatusCode($curlMetaData->http_code);
-        $response->headers->set('Content-Type', $curlMetaData->content_type);
 
         return $response;
     }
