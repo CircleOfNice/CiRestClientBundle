@@ -6,6 +6,5 @@ circle_rest_client:
         CURLOPT_TIMEOUT:        25
         CURLOPT_CONNECTTIMEOUT: 25
         CURLOPT_CRLF:           true
-        CURLOPT_SSLVERSION:     3
         CURLOPT_FOLLOWLOCATION: true
         CURLOPT_SSL_VERIFYPEER: true
