@@ -1,13 +1,13 @@
 parameters:
-    circle.restclient.class: Circle\RestClientBundle\Services\RestClient
+    circle.restclient.class: "Circle\\RestClientBundle\\Services\\RestClient"
 
 services:
     circle.restclient:
-        class: %circle.restclient.class%
+        class: "%circle.restclient.class%"
         arguments: [ "@circle.curl" ]
     circle.curl:
-        class: Circle\RestClientBundle\Services\Curl
+        class: "Circle\\RestClientBundle\\Services\\Curl"
         arguments: [ "@circle.curl.options.handler" ]
     circle.curl.options.handler:
-        class: Circle\RestClientBundle\Services\CurlOptionsHandler
-        arguments: [ %circle.restclient.curl.defaults% ]
+        class: "Circle\\RestClientBundle\\Services\\CurlOptionsHandler"
+        arguments: [ "%circle.restclient.curl.defaults%" ]
