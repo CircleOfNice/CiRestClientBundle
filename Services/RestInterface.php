@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of CircleRestClientBundle.
  *
@@ -111,4 +112,22 @@ interface RestInterface {
      * @return Response
      */
     public function patch($url, $payload, array $additionalOptions);
+
+    /**
+     * sends a link request to the given url
+     *
+     * @param  string $url
+     * @param  array  $additionalOptions
+     * @return Response
+     */
+    public function link($url, array $additionalOptions);
+
+    /**
+     * sends an unlink request to the given url
+     *
+     * @param  string $url
+     * @param  array  $additionalOptions
+     * @return Response
+     */
+    public function unlink($url, array $additionalOptions);
 }

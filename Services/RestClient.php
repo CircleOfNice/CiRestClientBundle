@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of CircleRestClientBundle.
  *
@@ -107,6 +108,20 @@ class RestClient implements RestInterface {
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function link($url, array $options = array()) {
+        return $this->curl->sendRequest($url, 'LINK', $options);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function unlink($url, array $options = array()) {
+        return $this->curl->sendRequest($url, 'UNLINK', $options);
+    }
+
+    /**
      * sets the content type
      *
      * @param  $contentType
@@ -116,4 +131,5 @@ class RestClient implements RestInterface {
         $this->curl->setContentType($contentType);
         return $this;
     }
+
 }
