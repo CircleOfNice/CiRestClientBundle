@@ -35,7 +35,7 @@ php composer.phar require ci/restclientbundle
 ```
 Composer will install the bundle to your project's ```vendor/ci``` directory.
 
-##Step 2: Enable the bundle
+## Step 2: Enable the bundle
 Enable the bundle in the symfony kernel
 
 ```php
