@@ -3,7 +3,7 @@ RestClientBundle
 
 A Smart REST client with an intuitive API, providing all REST methods and returning a Symfony Response Object.
 
-#Motivation
+# Motivation
 
 There are some Symfony2 bundles providing abstractions for REST requests, but none of them is actually feeling like: "That's what I was looking for!". Having used some of these in the past, we always had to improve or remap their API's for our own needs.
 
@@ -26,9 +26,9 @@ So the Symfony Response Object is our choice to go: We don't need to roll out ou
 
 So all in all let's call it a day and start goin' gorillas with this one.
 
-#Installation
+# Installation
 
-##Step 1: Download the bundle using composer
+## Step 1: Download the bundle using composer
 Add the bundle by running the command:
 ```console
 php composer.phar require ci/restclientbundle
@@ -51,7 +51,7 @@ public function registerBundles()
 }
 ```
 
-#Configuration
+# Configuration
 
 The bundle allows you to configure all default options that the underlying PHP internal curl library provides - with their real names. No re-re-re-mapping-mapping-re-... :D
 
@@ -68,7 +68,7 @@ circle_rest_client:
         ...
 ```
 
-##Example:
+## Example:
 
 ```yml
 circle_rest_client:
@@ -80,10 +80,10 @@ circle_rest_client:
 
 Sets thre request header to application/json and follows redirects.
 
-##Exceptions:
+## Exceptions:
 You cannot change the default value for CURLOPT_RETURNTRANSFER (default=true).
 
-#Usage
+# Usage
 
 ```php
 $restClient = $this->container->get('circle.restclient');
@@ -99,7 +99,7 @@ $restClient->options('http://www.someUrl.com', 'somePayload');
 $restClient->trace('http://www.someUrl.com');
 $restClient->connect('http://www.someUrl.com');
 ```
-##Exception handling
+## Exception Handling
 As the rest client is using libcurl we have created an exception class for each libcurl error.
 Have a look at the full list of errors here: http://curl.haxx.se/libcurl/c/libcurl-errors.html
 The exception class representing a libcurl error has the following naming conventions:
@@ -128,7 +128,7 @@ try {
 }
 ```
 
-##Advanced usage
+## Advanced usage
 
 You can add additional options to customize a specific request by adding an option array as key value store.
 
@@ -146,22 +146,22 @@ $restClient->trace('http://www.someUrl.com', array(CURLOPT_CONNECTTIMEOUT => 30)
 $restClient->connect('http://www.someUrl.com', array(CURLOPT_CONNECTTIMEOUT => 30));
 ```
 
-#Testing the bundle
+# Testing the bundle
 
 The bundle can be tested via phpunit.
 
-##Preconditions
+## Preconditions
 - Vendors must be installed via composer
 - (Of course) Phpunit must be installed
 - Port 8000 must not be blocked on the local machine
 - XDebug should be enabled
 
-##Executing tests
+## Executing tests
 The Tests are executed against a local php server located in the Tests/TestServer folder. Execute the tests via
 ```console
 make
 ```
 
-#Roadmap
+# Roadmap
 - Strict rules for rest methods such as server MUST NOT return a message-body in the response for HEAD requests
 - EventHandling (onRequest, preRequest, postRequest)
