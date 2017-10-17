@@ -30,7 +30,7 @@ use Circle\RestClientBundle\Parsers\HTTPHeadersParser;
  *
  * @SuppressWarnings("PHPMD.StaticAccess")
  */
-class ResponseHeadersTest extends \PHPUnit_Framework_TestCase {    
+class ResponseHeadersTest extends \PHPUnit_Framework_TestCase {
     
     /**
      * @test
@@ -66,13 +66,14 @@ class ResponseHeadersTest extends \PHPUnit_Framework_TestCase {
      */
     public function testParseCookie() {
         $headers = "Set-Cookie: foo=bar\r\n".
-            "Set-Cookie: baz=quux\r\n";
+            "Set-Cookie: baz=quux\r\n".
+            "Set-Cookie: quux=baz\r\n";
         $returnValue = HTTPHeadersParser::parse($headers);
         $this->assertTrue(is_array($returnValue));
         
         $this->assertTrue(isset($returnValue['Set-Cookie']));
         $this->assertTrue(is_array($returnValue['Set-Cookie']));
-        $this->assertEquals(count($returnValue['Set-Cookie']), 2);
+        $this->assertEquals(count($returnValue['Set-Cookie']), 3);
     }
     
     /**
