@@ -45,7 +45,17 @@ class HTTPHeadersParser {
                return strtoupper($matches[0]);
            }, strtolower(trim($match[1])));
 
-           $carry[$match[1]] = isset($carry[$match[1]]) ? [$carry[$match[1]], $match[2]] : trim($match[2]);
+           if (!isset($carry[$match[1]])) {
+               $carry[$match[1]] = trim($match[2]);
+               return $carry;
+           }
+           
+           if (is_array($carry[$match[1]])) {
+               $carry[$match[1]][] = trim($match[2]);      
+               return $carry;
+           }
+           
+           $carry[$match[1]] = [$carry[$match[1]], trim($match[2])];
 
            return $carry;
        }, []);
