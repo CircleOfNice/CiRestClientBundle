@@ -10,7 +10,7 @@
     "REST client curl POST GET PUT DELETE OPTIONS CONNECT PATCH TRACE HEAD content-type payload library plugin"
   ],
   "license" : [
-    "GPL"
+    "MIT"
   ],
   "require" : {
     "php": ">=5.4",
