@@ -1,5 +1,5 @@
 {
-  "name" : "ci/restclientbundle",
+  "name" : "prolix/restclientbundle",
   "description" : "Provides REST request methods. Mapper bundle for php internal curl library",
   "type" : "symfony-bundle",
   "authors" : [{
