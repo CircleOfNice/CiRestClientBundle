@@ -1,5 +1,5 @@
 {
-  "name" : "prolix/restclientbundle",
+  "name" : "ci/restclientbundle",
   "description" : "Provides REST request methods. Mapper bundle for php internal curl library",
   "type" : "symfony-bundle",
   "authors" : [{
@@ -10,7 +10,7 @@
     "REST client curl POST GET PUT DELETE OPTIONS CONNECT PATCH TRACE HEAD content-type payload library plugin"
   ],
   "license" : [
-    "MIT"
+    "GPL"
   ],
   "require" : {
     "php": ">=5.4",
